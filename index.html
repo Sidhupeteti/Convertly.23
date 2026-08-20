@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Convertly — Fast, Accurate & Free Conversions. Convert length, weight, temperature, area, volume, time, speed, data, numbers and angles instantly.">
+
+<meta name="keywords"
+content="online converter, unit converter, length converter, weight converter, temperature converter, calculator, Convertly">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title"
+content="Convertly — Free Online Converters">
+
+<meta property="og:description"
+content="Fast, accurate and free conversions — all in one place.">
+
+<meta property="og:type" content="website">
+
+<meta name="twitter:card" content="summary">
+
+<title>Convertly — Fast, Accurate & Free Conversions</title>
+
+<style>
+
+:root{
+--bg:#111827;
+--bg2:#0b1220;
+--card:#1f2937;
+--card2:#263449;
+--accent:#3b82f6;
+--cyan:#06b6d4;
+--green:#10b981;
+--red:#f87171;
+--text:#ffffff;
+--muted:#aeb9ca;
+--border:#334155;
+--shadow:0 20px 60px rgba(0,0,0,.25);
+}
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:
+Inter,
+ui-sans-serif,
+system-ui,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+sans-serif;
+
+background:
+radial-gradient(
+circle at 15% 0%,
+#17345f 0,
+transparent 32%
+),
+var(--bg);
+
+color:var(--text);
+line-height:1.5;
+min-height:100vh;
+}
+
+body.light{
+--bg:#f4f7fb;
+--bg2:#ffffff;
+--card:#ffffff;
+--card2:#eef3f9;
+--text:#111827;
+--muted:#536174;
+--border:#d7dfeb;
+
+background:
+radial-gradient(
+circle at 15% 0%,
+#dceaff 0,
+transparent 32%
+),
+var(--bg);
+}
+
+button,
+input,
+select{
+font:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+width:min(1120px,92%);
+margin:auto;
+}
+
+/* NAVIGATION */
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(17,24,39,.85);
+backdrop-filter:blur(18px);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+body.light header{
+background:rgba(255,255,255,.85);
+}
+
+nav{
+height:70px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-size:25px;
+font-weight:900;
+letter-spacing:-1px;
+}
+
+.logo span{
+color:var(--accent);
+}
+
+.navlinks{
+display:flex;
+gap:4px;
+align-items:center;
+}
+
+.navlinks button,
+.theme-btn{
+border:0;
+background:transparent;
+color:var(--muted);
+padding:10px 12px;
+border-radius:10px;
+}
+
+.navlinks button:hover,
+.theme-btn:hover{
+background:rgba(255,255,255,.08);
+color:var(--text);
+}
+
+.menu-btn{
+display:none;
+border:0;
+background:none;
+color:var(--text);
+font-size:25px;
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:90px 0 55px;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:6px;
+padding:7px 13px;
+border-radius:50px;
+
+background:rgba(59,130,246,.08);
+border:1px solid rgba(59,130,246,.3);
+
+color:#8fc0ff;
+font-size:14px;
+}
+
+.hero h1{
+font-size:clamp(44px,7vw,80px);
+line-height:.98;
+letter-spacing:-5px;
+margin:22px auto;
+max-width:900px;
+}
+
+.hero h1 span{
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#3b82f6,
+#06b6d4
+);
+
+-webkit-background-clip:text;
+background-clip:text;
+color:transparent;
+}
+
+.hero p{
+max-width:680px;
+margin:0 auto 30px;
+color:var(--muted);
+font-size:18px;
+}
+
+.actions{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.btn{
+border:1px solid rgba(255,255,255,.12);
+background:rgba(255,255,255,.05);
+color:var(--text);
+
+padding:12px 18px;
+border-radius:12px;
+
+transition:
+transform .2s,
+background .2s,
+border .2s;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+background:rgba(255,255,255,.1);
+}
+
+.primary{
+background:
+linear-gradient(
+135deg,
+#3b82f6,
+#2563eb
+);
+
+border-color:#60a5fa55;
+box-shadow:0 10px 30px #3b82f633;
+}
+
+/* SEARCH */
+
+.search{
+max-width:720px;
+margin:40px auto 0;
+}
+
+.search input{
+width:100%;
+padding:17px 20px;
+
+border-radius:15px;
+border:1px solid var(--border);
+
+background:rgba(255,255,255,.05);
+color:var(--text);
+
+outline:none;
+}
+
+.search input:focus{
+border-color:#3b82f6;
+box-shadow:0 0 0 3px #3b82f620;
+}
+
+/* PAGES */
+
+.page{
+display:none;
+min-height:65vh;
+padding:45px 0 80px;
+}
+
+.page.active{
+display:block;
+animation:fadeIn .25s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(8px);
+}
+
+to{
+opacity:1;
+transform:none;
+}
+}
+
+/* SECTION */
+
+.section-title{
+font-size:34px;
+letter-spacing:-1px;
+margin-bottom:5px;
+}
+
+.section-sub{
+color:var(--muted);
+margin-bottom:28px;
+}
+
+/* GRID */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(3,1fr);
+
+gap:17px;
+}
+
+/* TOOL CARD */
+
+.tool-card{
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.06),
+rgba(255,255,255,.02)
+);
+
+border:1px solid var(--border);
+
+border-radius:18px;
+
+padding:21px;
+
+box-shadow:
+0 12px 35px rgba(0,0,0,.12);
+
+transition:
+transform .25s,
+border .25s,
+box-shadow .25s;
+}
+
+body.light .tool-card{
+background:white;
+}
+
+.tool-card:hover{
+transform:translateY(-5px);
+border-color:#3b82f655;
+
+box-shadow:
+0 20px 45px rgba(0,0,0,.2);
+}
+
+.tool-icon{
+font-size:30px;
+margin-bottom:12px;
+}
+
+.tool-card h3{
+margin-bottom:6px;
+}
+
+.tool-card p{
+color:var(--muted);
+font-size:14px;
+min-height:45px;
+margin-bottom:15px;
+}
+
+.tool-open{
+width:100%;
+
+border:0;
+border-radius:10px;
+
+padding:11px;
+
+background:#3b82f620;
+color:#9fc5ff;
+
+transition:.2s;
+}
+
+.tool-open:hover{
+background:#3b82f640;
+}
+
+/* CONVERTER */
+
+.converter-box{
+max-width:850px;
+margin:25px auto;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.06),
+rgba(255,255,255,.02)
+);
+
+border:1px solid var(--border);
+
+border-radius:22px;
+
+padding:26px;
+
+box-shadow:var(--shadow);
+}
+
+.converter-fields{
+display:grid;
+grid-template-columns:
+1fr 60px 1fr;
+
+gap:14px;
+
+align-items:end;
+}
+
+.field label{
+display:block;
+color:var(--muted);
+font-size:14px;
+margin-bottom:7px;
+}
+
+.field input,
+.field select,
+.form-input,
+.form-textarea{
+width:100%;
+
+padding:14px;
+
+border-radius:12px;
+
+border:1px solid var(--border);
+
+background:var(--bg2);
+
+color:var(--text);
+
+outline:none;
+}
+
+.field input:focus,
+.field select:focus{
+border-color:var(--accent);
+}
+
+.swap-btn{
+height:48px;
+width:100%;
+
+border-radius:12px;
+
+border:1px solid var(--border);
+
+background:rgba(255,255,255,.06);
+
+color:var(--text);
+
+font-size:21px;
+}
+
+.swap-btn:hover{
+background:rgba(59,130,246,.15);
+}
+
+.result-box{
+margin-top:20px;
+
+padding:21px;
+
+border-radius:16px;
+
+background:#3b82f610;
+
+border:1px solid #3b82f635;
+}
+
+.result-label{
+font-size:13px;
+color:var(--muted);
+}
+
+.result-value{
+font-size:30px;
+font-weight:800;
+
+margin:4px 0;
+
+word-break:break-word;
+}
+
+.formula{
+font-size:13px;
+color:var(--muted);
+}
+
+.result-actions{
+display:flex;
+gap:9px;
+flex-wrap:wrap;
+margin-top:16px;
+}
+
+.explanation{
+margin-top:16px;
+
+padding:15px;
+
+border-radius:12px;
+
+background:#10b98110;
+
+border:1px solid #10b98135;
+
+color:#b9f5df;
+}
+
+/* RECENT */
+
+.recent-box{
+margin-top:30px;
+}
+
+.recent-list{
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.recent-item{
+padding:8px 12px;
+
+border-radius:50px;
+
+border:1px solid var(--border);
+
+background:rgba(255,255,255,.04);
+
+color:var(--muted);
+}
+
+.recent-item:hover{
+color:var(--text);
+border-color:var(--accent);
+}
+
+/* CALCULATOR */
+
+.calculator{
+max-width:440px;
+margin:30px auto;
+
+padding:18px;
+
+border-radius:24px;
+
+background:#172235;
+
+border:1px solid var(--border);
+
+box-shadow:var(--shadow);
+}
+
+body.light .calculator{
+background:#e9eff7;
+}
+
+.calc-screen{
+background:#0b1220;
+
+border-radius:15px;
+
+padding:18px;
+
+text-align:right;
+
+min-height:95px;
+
+margin-bottom:12px;
+}
+
+.calc-expression{
+color:#8c98aa;
+min-height:24px;
+}
+
+.calc-answer{
+font-size:32px;
+font-weight:800;
+
+overflow:auto;
+}
+
+.calc-keys{
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:9px;
+}
+
+.calc-keys button{
+padding:17px;
+
+border:0;
+
+border-radius:12px;
+
+background:#ffffff0b;
+
+color:white;
+
+transition:.15s;
+}
+
+.calc-keys button:hover{
+background:#ffffff18;
+transform:scale(1.02);
+}
+
+.calc-keys .operator{
+background:#3b82f625;
+color:#9fc5ff;
+}
+
+.calc-keys .equals{
+background:#3b82f6;
+}
+
+.calc-history{
+margin-top:16px;
+
+color:#9aa6b7;
+
+font-size:14px;
+}
+
+/* PROSE */
+
+.prose{
+max-width:820px;
+margin:auto;
+color:var(--muted);
+}
+
+.prose h2{
+color:var(--text);
+margin:30px 0 10px;
+}
+
+.prose p{
+margin-bottom:15px;
+}
+
+/* ADS */
+
+.ad-placeholder{
+margin:35px 0;
+
+padding:25px;
+
+border:1px dashed #64748b66;
+
+border-radius:15px;
+
+text-align:center;
+
+color:#718096;
+
+font-size:13px;
+}
+
+/* EMPTY */
+
+.empty{
+text-align:center;
+
+padding:45px;
+
+border:1px dashed var(--border);
+
+border-radius:16px;
+
+color:var(--muted);
+}
+
+/* FOOTER */
+
+footer{
+border-top:1px solid rgba(255,255,255,.08);
+
+padding:40px 0;
+
+color:var(--muted);
+}
+
+.footer-grid{
+display:grid;
+
+grid-template-columns:
+2fr 1fr 1fr;
+
+gap:30px;
+}
+
+.footer-links a{
+display:block;
+
+margin:7px 0;
+
+color:var(--muted);
+}
+
+.footer-links a:hover{
+color:var(--text);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+
+.navlinks{
+display:none;
+
+position:absolute;
+
+top:70px;
+left:0;
+right:0;
+
+background:var(--bg);
+
+padding:15px;
+
+flex-direction:column;
+
+border-bottom:1px solid var(--border);
+}
+
+.navlinks.open{
+display:flex;
+}
+
+.navlinks button{
+width:100%;
+text-align:left;
+}
+
+.menu-btn{
+display:block;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+}
+
+.converter-fields{
+grid-template-columns:1fr;
+}
+
+.swap-btn{
+width:100%;
+}
+
+}
+
+@media(min-width:851px){
+
+.menu-btn{
+display:none;
+}
+
+}
+
+@media(max-width:550px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.hero{
+padding-top:60px;
+}
+
+.hero h1{
+font-size:45px;
+letter-spacing:-2px;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.footer-grid{
+grid-template-columns:1fr;
+}
+
+.converter-box{
+padding:18px;
+}
+
+}
+
+/* ACCESSIBILITY */
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible{
+outline:3px solid #3b82f680;
+outline-offset:2px;
+}
+
+</style>
+</head>
+
+
+<body>
+
+<header>
+
+<nav class="container">
+
+<a class="logo"
+   href="#home"
+   onclick="showPage('home')">
+Convert<span>ly</span>
+</a>
+
+<div class="navlinks" id="navLinks">
+
+<button onclick="showPage('home')">
+Home
+</button>
+
+<button onclick="showPage('converters')">
+Converters
+</button>
+
+<button onclick="showPage('calculator')">
+Calculator
+</button>
+
+<button onclick="showPage('favorites')">
+Favorites
+</button>
+
+<button onclick="showPage('about')">
+About
+</button>
+
+</div>
+
+<div>
+
+<button
+class="theme-btn"
+onclick="toggleTheme()"
+aria-label="Toggle theme">
+☀
+</button>
+
+<button
+class="menu-btn"
+onclick="toggleMenu()"
+aria-label="Open navigation">
+☰
+</button>
+
+</div>
+
+</nav>
+
+</header>
+
+
+<main>
+
+
+<!-- HOME -->
+
+<section
+id="home"
+class="page active">
+
+<div class="hero container">
+
+<span class="badge">
+⚡ Instant • Accurate • Free
+</span>
+
+<h1>
+Convert <span>Anything</span> Instantly
+</h1>
+
+<p>
+Free online converters for everyday use.
+Fast, accurate, and easy.
+</p>
+
+<div class="actions">
+
+<button
+class="btn primary"
+onclick="showPage('converters')">
+Start Converting →
+</button>
+
+<button
+class="btn"
+onclick="document.getElementById('popularTools').scrollIntoView()">
+Explore Tools
+</button>
+
+</div>
+
+<div class="search">
+
+<input
+id="searchInput"
+type="search"
+placeholder="Search converters..."
+aria-label="Search converters"
+oninput="searchTools()">
+
+</div>
+
+</div>
+
+
+<div
+class="container"
+id="popularTools">
+
+<h2 class="section-title">
+Popular Converters
+</h2>
+
+<p class="section-sub">
+Everything you need for quick everyday conversions.
+</p>
+
+<div
+class="grid"
+id="popularGrid">
+</div>
+
+<div class="ad-placeholder">
+Advertisement space reserved for future use.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ALL CONVERTERS -->
+
+<section
+id="converters"
+class="page">
+
+<div class="container">
+
+<h2 class="section-title">
+All Converters
+</h2>
+
+<p class="section-sub">
+Choose a category and start converting instantly.
+</p>
+
+<div
+class="grid"
+id="allToolsGrid">
+</div>
+
+<div class="recent-box">
+
+<h2 class="section-title">
+Recently Used
+</h2>
+
+<p class="section-sub">
+Your latest converters are saved on this device.
+</p>
+
+<div
+class="recent-list"
+id="recentList">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONVERTER PAGE -->
+
+<section
+id="converter"
+class="page">
+
+<div class="container">
+
+<button
+class="btn"
+onclick="showPage('converters')">
+← All Converters
+</button>
+
+<div class="converter-box">
+
+<h2
+id="converterTitle"
+class="section-title">
+Converter
+</h2>
+
+<p
+id="converterDescription"
+class="section-sub">
+</p>
+
+
+<div class="converter-fields">
+
+<div class="field">
+
+<label for="inputValue">
+Value
+</label>
+
+<input
+id="inputValue"
+type="number"
+step="any"
+inputmode="decimal"
+placeholder="Enter a value"
+oninput="convertValue()">
+
+</div>
+
+
+<div>
+
+<button
+class="swap-btn"
+onclick="swapUnits()"
+aria-label="Swap units">
+⇄
+</button>
+
+</div>
+
+
+<div class="field">
+
+<label for="toUnit">
+To
+</label>
+
+<select
+id="toUnit"
+onchange="convertValue()">
+</select>
+
+</div>
+
+</div>
+
+
+<div
+class="field"
+style="margin-top:15px">
+
+<label for="fromUnit">
+From
+</label>
+
+<select
+id="fromUnit"
+onchange="convertValue()">
+</select>
+
+</div>
+
+
+<div class="result-box">
+
+<div class="result-label">
+Converted Value
+</div>
+
+<div
+class="result-value"
+id="resultValue">
+—
+</div>
+
+<div
+class="formula"
+id="formula">
+</div>
+
+
+<div class="result-actions">
+
+<button
+class="btn"
+onclick="copyResult()">
+📋 Copy Result
+</button>
+
+<button
+class="btn"
+onclick="clearConverter()">
+Clear
+</button>
+
+<button
+class="btn"
+onclick="togglePrecision()">
+Full Precision
+</button>
+
+<button
+class="btn"
+onclick="addFavorite()">
+☆ Favorite
+</button>
+
+</div>
+
+</div>
+
+
+<div
+class="explanation"
+id="explanation">
+
+Enter a value above to see your conversion instantly.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CALCULATOR -->
+
+<section
+id="calculator"
+class="page">
+
+<div class="container">
+
+<h2 class="section-title">
+Calculator
+</h2>
+
+<p class="section-sub">
+A fast standard calculator with keyboard support and history.
+</p>
+
+
+<div class="calculator">
+
+<div class="calc-screen">
+
+<div
+class="calc-expression"
+id="calcExpression">
+</div>
+
+<div
+class="calc-answer"
+id="calcAnswer">
+0
+</div>
+
+</div>
+
+
+<div
+class="calc-keys"
+id="calculatorKeys">
+</div>
+
+
+<div
+class="calc-history"
+id="calculatorHistory">
+No calculation history yet.
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section
+id="favorites"
+class="page">
+
+<div class="container">
+
+<h2 class="section-title">
+Favorites
+</h2>
+
+<p class="section-sub">
+Your saved converters are stored on this device.
+</p>
+
+<div
+class="grid"
+id="favoritesGrid">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section
+id="about"
+class="page">
+
+<div class="container prose">
+
+<h2>
+About Convertly
+</h2>
+
+<p>
+Convertly is a free online utility platform designed to make
+everyday conversions fast, accurate and easy to understand.
+</p>
+
+<h2>
+Our Goal
+</h2>
+
+<p>
+The goal is simple: put useful conversion tools in one clean,
+fast and distraction-free website.
+</p>
+
+<h2>
+Fast & Private
+</h2>
+
+<p>
+Most calculations are performed directly inside your browser.
+Your entered conversion values do not need to be sent to a
+server.
+</p>
+
+<h2>
+Built for Everyone
+</h2>
+
+<p>
+Convertly is designed to work smoothly on phones, tablets and
+desktop computers.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- PRIVACY -->
+
+<section
+id="privacy"
+class="page">
+
+<div class="container prose">
+
+<h2>
+Privacy Policy
+</h2>
+
+<p>
+Convertly is designed to minimize unnecessary data collection.
+Conversion calculations are performed locally in your browser.
+</p>
+
+<h2>
+Local Storage
+</h2>
+
+<p>
+Favorites and recently used tools may be stored locally on your
+device to improve your experience.
+</p>
+
+<h2>
+Advertising
+</h2>
+
+<p>
+Convertly may display advertising in the future. If advertising
+services are introduced, this policy will be updated to explain
+the services used and the information they may process.
+</p>
+
+<h2>
+Third-Party Services
+</h2>
+
+<p>
+Third-party services may have their own privacy policies and
+terms. Users should review those policies when applicable.
+</p>
+
+<h2>
+Updates
+</h2>
+
+<p>
+This Privacy Policy may be updated as Convertly develops new
+features and services.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- TERMS -->
+
+<section
+id="terms"
+class="page">
+
+<div class="container prose">
+
+<h2>
+Terms & Conditions
+</h2>
+
+<p>
+By using Convertly, you agree to use the website responsibly
+and for lawful purposes.
+</p>
+
+<h2>
+Accuracy
+</h2>
+
+<p>
+Reasonable care is taken to provide accurate conversion results.
+However, results should be independently verified before being
+used for medical, financial, engineering, legal or other
+high-stakes decisions.
+</p>
+
+<h2>
+Availability
+</h2>
+
+<p>
+Convertly may be updated, modified or temporarily unavailable
+without notice.
+</p>
+
+<h2>
+Disclaimer
+</h2>
+
+<p>
+The website is provided on an "as is" and "as available" basis.
+No guarantee is made that the service will always be completely
+error-free or uninterrupted.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- 404 -->
+
+<section
+id="notfound"
+class="page">
+
+<div class="container">
+
+<div class="empty">
+
+<h2>
+404 — Page Not Found
+</h2>
+
+<p>
+The page you're looking for doesn't exist.
+</p>
+
+<br>
+
+<button
+class="btn primary"
+onclick="showPage('home')">
+Back to Home
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container footer-grid">
+
+<div>
+
+<div class="logo">
+Convert<span>ly</span>
+</div>
+
+<p>
+Fast, Accurate & Free Conversions —
+All in One Place.
+</p>
+
+<p>
+© <span id="year"></span> Convertly
+</p>
+
+</div>
+
+
+<div class="footer-links">
+
+<strong>
+Quick Links
+</strong>
+
+<a href="#home"
+onclick="showPage('home')">
+Home
+</a>
+
+<a href="#converters"
+onclick="showPage('converters')">
+Converters
+</a>
+
+<a href="#calculator"
+onclick="showPage('calculator')">
+Calculator
+</a>
+
+<a href="#favorites"
+onclick="showPage('favorites')">
+Favorites
+</a>
+
+</div>
+
+
+<div class="footer-links">
+
+<strong>
+Information
+</strong>
+
+<a href="#about"
+onclick="showPage('about')">
+About
+</a>
+
+<a href="#privacy"
+onclick="showPage('privacy')">
+Privacy Policy
+</a>
+
+<a href="#terms"
+onclick="showPage('terms')">
+Terms & Conditions
+</a>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   CONVERTER DATA
+========================= */
+
+const converters={
+
+length:{
+name:"Length",
+icon:"📏",
+description:"Convert common length and distance measurements.",
+units:{
+Millimeter:0.001,
+Centimeter:0.01,
+Meter:1,
+Kilometer:1000,
+Inch:0.0254,
+Foot:0.3048,
+Yard:0.9144,
+Mile:1609.344
+}
+},
+
+weight:{
+name:"Weight",
+icon:"⚖️",
+description:"Convert mass and weight measurements.",
+units:{
+Milligram:0.000001,
+Gram:0.001,
+Kilogram:1,
+Ton:1000,
+Ounce:0.028349523125,
+Pound:0.45359237
+}
+},
+
+temperature:{
+name:"Temperature",
+icon:"🌡️",
+description:"Convert Celsius, Fahrenheit and Kelvin.",
+units:{
+Celsius:1,
+Fahrenheit:1,
+Kelvin:1
+}
+},
+
+area:{
+name:"Area",
+icon:"▦",
+description:"Convert common area measurements.",
+units:{
+"Square Meter":1,
+"Square Kilometer":1000000,
+"Square Foot":0.09290304,
+Acre:4046.8564224,
+Hectare:10000
+}
+},
+
+volume:{
+name:"Volume",
+icon:"🧪",
+description:"Convert common liquid and volume measurements.",
+units:{
+Milliliter:0.001,
+Liter:1,
+"Cubic Meter":1000,
+Gallon:3.785411784
+}
+},
+
+time:{
+name:"Time",
+icon:"⏱️",
+description:"Convert seconds, minutes, hours, days and more.",
+units:{
+Second:1,
+Minute:60,
+Hour:3600,
+Day:86400,
+Week:604800,
+Month:2629800,
+Year:31557600
+}
+},
+
+speed:{
+name:"Speed",
+icon:"🚀",
+description:"Convert common speed measurements.",
+units:{
+"m/s":1,
+"km/h":0.2777777777777778,
+"mph":0.44704,
+Knot:0.5144444444
+}
+},
+
+data:{
+name:"Data Storage",
+icon:"💾",
+description:"Convert digital information and storage units.",
+units:{
+Bit:1,
+Byte:8,
+KB:8192,
+MB:8388608,
+GB:8589934592,
+TB:8796093022208
+}
+},
+
+number:{
+name:"Number System",
+icon:"🔢",
+description:"Convert numbers between binary, decimal, octal and hexadecimal.",
+units:{
+Binary:2,
+Decimal:10,
+Octal:8,
+Hexadecimal:16
+}
+},
+
+angle:{
+name:"Angle",
+icon:"📐",
+description:"Convert degrees and radians.",
+units:{
+Degree:1,
+Radian:57.29577951308232
+}
+}
+
+};
+
+
+let currentConverter="length";
+let fullPrecision=false;
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+function showPage(id){
+
+document
+.querySelectorAll(".page")
+.forEach(page=>{
+page.classList.remove("active");
+});
+
+const page=document.getElementById(id);
+
+if(page){
+
+page.classList.add("active");
+
+}else{
+
+document
+.getElementById("notfound")
+.classList.add("active");
+
+}
+
+document
+.getElementById("navLinks")
+.classList.remove("open");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function toggleMenu(){
+
+document
+.getElementById("navLinks")
+.classList.toggle("open");
+
+}
+
+
+/* =========================
+   TOOL CARDS
+========================= */
+
+function createToolCard(key){
+
+const tool=converters[key];
+
+return `
+
+<article class="tool-card">
+
+<div class="tool-icon">
+${tool.icon}
+</div>
+
+<h3>
+${tool.name}
+</h3>
+
+<p>
+${tool.description}
+</p>
+
+<button
+class="tool-open"
+onclick="openConverter('${key}')">
+
+Open ${tool.name} →
+
+</button>
+
+</article>
+
+`;
+
+}
+
+
+function renderTools(){
+
+const keys=Object.keys(converters);
+
+const html=
+keys
+.map(createToolCard)
+.join("");
+
+document
+.getElementById("popularGrid")
+.innerHTML=html;
+
+document
+.getElementById("allToolsGrid")
+.innerHTML=html;
+
+renderFavorites();
+renderRecent();
+
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchTools(){
+
+const query=
+document
+.getElementById("searchInput")
+.value
+.toLowerCase();
+
+document
+.querySelectorAll("#popularGrid .tool-card")
+.forEach(card=>{
+
+const text=
+card.innerText.toLowerCase();
+
+card.style.display=
+text.includes(query)
+?""
+:"none";
+
+});
+
+}
+
+
+/* =========================
+   OPEN CONVERTER
+========================= */
+
+function openConverter(type){
+
+currentConverter=type;
+
+showPage("converter");
+
+const tool=converters[type];
+
+document
+.getElementById("converterTitle")
+.innerText=tool.name;
+
+document
+.getElementById("converterDescription")
+.innerText=tool.description;
+
+
+const units=
+Object.keys(tool.units);
+
+
+document
+.getElementById("fromUnit")
+.innerHTML=
+units
+.map(unit=>`<option>${unit}</option>`)
+.join("");
+
+
+document
+.getElementById("toUnit")
+.innerHTML=
+units
+.map(unit=>`<option>${unit}</option>`)
+.join("");
+
+
+if(units.length>1){
+
+document
+.getElementById("toUnit")
+.value=units[1];
+
+}
+
+
+document
+.getElementById("inputValue")
+.value="";
+
+document
+.getElementById("resultValue")
+.innerText="—";
+
+document
+.getElementById("formula")
+.innerText="";
+
+document
+.getElementById("explanation")
+innerText=
+"Enter a value above to see your conversion instantly.";
+
+addRecent(type);
+
+}
+
+
+/* =========================
+   TEMPERATURE
+========================= */
+
+function convertTemperature(value,from,to){
+
+if(from===to)
+return value;
+
+if(from==="Celsius" && to==="Fahrenheit")
+return value*9/5+32;
+
+if(from==="Fahrenheit" && to==="Celsius")
+return (value-32)*5/9;
+
+if(from==="Celsius" && to==="Kelvin")
+return value+273.15;
+
+if(from==="Kelvin" && to==="Celsius")
+return value-273.15;
+
+if(from==="Fahrenheit" && to==="Kelvin")
+return (value-32)*5/9+273.15;
+
+if(from==="Kelvin" && to==="Fahrenheit")
+return (value-273.15)*9/5+32;
+
+return value;
+
+}
+
+
+/* =========================
+   NUMBER SYSTEM
+========================= */
+
+function convertNumberSystem(value,from,to){
+
+const bases={
+Binary:2,
+Decimal:10,
+Octal:8,
+Hexadecimal:16
+};
+
+try{
+
+let decimal;
+
+if(from==="Decimal"){
+
+decimal=BigInt(value);
+
+}else{
+
+decimal=BigInt(
+parseInt(value,bases[from])
+);
+
+}
+
+if(to==="Decimal")
+return decimal.toString(10);
+
+return decimal
+.toString(bases[to])
+.toUpperCase();
+
+}catch{
+
+return null;
+
+}
+
+}
+
+
+/* =========================
+   CONVERT
+========================= */
+
+function convertValue(){
+
+const input=
+document
+.getElementById("inputValue")
+.value;
+
+const from=
+document
+.getElementById("fromUnit")
+.value;
+
+const to=
+document
+.getElementById("toUnit")
+.value;
+
+
+if(input===""){
+
+document
+.getElementById("resultValue")
+.innerText="—";
+
+document
+.getElementById("formula")
+.innerText="";
+
+return;
+
+}
+
+
+const value=
+Number(input);
+
+
+if(!Number.isFinite(value)){
+
+document
+.getElementById("resultValue")
+.innerText="Invalid value";
+
+return;
+
+}
+
+
+let result;
+
+
+if(currentConverter==="temperature"){
+
+result=
+convertTemperature(
+value,
+from,
+to
+);
+
+}
+
+else if(currentConverter==="number"){
+
+result=
+convertNumberSystem(
+input,
+from,
+to
+);
+
+if(result===null){
+
+document
+.getElementById("resultValue")
+.innerText="Invalid number";
+
+document
+.getElementById("formula")
+.innerText=
+"Please enter a valid number for the selected number system.";
+
+return;
+
+}
+
+}
+
+else{
+
+result=
+value*
+converters[currentConverter].units[from]/
+converters[currentConverter].units[to];
+
+}
+
+
+let display=result;
+
+
+if(typeof result==="number"){
+
+if(!fullPrecision){
+
+display=
+Number(
+result.toPrecision(12)
+);
+
+}
+
+}
+
+
+document
+.getElementById("resultValue")
+.innerText=
+`${display} ${to}`;
+
+
+document
+.getElementById("formula")
+innerText=
+`${input} ${from} = ${display} ${to}`;
+
+
+document
+.getElementById("explanation")
+innerText=
+`Convertly calculated this result instantly using standard conversion relationships.`;
+
+}
+
+
+/* =========================
+   SWAP
+========================= */
+
+function swapUnits(){
+
+const from=
+document.getElementById("fromUnit");
+
+const to=
+document.getElementById("toUnit");
+
+const old=from.value;
+
+from.value=to.value;
+
+to.value=old;
+
+convertValue();
+
+}
+
+
+/* =========================
+   CLEAR
+========================= */
+
+function clearConverter(){
+
+document
+.getElementById("inputValue")
+.value="";
+
+document
+.getElementById("resultValue")
+.innerText="—";
+
+document
+.getElementById("formula")
+.innerText="";
+
+}
+
+
+/* =========================
+   PRECISION
+========================= */
+
+function togglePrecision(){
+
+fullPrecision=!fullPrecision;
+
+convertValue();
+
+}
+
+
+/* =========================
+   COPY
+========================= */
+
+async function copyResult(){
+
+const text=
+document
+.getElementById("resultValue")
+.innerText;
+
+if(text==="—")
+return;
+
+try{
+
+await navigator.clipboard.writeText(text);
+
+document
+.getElementById("formula")
+.innerText=
+"Copied to clipboard ✓";
+
+}catch{
+
+document
+.getElementById("formula")
+.innerText=
+"Copy unavailable in this browser.";
+
+}
+
+}
+
+
+/* =========================
+   FAVORITES
+========================= */
+
+function getFavorites(){
+
+return JSON.parse(
+localStorage.getItem(
+"convertlyFavorites"
+)||"[]"
+);
+
+}
+
+
+function addFavorite(){
+
+const favorites=
+getFavorites();
+
+if(!favorites.includes(currentConverter)){
+
+favorites.push(currentConverter);
+
+localStorage.setItem(
+"convertlyFavorites",
+JSON.stringify(favorites)
+);
+
+}
+
+renderFavorites();
+
+}
+
+
+function renderFavorites(){
+
+const favorites=
+getFavorites();
+
+const container=
+document.getElementById("favoritesGrid");
+
+if(!favorites.length){
+
+container.innerHTML=`
+
+<div
+class="empty"
+style="grid-column:1/-1">
+
+<h3>No favorites yet</h3>
+
+<p>
+Open a converter and press ☆ Favorite.
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+container.innerHTML=
+favorites
+.map(createToolCard)
+.join("");
+
+}
+
+
+/* =========================
+   RECENT TOOLS
+========================= */
+
+function getRecent(){
+
+return JSON.parse(
+localStorage.getItem(
+"convertlyRecent"
+)||"[]"
+);
+
+}
+
+
+function addRecent(type){
+
+let recent=
+getRecent();
+
+recent=
+recent.filter(x=>x!==type);
+
+recent.unshift(type);
+
+recent=
+recent.slice(0,6);
+
+localStorage.setItem(
+"convertlyRecent",
+JSON.stringify(recent)
+);
+
+renderRecent();
+
+}
+
+
+function renderRecent(){
+
+const recent=
+getRecent();
+
+const container=
+document.getElementById("recentList");
+
+if(!recent.length){
+
+container.innerHTML=
+"<span style='color:var(--muted)'>No recent conversions yet.</span>";
+
+return;
+
+}
+
+container.innerHTML=
+recent
+.map(key=>`
+
+<button
+class="recent-item"
+onclick="openConverter('${key}')">
+
+${converters[key].icon}
+${converters[key].name}
+
+</button>
+
+`)
+.join("");
+
+}
+
+
+/* =========================
+   THEME
+========================= */
+
+function toggleTheme(){
+
+document
+.body
+.classList
+.toggle("light");
+
+localStorage.setItem(
+"convertlyTheme",
+document.body.classList.contains("light")
+?"light"
+:"dark"
+);
+
+}
+
+
+if(
+localStorage.getItem("convertlyTheme")
+==="light"
+){
+
+document
+.body
+.classList
+.add("light");
+
+}
+
+
+/* =========================
+   CALCULATOR
+========================= */
+
+let calcExpression="";
+let calcHistory=[];
+
+
+const calcButtons=[
+"C","⌫","%","÷",
+"7","8","9","×",
+"4","5","6","−",
+"1","2","3","+",
+"0",".","="
+];
+
+
+document
+.getElementById("calculatorKeys")
+.innerHTML=
+calcButtons
+.map(key=>{
+
+let className="";
+
+if(
+"÷×−+".includes(key)
+){
+
+className="operator";
+
+}
+
+if(key==="="){
+
+className="equals";
+
+}
+
+return`
+
+<button
+class="${className}"
+onclick="calculatorPress('${key}')">
+
+${key}
+
+</button>
+
+`;
+
+})
+.join("");
+
+
+function calculatorPress(key){
+
+if(key==="C"){
+
+calcExpression="";
+
+document
+.getElementById("calcExpression")
+.innerText="";
+
+document
+.getElementById("calcAnswer")
+.innerText="0";
+
+return;
+
+}
+
+
+if(key==="⌫"){
+
+calcExpression=
+calcExpression.slice(0,-1);
+
+}
+
+
+else if(key==="="){
+
+try{
+
+const safe=
+calcExpression
+.replaceAll("×","*")
+.replaceAll("÷","/")
+.replaceAll("−","-")
+.replaceAll("%","/100");
+
+
+if(
+!/^[0-9+\-*/().\s]+$/
+.test(safe)
+){
+
+throw new Error();
+
+}
+
+
+const result=
+Function(
+'"use strict";return ('+
+safe+
+')'
+)();
+
+
+if(!Number.isFinite(result))
+throw new Error();
+
+
+calcHistory.unshift(
+`${calcExpression} = ${result}`
+);
+
+calcHistory=
+calcHistory.slice(0,6);
+
+
+document
+.getElementById("calculatorHistory")
+.innerHTML=
+calcHistory
+.map(item=>`<div>${item}</div>`)
+.join("");
+
+
+calcExpression=
+String(result);
+
+}
+
+catch{
+
+document
+.getElementById("calcAnswer")
+.innerText=
+"Error";
+
+return;
+
+}
+
+}
+
+else{
+
+calcExpression+=key;
+
+}
+
+
+document
+.getElementById("calcExpression")
+.innerText=
+calcExpression;
+
+document
+.getElementById("calcAnswer")
+.innerText=
+calcExpression||"0";
+
+}
+
+
+/* =========================
+   KEYBOARD
+========================= */
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(
+!document
+.getElementById("calculator")
+.classList
+.contains("active")
+)
+return;
+
+
+const key=event.key;
+
+
+if(/[0-9.]/.test(key))
+calculatorPress(key);
+
+else if(key==="+")
+calculatorPress("+");
+
+else if(key==="-")
+calculatorPress("−");
+
+else if(key==="*")
+calculatorPress("×");
+
+else if(key==="/")
+calculatorPress("÷");
+
+else if(key==="%")
+calculatorPress("%");
+
+else if(key==="Enter")
+calculatorPress("=");
+
+else if(key==="Backspace")
+calculatorPress("⌫");
+
+else if(key==="Escape")
+calculatorPress("C");
+
+});
+
+
+/* =========================
+   YEAR
+========================= */
+
+document
+.getElementById("year")
+.innerText=
+new Date().getFullYear();
+
+
+/* =========================
+   START
+========================= */
+
+renderTools();
+
+</script>
+
+</body>
+</html>
