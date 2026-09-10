@@ -827,7 +827,341 @@ padding:18px;
 }
 
 }
+/* EXPLORE */
 
+.explore-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:24px;
+margin-top:30px;
+}
+
+.explore-card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:22px;
+overflow:hidden;
+transition:transform .25s ease,box-shadow .25s ease;
+}
+
+.explore-card:hover{
+transform:translateY(-6px);
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.explore-visual{
+height:210px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+overflow:hidden;
+background:linear-gradient(135deg,#172554,#0f172a);
+}
+
+.explore-content{
+padding:22px;
+}
+
+.explore-content h3{
+margin:0 0 10px;
+font-size:22px;
+}
+
+.explore-content p{
+color:var(--muted);
+line-height:1.6;
+margin-bottom:18px;
+}
+
+.ruler{
+width:85%;
+height:70px;
+border-bottom:5px solid #facc15;
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+position:relative;
+}
+
+.ruler span{
+font-size:13px;
+color:#fff;
+padding-bottom:12px;
+}
+
+.ruler:after{
+content:"";
+position:absolute;
+left:0;
+right:0;
+bottom:0;
+height:35px;
+background:repeating-linear-gradient(
+90deg,
+#facc15 0,
+#facc15 2px,
+transparent 2px,
+transparent 10px
+);
+}
+
+.thermometer{
+width:30px;
+height:140px;
+border:5px solid #e5e7eb;
+border-radius:20px;
+position:relative;
+background:#1e293b;
+}
+
+.thermometer-tube{
+position:absolute;
+width:10px;
+height:95px;
+background:#ef4444;
+left:5px;
+bottom:15px;
+border-radius:10px;
+}
+
+.thermometer-bulb{
+position:absolute;
+width:35px;
+height:35px;
+background:#ef4444;
+border-radius:50%;
+left:-7px;
+bottom:-18px;
+}
+
+.temperature-marks{
+position:absolute;
+right:30%;
+height:150px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+color:#fff;
+}
+
+.scale-visual{
+width:220px;
+height:120px;
+position:relative;
+}
+
+.scale-beam{
+position:absolute;
+width:190px;
+height:10px;
+background:#facc15;
+top:45px;
+left:15px;
+transform:rotate(-5deg);
+border-radius:10px;
+}
+
+.scale-pan{
+position:absolute;
+top:65px;
+font-size:42px;
+}
+
+.scale-pan.left{
+left:5px;
+}
+
+.scale-pan.right{
+right:5px;
+}
+
+.container-visual{
+width:90px;
+height:140px;
+border:5px solid #60a5fa;
+border-radius:8px 8px 18px 18px;
+position:relative;
+overflow:hidden;
+}
+
+.liquid{
+position:absolute;
+bottom:0;
+width:100%;
+height:65%;
+background:#38bdf8;
+}
+
+.volume-mark{
+position:absolute;
+top:15px;
+left:20px;
+color:#fff;
+font-weight:bold;
+}
+
+.clock-visual{
+width:130px;
+height:130px;
+border:6px solid #e5e7eb;
+border-radius:50%;
+position:relative;
+background:#0f172a;
+}
+
+.clock-hand{
+position:absolute;
+width:5px;
+background:#facc15;
+left:62px;
+bottom:65px;
+transform-origin:bottom;
+border-radius:5px;
+}
+
+.clock-hand.hour{
+height:42px;
+transform:rotate(35deg);
+}
+
+.clock-hand.minute{
+height:55px;
+transform:rotate(125deg);
+background:#60a5fa;
+}
+
+.clock-center{
+position:absolute;
+width:12px;
+height:12px;
+background:#fff;
+border-radius:50%;
+left:57px;
+top:57px;
+}
+
+.road-visual{
+width:85%;
+height:110px;
+position:relative;
+background:#1f2937;
+border-radius:15px;
+overflow:hidden;
+}
+
+.road-line{
+position:absolute;
+bottom:20px;
+left:0;
+width:100%;
+border-bottom:5px dashed #facc15;
+}
+
+.speed-car{
+position:absolute;
+font-size:48px;
+left:25%;
+top:25px;
+}
+
+.area-shape{
+display:grid;
+grid-template-columns:repeat(4,35px);
+grid-template-rows:repeat(3,35px);
+gap:3px;
+}
+
+.area-shape div{
+background:#22c55e;
+border-radius:4px;
+}
+
+.data-blocks{
+display:flex;
+gap:8px;
+margin-bottom:20px;
+}
+
+.data-blocks span{
+font-size:32px;
+color:#60a5fa;
+}
+
+.data-label{
+color:#fff;
+font-weight:bold;
+letter-spacing:1px;
+}
+
+.number-blocks{
+display:flex;
+gap:8px;
+margin-bottom:18px;
+}
+
+.number-blocks span{
+width:32px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#1d4ed8;
+color:#fff;
+border-radius:6px;
+font-weight:bold;
+font-size:18px;
+}
+
+.number-label{
+color:#fff;
+font-size:20px;
+font-weight:bold;
+}
+
+.angle-visual{
+width:150px;
+height:150px;
+position:relative;
+}
+
+.angle-arm{
+position:absolute;
+height:5px;
+width:110px;
+background:#facc15;
+left:20px;
+top:105px;
+transform-origin:left;
+border-radius:5px;
+}
+
+.arm-one{
+transform:rotate(0deg);
+}
+
+.arm-two{
+transform:rotate(-45deg);
+}
+
+.angle-arc{
+position:absolute;
+width:65px;
+height:65px;
+border:4px solid #60a5fa;
+border-right-color:transparent;
+border-bottom-color:transparent;
+border-radius:50%;
+left:20px;
+top:40px;
+transform:rotate(0deg);
+}
+
+@media(max-width:850px){
+.explore-grid{
+grid-template-columns:1fr;
+}
+}
 /* ACCESSIBILITY */
 
 button:focus-visible,
@@ -1250,9 +1584,19 @@ Explore
 Don't just convert it. See it, interact with it, and understand it.
 </p>
 
-<div class="grid">
+<div class="explore-grid">
 
-<div class="card">
+<div class="explore-card explore-length">
+<div class="explore-visual">
+<div class="ruler">
+<span>1 mm</span>
+<span>1 cm</span>
+<span>1 m</span>
+<span>1 km</span>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>📏 Length</h3>
 <p>See how mm, cm, m and km relate to the real world.</p>
 <button
@@ -1261,8 +1605,22 @@ onclick="openExplore('length')">
 Explore Length
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-temperature">
+<div class="explore-visual">
+<div class="thermometer">
+<div class="thermometer-tube"></div>
+<div class="thermometer-bulb"></div>
+</div>
+<div class="temperature-marks">
+<span>100°</span>
+<span>50°</span>
+<span>0°</span>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>🌡️ Temperature</h3>
 <p>Visualize temperature and see how Celsius, Fahrenheit and Kelvin connect.</p>
 <button
@@ -1271,8 +1629,18 @@ onclick="openExplore('temperature')">
 Explore Temperature
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-weight">
+<div class="explore-visual">
+<div class="scale-visual">
+<div class="scale-pan left">🍎</div>
+<div class="scale-beam"></div>
+<div class="scale-pan right">⚖️</div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>⚖️ Weight</h3>
 <p>Understand weight through visual comparisons and real-world objects.</p>
 <button
@@ -1281,8 +1649,17 @@ onclick="openExplore('weight')">
 Explore Weight
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-volume">
+<div class="explore-visual">
+<div class="container-visual">
+<div class="liquid"></div>
+<div class="volume-mark">1 L</div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>🧴 Volume</h3>
 <p>See how different volume units compare using visual containers.</p>
 <button
@@ -1291,8 +1668,18 @@ onclick="openExplore('volume')">
 Explore Volume
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-time">
+<div class="explore-visual">
+<div class="clock-visual">
+<div class="clock-hand hour"></div>
+<div class="clock-hand minute"></div>
+<div class="clock-center"></div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>⏱️ Time</h3>
 <p>Explore seconds, minutes, hours, days and beyond on a visual timeline.</p>
 <button
@@ -1301,8 +1688,17 @@ onclick="openExplore('time')">
 Explore Time
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-speed">
+<div class="explore-visual">
+<div class="road-visual">
+<div class="speed-car">🚗</div>
+<div class="road-line"></div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>🚗 Speed</h3>
 <p>See speed through moving objects and understand what the numbers mean.</p>
 <button
@@ -1311,8 +1707,19 @@ onclick="openExplore('speed')">
 Explore Speed
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-area">
+<div class="explore-visual">
+<div class="area-shape">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>📐 Area</h3>
 <p>Understand area by watching shapes grow and change.</p>
 <button
@@ -1321,8 +1728,22 @@ onclick="openExplore('area')">
 Explore Area
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-data">
+<div class="explore-visual">
+<div class="data-blocks">
+<span>▰</span>
+<span>▰</span>
+<span>▰</span>
+<span>▰</span>
+<span>▰</span>
+<span>▰</span>
+</div>
+<div class="data-label">KB → MB → GB → TB</div>
+</div>
+
+<div class="explore-content">
 <h3>💾 Data</h3>
 <p>Visualize bits, bytes, KB, MB, GB and TB as storage blocks.</p>
 <button
@@ -1331,8 +1752,24 @@ onclick="openExplore('data')">
 Explore Data
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-number">
+<div class="explore-visual">
+<div class="number-blocks">
+<span>1</span>
+<span>0</span>
+<span>1</span>
+<span>0</span>
+<span>1</span>
+<span>0</span>
+<span>1</span>
+<span>1</span>
+</div>
+<div class="number-label">101011₂</div>
+</div>
+
+<div class="explore-content">
 <h3>🔢 Number Systems</h3>
 <p>See binary, decimal, octal and hexadecimal in a visual way.</p>
 <button
@@ -1341,8 +1778,18 @@ onclick="openExplore('number')">
 Explore Numbers
 </button>
 </div>
+</div>
 
-<div class="card">
+<div class="explore-card explore-angle">
+<div class="explore-visual">
+<div class="angle-visual">
+<div class="angle-arm arm-one"></div>
+<div class="angle-arm arm-two"></div>
+<div class="angle-arc"></div>
+</div>
+</div>
+
+<div class="explore-content">
 <h3>📐 Angles</h3>
 <p>Rotate an angle and see exactly what degrees and radians mean.</p>
 <button
@@ -1351,9 +1798,9 @@ onclick="openExplore('angle')">
 Explore Angles
 </button>
 </div>
-
 </div>
 
+</div>
 </div>
 </section>
 <!-- FAVORITES -->
