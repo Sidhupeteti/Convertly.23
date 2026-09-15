@@ -5127,7 +5127,6 @@ function pauseTemperatureExperience(){
 /* ---------------------------------------------------------
    NARRATION
 --------------------------------------------------------- */
-
 function speakTemperatureScene(
     index,
     autoAdvance = true
@@ -5135,254 +5134,138 @@ function speakTemperatureScene(
 
     clearTemperatureAutoTimer();
 
-
     if(!("speechSynthesis" in window)){
-
-        temperatureSpeechActive = false;
-
-        if(
-            autoAdvance &&
-            temperaturePlaying
-        ){
-
-            startTemperatureAutoTimer();
+        if(autoAdvance){
+            temperatureAutoTimer = setTimeout(
+                nextTemperatureScene,
+                4000
+            );
         }
-
         return;
     }
-
 
     speechSynthesis.cancel();
 
+    const narration = [
+        "Temperature tells us how hot or cold something is. Watch the particles move slowly in the cold environment.",
 
-    const scene =
-        temperatureScenes[index];
+        "As temperature rises, the particles move faster. We can see the change from cold to warm.",
 
+        "Now we reach the human body. A typical body temperature is around thirty-seven degrees Celsius.",
 
-    if(!scene){
-        return;
-    }
+        "At one hundred degrees Celsius, water boils at standard atmospheric pressure. The particles are now moving much more actively.",
 
+        "The physical temperature has not changed, but the number used to describe it can change. Twenty degrees Celsius is sixty-eight degrees Fahrenheit, or two hundred ninety-three point one five Kelvin."
+    ];
 
-    temperatureSpeech =
-        new SpeechSynthesisUtterance(
-            scene.narration
+    const speech =
+        new SpeechSynthesisUtterance(narration[index]);
+
+    /*
+       Choose a more natural, neutral English voice.
+       Different browsers provide different voices,
+       so we pick the best available one.
+    */
+
+    const voices = speechSynthesis.getVoices();
+
+    const preferredVoice =
+        voices.find(v =>
+            /Microsoft David/i.test(v.name)
+        ) ||
+        voices.find(v =>
+            /Microsoft Mark/i.test(v.name)
+        ) ||
+        voices.find(v =>
+            /Google UK English Male/i.test(v.name)
+        ) ||
+        voices.find(v =>
+            /Google US English/i.test(v.name)
+        ) ||
+        voices.find(v =>
+            /^en-IN/i.test(v.lang)
+        ) ||
+        voices.find(v =>
+            /^en-US/i.test(v.lang)
+        ) ||
+        voices.find(v =>
+            /^en-GB/i.test(v.lang)
         );
 
+    if(preferredVoice){
+        speech.voice = preferredVoice;
+    }
 
-    temperatureSpeech.lang = "en-IN";
+    speech.lang =
+        preferredVoice
+            ? preferredVoice.lang
+            : "en-IN";
 
-    /* Slower, easier to understand */
+    /* MODERATE — not slow, not rushed */
+    speech.rate = 0.82;
 
-    temperatureSpeech.rate = 0.70;
+    /* Slightly lower pitch for a calmer narrator */
+    speech.pitch = 0.90;
 
-    temperatureSpeech.pitch = 1;
+    speech.volume = 1;
 
-    temperatureSpeech.volume = 1;
-
-
+    temperatureSpeech = speech;
     temperatureSpeechActive = true;
 
-
-    temperatureSpeech.onstart = function(){
-
-        temperatureSpeechActive = true;
-
-        if(temperaturePlaying){
-            setTemperatureAnimationsPaused(false);
-        }
-    };
-
-
-    temperatureSpeech.onend = function(){
+    speech.onend = function(){
 
         temperatureSpeechActive = false;
-
-        temperatureSpeech = null;
-
-
-        /*
-           Wait after the narration so the
-           viewer can understand the visual.
-        */
 
         if(
             autoAdvance &&
             temperaturePlaying &&
-            currentTemperatureScene === index
+            currentTemperatureScene === index &&
+            currentTemperatureScene <
+            temperatureScenes.length - 1
         ){
 
-            startTemperatureAutoTimer();
+            temperatureAutoTimer = setTimeout(
+                nextTemperatureScene,
+                1800
+            );
         }
     };
 
-
-    temperatureSpeech.onerror = function(){
+    speech.onerror = function(){
 
         temperatureSpeechActive = false;
 
-        temperatureSpeech = null;
-
-
         if(
             autoAdvance &&
-            temperaturePlaying
+            temperaturePlaying &&
+            currentTemperatureScene === index &&
+            currentTemperatureScene <
+            temperatureScenes.length - 1
         ){
 
-            startTemperatureAutoTimer();
+            temperatureAutoTimer = setTimeout(
+                nextTemperatureScene,
+                3000
+            );
         }
     };
 
-
     /*
-       Small delay gives the browser time
-       to prepare the voice after a scene change.
+       Tiny delay makes the voice start smoothly
+       after the visual scene appears.
     */
 
     setTimeout(function(){
 
         if(
             temperaturePlaying &&
-            temperatureSpeech
+            currentTemperatureScene === index
         ){
-
-            speechSynthesis.speak(
-                temperatureSpeech
-            );
+            speechSynthesis.speak(speech);
         }
 
-    }, 200);
+    }, 250);
 }
-
-
-/* ---------------------------------------------------------
-   SCENE WAIT TIME
---------------------------------------------------------- */
-
-const TEMPERATURE_SCENE_WAIT = 4000;
-
-
-/* ---------------------------------------------------------
-   AUTOMATIC SCENE TIMER
---------------------------------------------------------- */
-
-function startTemperatureAutoTimer(){
-
-    clearTemperatureAutoTimer();
-
-
-    if(
-        !temperaturePlaying ||
-        currentTemperatureScene >=
-        temperatureScenes.length - 1
-    ){
-
-        return;
-    }
-
-
-    temperatureAutoTimerRemaining =
-        TEMPERATURE_SCENE_WAIT;
-
-
-    temperatureAutoTimerStart =
-        Date.now();
-
-
-    temperatureAutoTimer =
-        setTimeout(function(){
-
-            temperatureAutoTimer = null;
-
-            temperatureAutoTimerRemaining =
-                TEMPERATURE_SCENE_WAIT;
-
-
-            if(temperaturePlaying){
-
-                nextTemperatureScene();
-            }
-
-        }, TEMPERATURE_SCENE_WAIT);
-}
-
-
-function clearTemperatureAutoTimer(){
-
-    if(temperatureAutoTimer){
-
-        clearTimeout(
-            temperatureAutoTimer
-        );
-
-        temperatureAutoTimer = null;
-    }
-}
-
-
-function pauseTemperatureAutoTimer(){
-
-    if(!temperatureAutoTimer){
-        return;
-    }
-
-
-    const elapsed =
-        Date.now() -
-        temperatureAutoTimerStart;
-
-
-    temperatureAutoTimerRemaining =
-        Math.max(
-            100,
-            temperatureAutoTimerRemaining -
-            elapsed
-        );
-
-
-    clearTimeout(
-        temperatureAutoTimer
-    );
-
-    temperatureAutoTimer = null;
-}
-
-
-function resumeTemperatureAutoTimer(){
-
-    if(
-        !temperaturePlaying ||
-        temperatureAutoTimerRemaining <= 0 ||
-        currentTemperatureScene >=
-        temperatureScenes.length - 1
-    ){
-
-        return;
-    }
-
-
-    temperatureAutoTimerStart =
-        Date.now();
-
-
-    temperatureAutoTimer =
-        setTimeout(function(){
-
-            temperatureAutoTimer = null;
-
-            temperatureAutoTimerRemaining =
-                TEMPERATURE_SCENE_WAIT;
-
-
-            if(temperaturePlaying){
-
-                nextTemperatureScene();
-            }
-
-        }, temperatureAutoTimerRemaining);
-}
-
-
 /* ---------------------------------------------------------
    NEXT SCENE
 --------------------------------------------------------- */
