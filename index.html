@@ -1171,6 +1171,79 @@ outline:3px solid #3b82f680;
 outline-offset:2px;
 }
 
+      /* =========================
+   LENGTH CINEMATIC ANIMATION
+========================= */
+
+.length-object {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 25px;
+    min-height: 25px;
+
+    transition:
+        width 1.2s cubic-bezier(.22,1,.36,1),
+        height 1.2s cubic-bezier(.22,1,.36,1),
+        transform 1.2s cubic-bezier(.22,1,.36,1),
+        opacity .5s ease;
+
+    transform-origin: center center;
+}
+
+.length-object span {
+    display: block;
+    font-size: 2rem;
+
+    transition:
+        transform 1s cubic-bezier(.22,1,.36,1),
+        font-size 1s ease;
+
+    animation: lengthPulse 2s ease-in-out infinite;
+}
+
+.length-scale {
+    transition:
+        transform 1.4s cubic-bezier(.22,1,.36,1);
+
+    transform-origin: center;
+}
+
+.length-scene-change {
+    animation: lengthCamera 1.2s ease;
+}
+
+@keyframes lengthCamera {
+
+    0% {
+        transform: scale(.96);
+        opacity: .65;
+    }
+
+    50% {
+        transform: scale(1.025);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+}
+
+@keyframes lengthPulse {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+}
 </style>
 </head>
 
@@ -2547,6 +2620,182 @@ function openExplore(type){
     }
 
     alert("This Explore experience is coming soon!");
+}
+      /* =========================
+   LENGTH EXPERIENCE
+========================= */
+
+function lengthScene(scene){
+
+    const object = document.getElementById("length-object");
+    const icon = document.getElementById("length-object-icon");
+    const number = document.getElementById("length-number");
+    const unit = document.getElementById("length-unit");
+
+    const storyTitle = document.getElementById("length-story-title");
+    const storyText = document.getElementById("length-story-text");
+
+    const explanationTitle =
+        document.getElementById("length-explanation-title");
+
+    const explanationText =
+        document.getElementById("length-explanation-text");
+
+    const controls =
+        document.querySelectorAll(".length-control");
+
+    const scenes = [
+
+        {
+            unit: "millimeter",
+            title: "Millimeter — the tiny unit",
+            storyTitle: "Everything starts with a tiny distance.",
+            storyText:
+                "A millimeter is incredibly small. It is where our journey begins.",
+            explanation:
+                "A millimeter is one thousandth of a meter. It is useful for measuring very small distances, such as the thickness of a coin or a small object.",
+            icon: "🔹",
+            size: "25px"
+        },
+
+        {
+            unit: "centimeter",
+            title: "Centimeter — ten times bigger",
+            storyTitle: "Now the scale begins to grow.",
+            storyText:
+                "One centimeter contains ten millimeters. The tiny distance is becoming easier to see.",
+            explanation:
+                "A centimeter is equal to ten millimeters. Centimeters are commonly used for measuring small objects such as pencils, books and phones.",
+            icon: "🔷",
+            size: "70px"
+        },
+
+        {
+            unit: "meter",
+            title: "Meter — a human-scale distance",
+            storyTitle: "Now we reach the scale of everyday life.",
+            storyText:
+                "A meter is much larger than a centimeter. It is useful for measuring objects and distances around us.",
+            explanation:
+                "A meter is the main unit of length in the metric system. A typical guitar, table or person's height can be measured in meters.",
+            icon: "📏",
+            size: "150px"
+        },
+
+        {
+            unit: "kilometer",
+            title: "Kilometer — distance across places",
+            storyTitle: "From tiny objects to huge distances.",
+            storyText:
+                "A kilometer contains 1,000 meters. Now we are measuring roads, cities and journeys.",
+            explanation:
+                "A kilometer is a large unit of length used to measure distances between places, roads and travel routes.",
+            icon: "🛣️",
+            size: "260px"
+        }
+
+    ];
+
+    const data = scenes[scene];
+
+    if(!data) return;
+
+    number.textContent = "1";
+    unit.textContent = data.unit;
+
+    storyTitle.textContent = data.storyTitle;
+    storyText.textContent = data.storyText;
+
+    explanationTitle.textContent = data.title;
+    explanationText.textContent = data.explanation;
+
+    controls.forEach((button, index) => {
+
+        button.classList.toggle(
+            "active",
+            index === scene
+        );
+
+    });
+
+    object.style.transform = "scale(0.2)";
+    object.style.opacity = "0";
+
+    icon.textContent = data.icon;
+
+    setTimeout(() => {
+
+        object.style.width = data.size;
+        object.style.height = data.size;
+
+        object.style.transform = "scale(1)";
+        object.style.opacity = "1";
+
+    }, 120);
+
+    const scale = document.querySelector(".length-scale");
+
+    if(scale){
+
+        scale.style.transform =
+            `scaleX(${1 + scene * 0.18})`;
+
+    }
+
+    const stage =
+        document.querySelector(".length-visual-stage");
+
+    if(stage){
+
+        stage.classList.remove("length-scene-change");
+
+        void stage.offsetWidth;
+
+        stage.classList.add("length-scene-change");
+
+    }
+
+    const nextButton =
+        document.querySelector(".length-next .btn");
+
+    if(nextButton){
+
+        if(scene === 0){
+
+            nextButton.textContent =
+                "See the scale grow →";
+
+            nextButton.onclick =
+                () => lengthScene(1);
+
+        }else if(scene === 1){
+
+            nextButton.textContent =
+                "Grow to a meter →";
+
+            nextButton.onclick =
+                () => lengthScene(2);
+
+        }else if(scene === 2){
+
+            nextButton.textContent =
+                "Reach a kilometer →";
+
+            nextButton.onclick =
+                () => lengthScene(3);
+
+        }else{
+
+            nextButton.textContent =
+                "↻ Start the journey again";
+
+            nextButton.onclick =
+                () => lengthScene(0);
+
+        }
+
+    }
+
 }
 /* =========================
    OPEN CONVERTER
