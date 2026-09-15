@@ -4982,94 +4982,9 @@ function showTemperatureScene(index){
     if(activeScene){
         activeScene.classList.add("active");
     }
-
-
-    /* Update cinematic text */
-
-    const number =
-        document.getElementById("temperatureSceneNumber");
-
-    const label =
-        document.getElementById("temperatureSceneLabel");
-
-    const title =
-        document.getElementById("temperatureSceneTitle");
-
-    const description =
-        document.getElementById("temperatureSceneDescription");
-
-    const reading =
-        document.getElementById("temperatureReading");
-
-    const fact =
-        document.getElementById("temperatureFact");
-
-
-    if(number){
-        number.textContent = scene.number;
-    }
-
-    if(label){
-        label.textContent = scene.label;
-    }
-
-    if(title){
-        title.textContent = scene.title;
-    }
-
-    if(description){
-        description.textContent = scene.description;
-    }
-
-    if(reading){
-        reading.textContent = scene.reading;
-    }
-
-    if(fact){
-        fact.textContent = scene.fact;
-    }
-
-
-    /* Change particle speed */
-
-    const particles =
-        document.querySelectorAll(
-            "#temperatureParticles span"
-        );
-
-    particles.forEach(particle => {
-        particle.style.animationDuration =
-            scene.particleSpeed;
-    });
-
-
-    /* Change thermometer level */
-
-    const coldLiquid =
-        document.querySelector(".thermometer-liquid");
-
-    if(coldLiquid){
-
-        coldLiquid.style.height =
-            index === 0 ? "55px" :
-            index === 1 ? "100px" :
-            index === 2 ? "145px" :
-            index === 3 ? "205px" :
-            "100px";
-    }
-
-
-    /* Keep animation state */
-
-    if(temperaturePlaying){
-        setTemperatureAnimationsPaused(false);
-    }
-}
-
-
-/* ---------------------------------------------------------
-   PAUSE / RESUME VISUAL ANIMATIONS
---------------------------------------------------------- */
+/* =========================================================
+   TEMPERATURE PLAYBACK + NARRATION
+========================================================= */
 
 function setTemperatureAnimationsPaused(paused){
 
@@ -5080,28 +4995,25 @@ function setTemperatureAnimationsPaused(paused){
         return;
     }
 
+    stage.querySelectorAll("*").forEach(element => {
 
-    stage
-        .querySelectorAll("*")
-        .forEach(element => {
+        const computed =
+            window.getComputedStyle(element);
 
-            const computed =
-                window.getComputedStyle(element);
+        if(
+            computed.animationName &&
+            computed.animationName !== "none"
+        ){
 
-            if(
-                computed.animationName &&
-                computed.animationName !== "none"
-            ){
-
-                element.style.animationPlayState =
-                    paused ? "paused" : "running";
-            }
-        });
+            element.style.animationPlayState =
+                paused ? "paused" : "running";
+        }
+    });
 }
 
 
 /* ---------------------------------------------------------
-   PLAY / PAUSE BUTTON
+   PLAY / PAUSE
 --------------------------------------------------------- */
 
 function toggleTemperaturePlayback(){
@@ -5126,17 +5038,18 @@ function resumeTemperatureExperience(){
     temperaturePlaying = true;
 
     const button =
-        document.getElementById("temperaturePlayButton");
+        document.getElementById(
+            "temperaturePlayButton"
+        );
 
     if(button){
         button.textContent = "Ⅱ";
     }
 
-
     setTemperatureAnimationsPaused(false);
 
 
-    /* Resume paused narration */
+    /* Resume paused voice */
 
     if(
         "speechSynthesis" in window &&
@@ -5146,17 +5059,16 @@ function resumeTemperatureExperience(){
 
         speechSynthesis.resume();
 
-        resumeTemperatureAutoTimer();
-
         return;
     }
 
 
-    /* Resume scene timer if narration already finished */
+    /* Resume paused timer */
 
     if(
         !temperatureSpeechActive &&
-        temperatureAutoTimerRemaining < 1200
+        temperatureAutoTimerRemaining <
+        TEMPERATURE_SCENE_WAIT
     ){
 
         resumeTemperatureAutoTimer();
@@ -5165,7 +5077,7 @@ function resumeTemperatureExperience(){
     }
 
 
-    /* Start narration */
+    /* Start voice */
 
     speakTemperatureScene(
         currentTemperatureScene,
@@ -5183,17 +5095,18 @@ function pauseTemperatureExperience(){
     temperaturePlaying = false;
 
     const button =
-        document.getElementById("temperaturePlayButton");
+        document.getElementById(
+            "temperaturePlayButton"
+        );
 
     if(button){
         button.textContent = "▶";
     }
 
-
     setTemperatureAnimationsPaused(true);
 
 
-    /* Pause narration */
+    /* Pause voice */
 
     if(
         "speechSynthesis" in window &&
@@ -5204,14 +5117,14 @@ function pauseTemperatureExperience(){
     }
 
 
-    /* Pause scene transition timer */
+    /* Pause automatic movement */
 
     pauseTemperatureAutoTimer();
 }
 
 
 /* ---------------------------------------------------------
-   TEMPERATURE NARRATION
+   NARRATION
 --------------------------------------------------------- */
 
 function speakTemperatureScene(
@@ -5240,8 +5153,14 @@ function speakTemperatureScene(
 
     speechSynthesis.cancel();
 
+
     const scene =
         temperatureScenes[index];
+
+
+    if(!scene){
+        return;
+    }
 
 
     temperatureSpeech =
@@ -5252,7 +5171,9 @@ function speakTemperatureScene(
 
     temperatureSpeech.lang = "en-IN";
 
-    temperatureSpeech.rate = 0.82;
+    /* Slower, easier to understand */
+
+    temperatureSpeech.rate = 0.70;
 
     temperatureSpeech.pitch = 1;
 
@@ -5262,12 +5183,27 @@ function speakTemperatureScene(
     temperatureSpeechActive = true;
 
 
+    temperatureSpeech.onstart = function(){
+
+        temperatureSpeechActive = true;
+
+        if(temperaturePlaying){
+            setTemperatureAnimationsPaused(false);
+        }
+    };
+
+
     temperatureSpeech.onend = function(){
 
         temperatureSpeechActive = false;
 
         temperatureSpeech = null;
 
+
+        /*
+           Wait after the narration so the
+           viewer can understand the visual.
+        */
 
         if(
             autoAdvance &&
@@ -5297,10 +5233,32 @@ function speakTemperatureScene(
     };
 
 
-    speechSynthesis.speak(
-        temperatureSpeech
-    );
+    /*
+       Small delay gives the browser time
+       to prepare the voice after a scene change.
+    */
+
+    setTimeout(function(){
+
+        if(
+            temperaturePlaying &&
+            temperatureSpeech
+        ){
+
+            speechSynthesis.speak(
+                temperatureSpeech
+            );
+        }
+
+    }, 200);
 }
+
+
+/* ---------------------------------------------------------
+   SCENE WAIT TIME
+--------------------------------------------------------- */
+
+const TEMPERATURE_SCENE_WAIT = 4000;
 
 
 /* ---------------------------------------------------------
@@ -5317,34 +5275,34 @@ function startTemperatureAutoTimer(){
         currentTemperatureScene >=
         temperatureScenes.length - 1
     ){
+
         return;
     }
 
 
-    temperatureAutoTimerRemaining = 1200;
+    temperatureAutoTimerRemaining =
+        TEMPERATURE_SCENE_WAIT;
+
 
     temperatureAutoTimerStart =
         Date.now();
 
 
     temperatureAutoTimer =
-        setTimeout(
-            function(){
+        setTimeout(function(){
 
-                temperatureAutoTimer = null;
+            temperatureAutoTimer = null;
 
-                temperatureAutoTimerRemaining = 1200;
+            temperatureAutoTimerRemaining =
+                TEMPERATURE_SCENE_WAIT;
 
-                if(
-                    temperaturePlaying
-                ){
 
-                    nextTemperatureScene();
-                }
+            if(temperaturePlaying){
 
-            },
-            temperatureAutoTimerRemaining
-        );
+                nextTemperatureScene();
+            }
+
+        }, TEMPERATURE_SCENE_WAIT);
 }
 
 
@@ -5397,6 +5355,7 @@ function resumeTemperatureAutoTimer(){
         currentTemperatureScene >=
         temperatureScenes.length - 1
     ){
+
         return;
     }
 
@@ -5406,28 +5365,25 @@ function resumeTemperatureAutoTimer(){
 
 
     temperatureAutoTimer =
-        setTimeout(
-            function(){
+        setTimeout(function(){
 
-                temperatureAutoTimer = null;
+            temperatureAutoTimer = null;
 
-                temperatureAutoTimerRemaining = 1200;
+            temperatureAutoTimerRemaining =
+                TEMPERATURE_SCENE_WAIT;
 
-                if(
-                    temperaturePlaying
-                ){
 
-                    nextTemperatureScene();
-                }
+            if(temperaturePlaying){
 
-            },
-            temperatureAutoTimerRemaining
-        );
+                nextTemperatureScene();
+            }
+
+        }, temperatureAutoTimerRemaining);
 }
 
 
 /* ---------------------------------------------------------
-   NEXT TEMPERATURE SCENE
+   NEXT SCENE
 --------------------------------------------------------- */
 
 function nextTemperatureScene(){
@@ -5441,6 +5397,7 @@ function nextTemperatureScene(){
 
 
     temperatureSpeechActive = false;
+
     temperatureSpeech = null;
 
 
@@ -5450,6 +5407,7 @@ function nextTemperatureScene(){
     ){
 
         currentTemperatureScene++;
+
 
         showTemperatureScene(
             currentTemperatureScene
@@ -5470,16 +5428,21 @@ function nextTemperatureScene(){
 
     }else{
 
+        /* Stay on final scene */
+
         temperaturePlaying = false;
+
 
         const button =
             document.getElementById(
                 "temperaturePlayButton"
             );
 
+
         if(button){
             button.textContent = "▶";
         }
+
 
         setTemperatureAnimationsPaused(true);
     }
@@ -5487,7 +5450,7 @@ function nextTemperatureScene(){
 
 
 /* ---------------------------------------------------------
-   PREVIOUS TEMPERATURE SCENE
+   PREVIOUS SCENE
 --------------------------------------------------------- */
 
 function previousTemperatureScene(){
@@ -5501,6 +5464,7 @@ function previousTemperatureScene(){
 
 
     temperatureSpeechActive = false;
+
     temperatureSpeech = null;
 
 
@@ -5509,6 +5473,7 @@ function previousTemperatureScene(){
     ){
 
         currentTemperatureScene--;
+
 
         showTemperatureScene(
             currentTemperatureScene
@@ -5537,6 +5502,10 @@ function previousTemperatureScene(){
     }
 }
 
+
+/* =========================
+   OPEN CONVERTER
+========================= */
 
 /* =========================
    OPEN CONVERTER
