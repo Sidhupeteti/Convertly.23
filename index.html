@@ -4982,7 +4982,133 @@ function showTemperatureScene(index){
     if(activeScene){
         activeScene.classList.add("active");
     }
-    }  
+
+
+    /* Update cinematic text */
+
+    const number =
+        document.getElementById("temperatureSceneNumber");
+
+    const label =
+        document.getElementById("temperatureSceneLabel");
+
+    const title =
+        document.getElementById("temperatureSceneTitle");
+
+    const description =
+        document.getElementById("temperatureSceneDescription");
+
+    const reading =
+        document.getElementById("temperatureReading");
+
+    const fact =
+        document.getElementById("temperatureFact");
+
+
+    if(number){
+        number.textContent = scene.number;
+    }
+
+    if(label){
+        label.textContent = scene.label;
+    }
+
+    if(title){
+        title.textContent = scene.title;
+    }
+
+    if(description){
+        description.textContent = scene.description;
+    }
+
+    if(reading){
+        reading.textContent = scene.reading;
+    }
+
+    if(fact){
+        fact.textContent = scene.fact;
+    }
+
+
+    /* Update particle speed */
+
+    const particles =
+        document.getElementById("temperatureParticles");
+
+    if(particles){
+
+        particles
+            .querySelectorAll("span")
+            .forEach(particle => {
+
+                particle.style.animationDuration =
+                    scene.particleSpeed;
+
+            });
+    }
+
+
+    /* Update the three temperature scale values */
+
+    if(index === 4){
+
+        const celsius =
+            document.getElementById("temperatureCelsius");
+
+        const fahrenheit =
+            document.getElementById("temperatureFahrenheit");
+
+        const kelvin =
+            document.getElementById("temperatureKelvin");
+
+        if(celsius){
+            celsius.textContent = "20";
+        }
+
+        if(fahrenheit){
+            fahrenheit.textContent = "68";
+        }
+
+        if(kelvin){
+            kelvin.textContent = "293.15";
+        }
+    }
+
+
+    /* Restart visual animations */
+
+    const stage =
+        document.getElementById("temperatureStage");
+
+    if(stage){
+
+        stage
+            .querySelectorAll(".temperature-scene")
+            .forEach(sceneElement => {
+
+                sceneElement.style.animation = "none";
+
+                void sceneElement.offsetWidth;
+
+                sceneElement.style.animation = "";
+
+            });
+    }
+
+
+    /* Respect current play / pause state */
+
+    if(temperaturePlaying){
+
+        setTemperatureAnimationsPaused(false);
+
+    }else{
+
+        setTemperatureAnimationsPaused(true);
+
+    }
+
+} 
 /* =========================================================
    TEMPERATURE PLAYBACK + NARRATION
 ========================================================= */
