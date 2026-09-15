@@ -594,7 +594,954 @@ content="Fast, accurate and free conversions — all in one place.">
         border-bottom-width: 160px;
     }
 }
-:root{
+/* =========================================================
+   TEMPERATURE CINEMATIC EXPERIENCE
+========================================================= */
+
+#temperature-experience{
+    padding:0;
+    overflow:hidden;
+}
+
+.temperature-cinema{
+    width:100%;
+    max-width:1200px;
+    margin:0 auto;
+    padding:20px;
+}
+
+.temperature-stage{
+    position:relative;
+    width:100%;
+    height:620px;
+    overflow:hidden;
+    border-radius:28px;
+    background:
+        radial-gradient(circle at 50% 45%,rgba(255,255,255,.08),transparent 35%),
+        linear-gradient(180deg,#07111f,#02060c);
+    box-shadow:0 25px 70px rgba(0,0,0,.35);
+    isolation:isolate;
+}
+
+/* ATMOSPHERE */
+
+.temperature-glow{
+    position:absolute;
+    inset:-20%;
+    background:
+        radial-gradient(circle at 50% 50%,rgba(80,180,255,.16),transparent 30%);
+    filter:blur(35px);
+    transition:background 1.5s ease,transform 2s ease;
+    z-index:0;
+}
+
+.temperature-vignette{
+    position:absolute;
+    inset:0;
+    background:
+        radial-gradient(circle,transparent 35%,rgba(0,0,0,.48) 100%);
+    pointer-events:none;
+    z-index:20;
+}
+
+/* PARTICLES */
+
+.temperature-particles{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    z-index:2;
+    pointer-events:none;
+}
+
+.temperature-particles span{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:rgba(255,255,255,.65);
+    box-shadow:0 0 12px rgba(255,255,255,.5);
+    opacity:.35;
+    animation:temperatureParticleMove 5s linear infinite;
+}
+
+.temperature-particles span:nth-child(1){left:8%;top:20%;animation-delay:0s}
+.temperature-particles span:nth-child(2){left:17%;top:65%;animation-delay:.7s}
+.temperature-particles span:nth-child(3){left:28%;top:35%;animation-delay:1.2s}
+.temperature-particles span:nth-child(4){left:38%;top:75%;animation-delay:1.8s}
+.temperature-particles span:nth-child(5){left:48%;top:25%;animation-delay:.4s}
+.temperature-particles span:nth-child(6){left:58%;top:60%;animation-delay:2s}
+.temperature-particles span:nth-child(7){left:68%;top:30%;animation-delay:1s}
+.temperature-particles span:nth-child(8){left:78%;top:72%;animation-delay:2.5s}
+.temperature-particles span:nth-child(9){left:88%;top:40%;animation-delay:.9s}
+.temperature-particles span:nth-child(10){left:12%;top:48%;animation-delay:2.2s}
+.temperature-particles span:nth-child(11){left:23%;top:82%;animation-delay:1.4s}
+.temperature-particles span:nth-child(12){left:43%;top:50%;animation-delay:3s}
+.temperature-particles span:nth-child(13){left:63%;top:85%;animation-delay:1.7s}
+.temperature-particles span:nth-child(14){left:73%;top:15%;animation-delay:2.8s}
+.temperature-particles span:nth-child(15){left:93%;top:68%;animation-delay:1.1s}
+.temperature-particles span:nth-child(16){left:52%;top:90%;animation-delay:3.5s}
+
+@keyframes temperatureParticleMove{
+    0%{
+        transform:translate(0,0) scale(.6);
+        opacity:.15;
+    }
+    50%{
+        opacity:.65;
+    }
+    100%{
+        transform:translate(70px,-100px) scale(1.2);
+        opacity:0;
+    }
+}
+
+/* ALL SCENES */
+
+.temperature-scene{
+    position:absolute;
+    inset:0;
+    opacity:0;
+    visibility:hidden;
+    transform:scale(1.04);
+    transition:
+        opacity .8s ease,
+        transform 1s ease,
+        visibility .8s ease;
+    z-index:5;
+}
+
+.temperature-scene.active{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+}
+
+/* =========================================================
+   COLD
+========================================================= */
+
+.temperature-cold{
+    background:
+        radial-gradient(circle at 50% 50%,rgba(80,180,255,.14),transparent 45%);
+}
+
+.ice-world{
+    position:absolute;
+    left:50%;
+    top:52%;
+    width:260px;
+    height:170px;
+    transform:translate(-50%,-50%);
+}
+
+.ice-cube{
+    position:absolute;
+    width:85px;
+    height:85px;
+    border-radius:14px;
+    background:
+        linear-gradient(135deg,rgba(220,250,255,.9),rgba(80,180,255,.22));
+    border:1px solid rgba(220,250,255,.75);
+    box-shadow:
+        inset 12px 10px 25px rgba(255,255,255,.45),
+        0 0 35px rgba(80,190,255,.35);
+    animation:iceFloat 3s ease-in-out infinite;
+}
+
+.cube-one{
+    left:20px;
+    top:55px;
+    transform:rotate(-12deg);
+}
+
+.cube-two{
+    left:90px;
+    top:20px;
+    transform:rotate(8deg);
+    animation-delay:.5s;
+}
+
+.cube-three{
+    left:155px;
+    top:62px;
+    transform:rotate(-5deg);
+    animation-delay:1s;
+}
+
+@keyframes iceFloat{
+    0%,100%{transform:translateY(0) rotate(-8deg)}
+    50%{transform:translateY(-10px) rotate(-3deg)}
+}
+
+.cold-breath{
+    position:absolute;
+    left:50%;
+    top:38%;
+    width:180px;
+    height:80px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse,rgba(210,245,255,.3),transparent 70%);
+    filter:blur(14px);
+    animation:coldBreath 2.5s ease-in-out infinite;
+}
+
+@keyframes coldBreath{
+    0%,100%{transform:translate(-50%,10px) scale(.8);opacity:.2}
+    50%{transform:translate(-50%,-10px) scale(1.2);opacity:.65}
+}
+
+/* THERMOMETER */
+
+.temperature-thermometer{
+    position:absolute;
+    right:13%;
+    top:50%;
+    width:42px;
+    height:260px;
+    transform:translateY(-50%);
+}
+
+.thermometer-scale{
+    position:absolute;
+    right:55px;
+    top:15px;
+    height:220px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    color:rgba(255,255,255,.7);
+    font-size:12px;
+}
+
+.thermometer-glass{
+    position:absolute;
+    right:0;
+    top:0;
+    width:20px;
+    height:220px;
+    border:2px solid rgba(255,255,255,.4);
+    border-radius:20px;
+    background:rgba(255,255,255,.06);
+}
+
+.thermometer-liquid{
+    position:absolute;
+    left:5px;
+    bottom:20px;
+    width:6px;
+    height:55px;
+    border-radius:10px;
+    background:#75d8ff;
+    box-shadow:0 0 18px #75d8ff;
+    transition:height 1.2s ease;
+}
+
+.thermometer-bulb{
+    position:absolute;
+    left:-4px;
+    bottom:-13px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#75d8ff;
+    box-shadow:0 0 22px #75d8ff;
+}
+
+/* =========================================================
+   WARM
+========================================================= */
+
+.temperature-warm{
+    background:
+        radial-gradient(circle at 50% 38%,rgba(255,180,60,.22),transparent 42%);
+}
+
+.warm-sun{
+    position:absolute;
+    left:50%;
+    top:18%;
+    width:110px;
+    height:110px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:radial-gradient(circle,#fff2a8 0%,#ffc34d 45%,rgba(255,130,30,.05) 70%);
+    box-shadow:0 0 80px rgba(255,180,50,.5);
+    animation:warmSunPulse 3s ease-in-out infinite;
+}
+
+@keyframes warmSunPulse{
+    50%{transform:translateX(-50%) scale(1.08)}
+}
+
+.warm-ground{
+    position:absolute;
+    left:10%;
+    right:10%;
+    bottom:18%;
+    height:3px;
+    background:linear-gradient(90deg,transparent,rgba(255,190,80,.7),transparent);
+    box-shadow:0 0 20px rgba(255,180,50,.35);
+}
+
+.warm-cup{
+    position:absolute;
+    left:50%;
+    bottom:22%;
+    width:150px;
+    height:120px;
+    transform:translateX(-50%);
+}
+
+.cup-body{
+    position:absolute;
+    bottom:0;
+    left:25px;
+    width:100px;
+    height:75px;
+    border-radius:8px 8px 22px 22px;
+    background:linear-gradient(180deg,#d88945,#733818);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.cup-handle{
+    position:absolute;
+    right:4px;
+    top:35px;
+    width:45px;
+    height:48px;
+    border:10px solid #8e4822;
+    border-left:0;
+    border-radius:0 30px 30px 0;
+}
+
+.steam{
+    position:absolute;
+    bottom:78px;
+    width:12px;
+    height:65px;
+    border-radius:50%;
+    border-left:3px solid rgba(255,255,255,.35);
+    filter:blur(1px);
+    animation:steamRise 2.5s ease-in-out infinite;
+}
+
+.steam-one{left:45px}
+.steam-two{left:70px;animation-delay:.6s}
+.steam-three{left:95px;animation-delay:1.1s}
+
+@keyframes steamRise{
+    0%{transform:translateY(15px);opacity:0}
+    30%{opacity:.7}
+    100%{transform:translateY(-45px) scale(1.3);opacity:0}
+}
+
+.warm-thermometer{
+    position:absolute;
+    right:15%;
+    bottom:25%;
+    width:20px;
+    height:190px;
+    border:2px solid rgba(255,255,255,.35);
+    border-radius:20px;
+    background:rgba(255,255,255,.05);
+}
+
+.warm-liquid{
+    position:absolute;
+    bottom:18px;
+    left:5px;
+    width:6px;
+    height:105px;
+    border-radius:10px;
+    background:#ffb13b;
+    box-shadow:0 0 20px #ffb13b;
+}
+
+.warm-bulb{
+    position:absolute;
+    left:-5px;
+    bottom:-13px;
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    background:#ff8b2d;
+    box-shadow:0 0 25px #ff8b2d;
+}
+
+/* =========================================================
+   BODY TEMPERATURE
+========================================================= */
+
+.temperature-body{
+    background:
+        radial-gradient(circle at 50% 50%,rgba(255,80,110,.14),transparent 40%);
+}
+
+.human-silhouette{
+    position:absolute;
+    left:50%;
+    top:48%;
+    width:150px;
+    height:360px;
+    transform:translate(-50%,-50%);
+}
+
+.body-head{
+    position:absolute;
+    top:0;
+    left:52px;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:rgba(255,185,175,.85);
+    box-shadow:0 0 35px rgba(255,90,100,.25);
+}
+
+.body-neck{
+    position:absolute;
+    top:42px;
+    left:68px;
+    width:18px;
+    height:30px;
+    background:rgba(255,185,175,.8);
+}
+
+.body-torso{
+    position:absolute;
+    top:62px;
+    left:38px;
+    width:78px;
+    height:135px;
+    border-radius:35px 35px 20px 20px;
+    background:linear-gradient(180deg,rgba(255,110,125,.8),rgba(150,45,80,.75));
+    box-shadow:0 0 45px rgba(255,70,100,.18);
+}
+
+.body-arm{
+    position:absolute;
+    top:70px;
+    width:20px;
+    height:135px;
+    border-radius:15px;
+    background:rgba(255,165,160,.8);
+}
+
+.body-arm-left{
+    left:18px;
+    transform:rotate(8deg);
+}
+
+.body-arm-right{
+    right:18px;
+    transform:rotate(-8deg);
+}
+
+.body-leg{
+    position:absolute;
+    top:185px;
+    width:28px;
+    height:160px;
+    border-radius:18px;
+    background:rgba(90,55,90,.9);
+}
+
+.body-leg-left{left:43px}
+.body-leg-right{right:43px}
+
+.body-temperature-value{
+    position:absolute;
+    left:50%;
+    bottom:14%;
+    transform:translateX(-50%);
+    text-align:center;
+}
+
+.body-temperature-value strong{
+    display:block;
+    font-size:48px;
+    letter-spacing:2px;
+    text-shadow:0 0 25px rgba(255,90,110,.45);
+}
+
+.body-temperature-value span{
+    display:block;
+    margin-top:6px;
+    font-size:13px;
+    opacity:.65;
+}
+
+.body-pulse{
+    position:absolute;
+    left:50%;
+    top:51%;
+    width:110px;
+    height:110px;
+    transform:translate(-50%,-50%);
+    border:1px solid rgba(255,80,100,.35);
+    border-radius:50%;
+    animation:bodyPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes bodyPulse{
+    50%{transform:translate(-50%,-50%) scale(1.25);opacity:.2}
+}
+
+/* =========================================================
+   BOILING
+========================================================= */
+
+.temperature-boiling{
+    background:
+        radial-gradient(circle at 50% 58%,rgba(255,100,35,.25),transparent 45%);
+}
+
+.boiling-glow{
+    position:absolute;
+    left:50%;
+    bottom:18%;
+    width:330px;
+    height:160px;
+    transform:translateX(-50%);
+    background:radial-gradient(ellipse,rgba(255,110,25,.4),transparent 70%);
+    filter:blur(20px);
+    animation:boilingGlow 1.2s ease-in-out infinite;
+}
+
+@keyframes boilingGlow{
+    50%{transform:translateX(-50%) scale(1.1)}
+}
+
+.boiling-pot{
+    position:absolute;
+    left:50%;
+    bottom:20%;
+    width:300px;
+    height:170px;
+    transform:translateX(-50%);
+}
+
+.pot-body{
+    position:absolute;
+    bottom:0;
+    width:300px;
+    height:125px;
+    border-radius:20px 20px 70px 70px;
+    background:linear-gradient(180deg,#454c55,#171b20);
+    box-shadow:0 20px 45px rgba(0,0,0,.5);
+}
+
+.water-surface{
+    position:absolute;
+    top:5px;
+    left:10px;
+    width:280px;
+    height:65px;
+    border-radius:50%;
+    background:radial-gradient(ellipse,#4ca7d8,#155174);
+    z-index:2;
+    overflow:hidden;
+}
+
+.bubble{
+    position:absolute;
+    border:2px solid rgba(255,255,255,.55);
+    border-radius:50%;
+    animation:bubbleRise 1.4s ease-in infinite;
+}
+
+.bubble-one{width:15px;height:15px;left:45px;bottom:8px}
+.bubble-two{width:10px;height:10px;left:100px;bottom:12px;animation-delay:.3s}
+.bubble-three{width:20px;height:20px;left:145px;bottom:5px;animation-delay:.6s}
+.bubble-four{width:12px;height:12px;left:195px;bottom:15px;animation-delay:.9s}
+.bubble-five{width:18px;height:18px;left:235px;bottom:6px;animation-delay:1.1s}
+
+@keyframes bubbleRise{
+    0%{transform:translateY(0);opacity:.8}
+    100%{transform:translateY(-55px);opacity:0}
+}
+
+.steam-cloud{
+    position:absolute;
+    left:50%;
+    bottom:45%;
+    width:180px;
+    height:130px;
+    transform:translateX(-50%);
+}
+
+.steam-cloud span{
+    position:absolute;
+    bottom:0;
+    width:55px;
+    height:90px;
+    border-radius:50%;
+    background:rgba(255,255,255,.12);
+    filter:blur(13px);
+    animation:cloudRise 2.5s ease-out infinite;
+}
+
+.steam-cloud span:nth-child(1){left:20px}
+.steam-cloud span:nth-child(2){left:65px;animation-delay:.5s}
+.steam-cloud span:nth-child(3){left:110px;animation-delay:1s}
+
+@keyframes cloudRise{
+    0%{transform:translateY(30px) scale(.7);opacity:0}
+    30%{opacity:.65}
+    100%{transform:translateY(-65px) scale(1.5);opacity:0}
+}
+
+.boiling-temperature{
+    position:absolute;
+    left:50%;
+    top:12%;
+    transform:translateX(-50%);
+    text-align:center;
+}
+
+.boiling-temperature strong{
+    display:block;
+    font-size:52px;
+    text-shadow:0 0 30px rgba(255,110,35,.55);
+}
+
+.boiling-temperature span{
+    display:block;
+    max-width:330px;
+    margin-top:6px;
+    font-size:12px;
+    opacity:.65;
+}
+
+/* =========================================================
+   THREE SCALES
+========================================================= */
+
+.temperature-scales{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at 50% 50%,rgba(100,150,255,.12),transparent 50%);
+}
+
+.scale-title{
+    text-align:center;
+    margin-bottom:28px;
+}
+
+.scale-title span{
+    display:block;
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.55;
+}
+
+.scale-title strong{
+    display:block;
+    margin-top:7px;
+    font-size:30px;
+}
+
+.temperature-scale-cards{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+}
+
+.temp-scale-card{
+    width:190px;
+    min-height:190px;
+    padding:22px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:20px;
+    background:rgba(255,255,255,.055);
+    backdrop-filter:blur(15px);
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    transition:transform .4s ease,background .4s ease;
+}
+
+.temp-scale-card:hover{
+    transform:translateY(-8px);
+    background:rgba(255,255,255,.09);
+}
+
+.scale-symbol{
+    font-size:30px;
+    font-weight:800;
+}
+
+.scale-name{
+    margin-top:5px;
+    font-size:12px;
+    opacity:.55;
+}
+
+.scale-value{
+    margin-top:28px;
+}
+
+.scale-value strong{
+    font-size:34px;
+}
+
+.scale-value span{
+    font-size:15px;
+    opacity:.7;
+}
+
+.scale-arrow{
+    font-size:28px;
+    opacity:.4;
+}
+
+.scale-explanation{
+    margin-top:28px;
+    text-align:center;
+    font-size:14px;
+    opacity:.7;
+}
+
+.scale-explanation strong{
+    color:inherit;
+    opacity:1;
+}
+
+/* =========================================================
+   CINEMATIC CAPTION
+========================================================= */
+
+.temperature-caption{
+    position:absolute;
+    left:7%;
+    bottom:9%;
+    max-width:460px;
+    z-index:25;
+    transition:opacity .5s ease,transform .5s ease;
+}
+
+.temperature-scene-number{
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.45;
+}
+
+.temperature-scene-label{
+    margin-top:7px;
+    font-size:12px;
+    letter-spacing:3px;
+    font-weight:700;
+    opacity:.7;
+}
+
+.temperature-caption h1{
+    margin:8px 0 6px;
+    font-size:34px;
+    line-height:1.1;
+}
+
+.temperature-caption p{
+    margin:0;
+    max-width:400px;
+    font-size:14px;
+    line-height:1.5;
+    opacity:.68;
+}
+
+/* READING */
+
+.temperature-reading{
+    position:absolute;
+    right:7%;
+    bottom:9%;
+    z-index:25;
+    text-align:right;
+}
+
+.temperature-reading span{
+    display:block;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:2px;
+}
+
+.temperature-reading-line{
+    width:100px;
+    height:2px;
+    margin-top:7px;
+    margin-left:auto;
+    background:currentColor;
+    opacity:.35;
+}
+
+/* =========================================================
+   CONTROLS
+========================================================= */
+
+.temperature-controls{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-top:18px;
+}
+
+.temperature-control{
+    width:48px;
+    height:42px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;
+    background:rgba(255,255,255,.06);
+    color:inherit;
+    font-size:20px;
+    cursor:pointer;
+    transition:
+        transform .2s ease,
+        background .2s ease,
+        border-color .2s ease;
+}
+
+.temperature-control:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.11);
+}
+
+.temperature-play{
+    width:58px;
+    font-size:18px;
+}
+
+/* FACT */
+
+.temperature-fact{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    margin-top:16px;
+    padding:12px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.045);
+    border:1px solid rgba(255,255,255,.08);
+    text-align:center;
+}
+
+.temperature-fact-label{
+    font-size:10px;
+    letter-spacing:2px;
+    opacity:.45;
+}
+
+.temperature-fact strong{
+    font-size:13px;
+    font-weight:500;
+    opacity:.75;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:800px){
+
+    .temperature-stage{
+        height:600px;
+        border-radius:20px;
+    }
+
+    .temperature-caption{
+        left:5%;
+        bottom:7%;
+        max-width:55%;
+    }
+
+    .temperature-caption h1{
+        font-size:27px;
+    }
+
+    .temperature-caption p{
+        font-size:12px;
+    }
+
+    .temperature-reading{
+        right:5%;
+        bottom:7%;
+    }
+
+    .temperature-scale-cards{
+        gap:8px;
+        transform:scale(.85);
+    }
+
+    .temp-scale-card{
+        width:145px;
+        min-height:170px;
+    }
+
+    .scale-arrow{
+        font-size:20px;
+    }
+}
+
+@media(max-width:600px){
+
+    .temperature-cinema{
+        padding:10px;
+    }
+
+    .temperature-stage{
+        height:560px;
+    }
+
+    .temperature-scale-cards{
+        flex-direction:column;
+        transform:scale(.75);
+        gap:5px;
+    }
+
+    .scale-arrow{
+        display:none;
+    }
+
+    .scale-title{
+        margin-bottom:0;
+    }
+
+    .scale-title strong{
+        font-size:23px;
+    }
+
+    .temperature-caption{
+        max-width:90%;
+        left:5%;
+        bottom:8%;
+    }
+
+    .temperature-caption h1{
+        font-size:24px;
+    }
+
+    .temperature-reading{
+        display:none;
+    }
+
+    .temperature-fact{
+        flex-direction:column;
+        gap:5px;
+    }
+
+    .temperature-thermometer{
+        right:8%;
+    }
+
+    .warm-thermometer{
+        right:8%;
+    }
+}
+ :root{
 --bg:#111827;
 --bg2:#0b1220;
 --card:#1f2937;
@@ -2706,7 +3653,313 @@ Explore Angles
 </div>
 
 </section>
-<!-- FAVORITES -->
+<!-- TEMPERATURE CINEMATIC EXPERIENCE -->
+<section id="temperature-experience" class="page">
+
+    <div class="temperature-cinema">
+
+        <!-- VISUAL STAGE -->
+
+        <div class="temperature-stage" id="temperatureStage">
+
+            <!-- BACKGROUND ATMOSPHERE -->
+            <div class="temperature-glow"></div>
+            <div class="temperature-vignette"></div>
+
+            <!-- PARTICLES -->
+            <div class="temperature-particles" id="temperatureParticles">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- COLD OBJECT -->
+            <div class="temperature-scene temperature-cold" id="temperatureCold">
+
+                <div class="ice-world">
+                    <div class="ice-cube cube-one"></div>
+                    <div class="ice-cube cube-two"></div>
+                    <div class="ice-cube cube-three"></div>
+                </div>
+
+                <div class="cold-breath"></div>
+
+                <div class="temperature-thermometer">
+                    <div class="thermometer-scale">
+                        <span>40°</span>
+                        <span>20°</span>
+                        <span>0°</span>
+                        <span>-20°</span>
+                    </div>
+
+                    <div class="thermometer-glass">
+                        <div class="thermometer-liquid"></div>
+                        <div class="thermometer-bulb"></div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- WARM OBJECT -->
+            <div class="temperature-scene temperature-warm" id="temperatureWarm">
+
+                <div class="warm-sun"></div>
+
+                <div class="warm-ground"></div>
+
+                <div class="warm-cup">
+                    <div class="cup-body"></div>
+                    <div class="cup-handle"></div>
+                    <div class="steam steam-one"></div>
+                    <div class="steam steam-two"></div>
+                    <div class="steam steam-three"></div>
+                </div>
+
+                <div class="warm-thermometer">
+                    <div class="warm-liquid"></div>
+                    <div class="warm-bulb"></div>
+                </div>
+
+            </div>
+
+
+            <!-- BODY TEMPERATURE -->
+            <div class="temperature-scene temperature-body" id="temperatureBody">
+
+                <div class="human-silhouette">
+
+                    <div class="body-head"></div>
+
+                    <div class="body-neck"></div>
+
+                    <div class="body-torso"></div>
+
+                    <div class="body-arm body-arm-left"></div>
+                    <div class="body-arm body-arm-right"></div>
+
+                    <div class="body-leg body-leg-left"></div>
+                    <div class="body-leg body-leg-right"></div>
+
+                </div>
+
+                <div class="body-temperature-value">
+                    <strong>37°C</strong>
+                    <span>Typical body temperature</span>
+                </div>
+
+                <div class="body-pulse"></div>
+
+            </div>
+
+
+            <!-- BOILING -->
+            <div class="temperature-scene temperature-boiling" id="temperatureBoiling">
+
+                <div class="boiling-glow"></div>
+
+                <div class="boiling-pot">
+
+                    <div class="water-surface">
+
+                        <div class="bubble bubble-one"></div>
+                        <div class="bubble bubble-two"></div>
+                        <div class="bubble bubble-three"></div>
+                        <div class="bubble bubble-four"></div>
+                        <div class="bubble bubble-five"></div>
+
+                    </div>
+
+                    <div class="pot-body"></div>
+
+                </div>
+
+                <div class="steam-cloud">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="boiling-temperature">
+                    <strong>100°C</strong>
+                    <span>Water boils at standard atmospheric pressure</span>
+                </div>
+
+            </div>
+
+
+            <!-- THREE TEMPERATURE SCALES -->
+            <div class="temperature-scene temperature-scales" id="temperatureScales">
+
+                <div class="scale-title">
+                    <span>ONE PHYSICAL TEMPERATURE</span>
+                    <strong>Three different scales.</strong>
+                </div>
+
+                <div class="temperature-scale-cards">
+
+                    <div class="temp-scale-card celsius-card">
+
+                        <div class="scale-symbol">°C</div>
+
+                        <div class="scale-name">
+                            Celsius
+                        </div>
+
+                        <div class="scale-value">
+                            <strong id="temperatureCelsius">20</strong>
+                            <span>°C</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="scale-arrow">=</div>
+
+
+                    <div class="temp-scale-card fahrenheit-card">
+
+                        <div class="scale-symbol">°F</div>
+
+                        <div class="scale-name">
+                            Fahrenheit
+                        </div>
+
+                        <div class="scale-value">
+                            <strong id="temperatureFahrenheit">68</strong>
+                            <span>°F</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="scale-arrow">=</div>
+
+
+                    <div class="temp-scale-card kelvin-card">
+
+                        <div class="scale-symbol">K</div>
+
+                        <div class="scale-name">
+                            Kelvin
+                        </div>
+
+                        <div class="scale-value">
+                            <strong id="temperatureKelvin">293.15</strong>
+                            <span>K</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="scale-explanation">
+                    These numbers look different,
+                    but they describe the <strong>same temperature</strong>.
+                </div>
+
+            </div>
+
+
+            <!-- CINEMATIC TEXT -->
+
+            <div class="temperature-caption">
+
+                <div
+                    class="temperature-scene-number"
+                    id="temperatureSceneNumber">
+                    01
+                </div>
+
+                <div
+                    class="temperature-scene-label"
+                    id="temperatureSceneLabel">
+                    COLD
+                </div>
+
+                <h1 id="temperatureSceneTitle">
+                    What is temperature?
+                </h1>
+
+                <p id="temperatureSceneDescription">
+                    Temperature tells us how hot or cold something is.
+                </p>
+
+            </div>
+
+
+            <!-- TEMPERATURE READING -->
+
+            <div class="temperature-reading">
+
+                <span id="temperatureReading">
+                    COLD
+                </span>
+
+                <div class="temperature-reading-line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLS — BELOW VISUAL -->
+
+        <div class="temperature-controls">
+
+            <button
+                class="temperature-control"
+                onclick="previousTemperatureScene()">
+                ←
+            </button>
+
+            <button
+                class="temperature-control temperature-play"
+                id="temperaturePlayButton"
+                onclick="toggleTemperaturePlayback()">
+                ▶
+            </button>
+
+            <button
+                class="temperature-control"
+                onclick="nextTemperatureScene()">
+                →
+            </button>
+
+        </div>
+
+
+        <!-- CURRENT FACT -->
+
+        <div class="temperature-fact">
+
+            <span class="temperature-fact-label">
+                CURRENT FACT
+            </span>
+
+            <strong id="temperatureFact">
+                Temperature describes how hot or cold something is.
+            </strong>
+
+        </div>
+
+    </div>
+
+</section>
+      <!-- FAVORITES -->
 
 <section
 id="favorites"
@@ -3319,6 +4572,11 @@ text.includes(query)
    EXPLORE
 ========================= */
 
+
+/* =========================================================
+   LENGTH CINEMATIC EXPERIENCE
+========================================================= */
+
 let currentLengthScene = 0;
 let lengthTimer = null;
 
@@ -3360,6 +4618,7 @@ const lengthScenes = [
         element: "sceneKilometer"
     }
 ];
+
 
 function speakLengthScene(index, autoAdvance = true){
 
@@ -3418,6 +4677,8 @@ function speakLengthScene(index, autoAdvance = true){
 
 function openExplore(type){
 
+    /* LENGTH */
+
     if(type === "length"){
 
         showPage("length-experience");
@@ -3437,6 +4698,19 @@ function openExplore(type){
 
         return;
     }
+
+
+    /* TEMPERATURE */
+
+    if(type === "temperature"){
+
+        showPage("temperature-experience");
+
+        resetTemperatureExperience();
+
+        return;
+    }
+
 
     alert("This Explore experience is coming soon!");
 }
@@ -3537,6 +4811,729 @@ function previousLengthScene(){
         showLengthScene(currentLengthScene);
 
         speakLengthScene(currentLengthScene, true);
+    }
+}
+
+
+/* =========================================================
+   TEMPERATURE CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentTemperatureScene = 0;
+
+let temperaturePlaying = false;
+let temperatureSpeechActive = false;
+
+let temperatureAutoTimer = null;
+let temperatureAutoTimerStart = 0;
+let temperatureAutoTimerRemaining = 1200;
+
+let temperatureSpeech = null;
+
+
+/* ---------------------------------------------------------
+   TEMPERATURE SCENES
+--------------------------------------------------------- */
+
+const temperatureScenes = [
+
+    {
+        number: "01",
+        label: "COLD",
+        title: "What is temperature?",
+        description: "Temperature tells us how hot or cold something is.",
+        reading: "COLD",
+        fact: "Temperature describes how hot or cold something is.",
+        particleSpeed: "7s",
+
+        narration:
+            "Temperature tells us how hot or cold something is. Watch the particles. When something is cold, their motion is slower."
+    },
+
+    {
+        number: "02",
+        label: "WARM",
+        title: "Add energy, and things heat up.",
+        description: "As temperature rises, particles move faster.",
+        reading: "WARM",
+        fact: "Higher temperature means faster particle motion.",
+        particleSpeed: "4s",
+
+        narration:
+            "Now we add energy. The particles move faster. The ice melts, the surroundings become warmer, and the temperature rises."
+    },
+
+    {
+        number: "03",
+        label: "BODY",
+        title: "Your body has a temperature too.",
+        description: "A typical human body temperature is around 37 degrees Celsius.",
+        reading: "37°C",
+        fact: "Typical human body temperature is around 37°C.",
+        particleSpeed: "3s",
+
+        narration:
+            "Your body also has a temperature. A typical human body temperature is around thirty-seven degrees Celsius. That is much warmer than a cool room."
+    },
+
+    {
+        number: "04",
+        label: "BOILING",
+        title: "Keep adding energy.",
+        description: "At standard atmospheric pressure, water boils at 100 degrees Celsius.",
+        reading: "100°C",
+        fact: "Water boils at 100°C at standard atmospheric pressure.",
+        particleSpeed: "1.5s",
+
+        narration:
+            "Keep adding energy and the water gets hotter. The particles move much faster, bubbles form, and the water boils. At standard atmospheric pressure, that happens at one hundred degrees Celsius."
+    },
+
+    {
+        number: "05",
+        label: "SCALES",
+        title: "One temperature. Three scales.",
+        description: "Celsius, Fahrenheit and Kelvin describe the same physical temperature.",
+        reading: "20°C",
+        fact: "20°C = 68°F = 293.15 K",
+        particleSpeed: "5s",
+
+        narration:
+            "Now something important. Celsius, Fahrenheit and Kelvin are different scales for measuring the same physical temperature. Twenty degrees Celsius is sixty-eight degrees Fahrenheit, or two hundred ninety-three point fifteen Kelvin."
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   RESET TEMPERATURE
+--------------------------------------------------------- */
+
+function resetTemperatureExperience(){
+
+    clearTemperatureAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentTemperatureScene = 0;
+
+    temperaturePlaying = false;
+    temperatureSpeechActive = false;
+    temperatureSpeech = null;
+
+    temperatureAutoTimerRemaining = 1200;
+
+    const button =
+        document.getElementById("temperaturePlayButton");
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    showTemperatureScene(0);
+
+    setTemperatureAnimationsPaused(true);
+}
+
+
+/* ---------------------------------------------------------
+   SHOW TEMPERATURE SCENE
+--------------------------------------------------------- */
+
+function showTemperatureScene(index){
+
+    if(index < 0){
+        index = 0;
+    }
+
+    if(index > temperatureScenes.length - 1){
+        index = temperatureScenes.length - 1;
+    }
+
+    currentTemperatureScene = index;
+
+    const scene =
+        temperatureScenes[index];
+
+
+    /* Activate correct visual */
+
+    document
+        .querySelectorAll(".temperature-scene")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+
+    const sceneElements = [
+        "temperatureCold",
+        "temperatureWarm",
+        "temperatureBody",
+        "temperatureBoiling",
+        "temperatureScales"
+    ];
+
+
+    const activeScene =
+        document.getElementById(sceneElements[index]);
+
+    if(activeScene){
+        activeScene.classList.add("active");
+    }
+
+
+    /* Update cinematic text */
+
+    const number =
+        document.getElementById("temperatureSceneNumber");
+
+    const label =
+        document.getElementById("temperatureSceneLabel");
+
+    const title =
+        document.getElementById("temperatureSceneTitle");
+
+    const description =
+        document.getElementById("temperatureSceneDescription");
+
+    const reading =
+        document.getElementById("temperatureReading");
+
+    const fact =
+        document.getElementById("temperatureFact");
+
+
+    if(number){
+        number.textContent = scene.number;
+    }
+
+    if(label){
+        label.textContent = scene.label;
+    }
+
+    if(title){
+        title.textContent = scene.title;
+    }
+
+    if(description){
+        description.textContent = scene.description;
+    }
+
+    if(reading){
+        reading.textContent = scene.reading;
+    }
+
+    if(fact){
+        fact.textContent = scene.fact;
+    }
+
+
+    /* Change particle speed */
+
+    const particles =
+        document.querySelectorAll(
+            "#temperatureParticles span"
+        );
+
+    particles.forEach(particle => {
+        particle.style.animationDuration =
+            scene.particleSpeed;
+    });
+
+
+    /* Change thermometer level */
+
+    const coldLiquid =
+        document.querySelector(".thermometer-liquid");
+
+    if(coldLiquid){
+
+        coldLiquid.style.height =
+            index === 0 ? "55px" :
+            index === 1 ? "100px" :
+            index === 2 ? "145px" :
+            index === 3 ? "205px" :
+            "100px";
+    }
+
+
+    /* Keep animation state */
+
+    if(temperaturePlaying){
+        setTemperatureAnimationsPaused(false);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PAUSE / RESUME VISUAL ANIMATIONS
+--------------------------------------------------------- */
+
+function setTemperatureAnimationsPaused(paused){
+
+    const stage =
+        document.getElementById("temperatureStage");
+
+    if(!stage){
+        return;
+    }
+
+
+    stage
+        .querySelectorAll("*")
+        .forEach(element => {
+
+            const computed =
+                window.getComputedStyle(element);
+
+            if(
+                computed.animationName &&
+                computed.animationName !== "none"
+            ){
+
+                element.style.animationPlayState =
+                    paused ? "paused" : "running";
+            }
+        });
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE BUTTON
+--------------------------------------------------------- */
+
+function toggleTemperaturePlayback(){
+
+    if(temperaturePlaying){
+
+        pauseTemperatureExperience();
+
+    }else{
+
+        resumeTemperatureExperience();
+    }
+}
+
+
+/* ---------------------------------------------------------
+   RESUME
+--------------------------------------------------------- */
+
+function resumeTemperatureExperience(){
+
+    temperaturePlaying = true;
+
+    const button =
+        document.getElementById("temperaturePlayButton");
+
+    if(button){
+        button.textContent = "Ⅱ";
+    }
+
+
+    setTemperatureAnimationsPaused(false);
+
+
+    /* Resume paused narration */
+
+    if(
+        "speechSynthesis" in window &&
+        temperatureSpeechActive &&
+        speechSynthesis.paused
+    ){
+
+        speechSynthesis.resume();
+
+        resumeTemperatureAutoTimer();
+
+        return;
+    }
+
+
+    /* Resume scene timer if narration already finished */
+
+    if(
+        !temperatureSpeechActive &&
+        temperatureAutoTimerRemaining < 1200
+    ){
+
+        resumeTemperatureAutoTimer();
+
+        return;
+    }
+
+
+    /* Start narration */
+
+    speakTemperatureScene(
+        currentTemperatureScene,
+        true
+    );
+}
+
+
+/* ---------------------------------------------------------
+   PAUSE
+--------------------------------------------------------- */
+
+function pauseTemperatureExperience(){
+
+    temperaturePlaying = false;
+
+    const button =
+        document.getElementById("temperaturePlayButton");
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+
+    setTemperatureAnimationsPaused(true);
+
+
+    /* Pause narration */
+
+    if(
+        "speechSynthesis" in window &&
+        temperatureSpeechActive
+    ){
+
+        speechSynthesis.pause();
+    }
+
+
+    /* Pause scene transition timer */
+
+    pauseTemperatureAutoTimer();
+}
+
+
+/* ---------------------------------------------------------
+   TEMPERATURE NARRATION
+--------------------------------------------------------- */
+
+function speakTemperatureScene(
+    index,
+    autoAdvance = true
+){
+
+    clearTemperatureAutoTimer();
+
+
+    if(!("speechSynthesis" in window)){
+
+        temperatureSpeechActive = false;
+
+        if(
+            autoAdvance &&
+            temperaturePlaying
+        ){
+
+            startTemperatureAutoTimer();
+        }
+
+        return;
+    }
+
+
+    speechSynthesis.cancel();
+
+    const scene =
+        temperatureScenes[index];
+
+
+    temperatureSpeech =
+        new SpeechSynthesisUtterance(
+            scene.narration
+        );
+
+
+    temperatureSpeech.lang = "en-IN";
+
+    temperatureSpeech.rate = 0.82;
+
+    temperatureSpeech.pitch = 1;
+
+    temperatureSpeech.volume = 1;
+
+
+    temperatureSpeechActive = true;
+
+
+    temperatureSpeech.onend = function(){
+
+        temperatureSpeechActive = false;
+
+        temperatureSpeech = null;
+
+
+        if(
+            autoAdvance &&
+            temperaturePlaying &&
+            currentTemperatureScene === index
+        ){
+
+            startTemperatureAutoTimer();
+        }
+    };
+
+
+    temperatureSpeech.onerror = function(){
+
+        temperatureSpeechActive = false;
+
+        temperatureSpeech = null;
+
+
+        if(
+            autoAdvance &&
+            temperaturePlaying
+        ){
+
+            startTemperatureAutoTimer();
+        }
+    };
+
+
+    speechSynthesis.speak(
+        temperatureSpeech
+    );
+}
+
+
+/* ---------------------------------------------------------
+   AUTOMATIC SCENE TIMER
+--------------------------------------------------------- */
+
+function startTemperatureAutoTimer(){
+
+    clearTemperatureAutoTimer();
+
+
+    if(
+        !temperaturePlaying ||
+        currentTemperatureScene >=
+        temperatureScenes.length - 1
+    ){
+        return;
+    }
+
+
+    temperatureAutoTimerRemaining = 1200;
+
+    temperatureAutoTimerStart =
+        Date.now();
+
+
+    temperatureAutoTimer =
+        setTimeout(
+            function(){
+
+                temperatureAutoTimer = null;
+
+                temperatureAutoTimerRemaining = 1200;
+
+                if(
+                    temperaturePlaying
+                ){
+
+                    nextTemperatureScene();
+                }
+
+            },
+            temperatureAutoTimerRemaining
+        );
+}
+
+
+function clearTemperatureAutoTimer(){
+
+    if(temperatureAutoTimer){
+
+        clearTimeout(
+            temperatureAutoTimer
+        );
+
+        temperatureAutoTimer = null;
+    }
+}
+
+
+function pauseTemperatureAutoTimer(){
+
+    if(!temperatureAutoTimer){
+        return;
+    }
+
+
+    const elapsed =
+        Date.now() -
+        temperatureAutoTimerStart;
+
+
+    temperatureAutoTimerRemaining =
+        Math.max(
+            100,
+            temperatureAutoTimerRemaining -
+            elapsed
+        );
+
+
+    clearTimeout(
+        temperatureAutoTimer
+    );
+
+    temperatureAutoTimer = null;
+}
+
+
+function resumeTemperatureAutoTimer(){
+
+    if(
+        !temperaturePlaying ||
+        temperatureAutoTimerRemaining <= 0 ||
+        currentTemperatureScene >=
+        temperatureScenes.length - 1
+    ){
+        return;
+    }
+
+
+    temperatureAutoTimerStart =
+        Date.now();
+
+
+    temperatureAutoTimer =
+        setTimeout(
+            function(){
+
+                temperatureAutoTimer = null;
+
+                temperatureAutoTimerRemaining = 1200;
+
+                if(
+                    temperaturePlaying
+                ){
+
+                    nextTemperatureScene();
+                }
+
+            },
+            temperatureAutoTimerRemaining
+        );
+}
+
+
+/* ---------------------------------------------------------
+   NEXT TEMPERATURE SCENE
+--------------------------------------------------------- */
+
+function nextTemperatureScene(){
+
+    clearTemperatureAutoTimer();
+
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+
+    temperatureSpeechActive = false;
+    temperatureSpeech = null;
+
+
+    if(
+        currentTemperatureScene <
+        temperatureScenes.length - 1
+    ){
+
+        currentTemperatureScene++;
+
+        showTemperatureScene(
+            currentTemperatureScene
+        );
+
+
+        if(temperaturePlaying){
+
+            speakTemperatureScene(
+                currentTemperatureScene,
+                true
+            );
+
+        }else{
+
+            setTemperatureAnimationsPaused(true);
+        }
+
+    }else{
+
+        temperaturePlaying = false;
+
+        const button =
+            document.getElementById(
+                "temperaturePlayButton"
+            );
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        setTemperatureAnimationsPaused(true);
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS TEMPERATURE SCENE
+--------------------------------------------------------- */
+
+function previousTemperatureScene(){
+
+    clearTemperatureAutoTimer();
+
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+
+    temperatureSpeechActive = false;
+    temperatureSpeech = null;
+
+
+    if(
+        currentTemperatureScene > 0
+    ){
+
+        currentTemperatureScene--;
+
+        showTemperatureScene(
+            currentTemperatureScene
+        );
+
+
+        if(temperaturePlaying){
+
+            speakTemperatureScene(
+                currentTemperatureScene,
+                true
+            );
+
+        }else{
+
+            setTemperatureAnimationsPaused(true);
+        }
+
+    }else{
+
+        showTemperatureScene(0);
+
+        setTemperatureAnimationsPaused(
+            !temperaturePlaying
+        );
     }
 }
 
