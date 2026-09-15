@@ -3361,6 +3361,61 @@ const lengthScenes = [
     }
 ];
 
+function speakLengthScene(index, autoAdvance = true){
+
+    if(!("speechSynthesis" in window)){
+
+        if(autoAdvance){
+            clearTimeout(lengthTimer);
+
+            lengthTimer = setTimeout(
+                nextLengthScene,
+                5000
+            );
+        }
+
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const narration = [
+        "A millimeter is a very small unit of length. One millimeter is one thousandth of a meter.",
+
+        "Now we move to the centimeter. One centimeter is equal to ten millimeters.",
+
+        "Now we reach the meter. One meter is equal to one hundred centimeters, bringing us to the scale of everyday life.",
+
+        "And now we reach the kilometer. One kilometer is equal to one thousand meters, a distance we use for roads and journeys."
+    ];
+
+    const speech =
+        new SpeechSynthesisUtterance(narration[index]);
+
+    speech.lang = "en-IN";
+    speech.rate = 0.9;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    speech.onend = function(){
+
+        if(
+            autoAdvance &&
+            currentLengthScene === index &&
+            currentLengthScene < lengthScenes.length - 1
+        ){
+
+            lengthTimer = setTimeout(
+                nextLengthScene,
+                1000
+            );
+        }
+    };
+
+    speechSynthesis.speak(speech);
+}
+
+
 function openExplore(type){
 
     if(type === "length"){
@@ -3368,6 +3423,10 @@ function openExplore(type){
         showPage("length-experience");
 
         clearTimeout(lengthTimer);
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
 
         currentLengthScene = 0;
 
@@ -3382,6 +3441,7 @@ function openExplore(type){
     alert("This Explore experience is coming soon!");
 }
 
+
 function startLengthExperience(){
 
     document.getElementById("lengthIntro").style.display = "none";
@@ -3393,8 +3453,9 @@ function startLengthExperience(){
 
     clearTimeout(lengthTimer);
 
-    lengthTimer = setTimeout(nextLengthScene, 5000);
+    speakLengthScene(0, true);
 }
+
 
 function showLengthScene(index){
 
@@ -3412,7 +3473,8 @@ function showLengthScene(index){
         item.classList.remove("active");
     });
 
-    const activeObject = document.getElementById(scene.element);
+    const activeObject =
+        document.getElementById(scene.element);
 
     if(activeObject){
         activeObject.classList.add("active");
@@ -3440,35 +3502,45 @@ function showLengthScene(index){
         `${((index + 1) / lengthScenes.length) * 100}%`;
 }
 
+
 function nextLengthScene(){
 
     clearTimeout(lengthTimer);
 
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
     if(currentLengthScene < lengthScenes.length - 1){
 
-        showLengthScene(currentLengthScene + 1);
+        currentLengthScene++;
 
-        lengthTimer = setTimeout(
-            nextLengthScene,
-            5000
-        );
+        showLengthScene(currentLengthScene);
+
+        speakLengthScene(currentLengthScene, true);
     }
 }
+
 
 function previousLengthScene(){
 
     clearTimeout(lengthTimer);
 
-    if(currentLengthScene > 0){
-
-        showLengthScene(currentLengthScene - 1);
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
     }
 
-    lengthTimer = setTimeout(
-        nextLengthScene,
-        5000
-    );
+    if(currentLengthScene > 0){
+
+        currentLengthScene--;
+
+        showLengthScene(currentLengthScene);
+
+        speakLengthScene(currentLengthScene, true);
+    }
 }
+
+
 /* =========================
    OPEN CONVERTER
 ========================= */
