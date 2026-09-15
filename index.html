@@ -27,7 +27,573 @@ content="Fast, accurate and free conversions — all in one place.">
 <title>Convertly — Fast, Accurate & Free Conversions</title>
 
 <style>
+/* =========================================================
+   LENGTH CINEMATIC EXPERIENCE
+========================================================= */
 
+.length-cinema {
+    width: 100%;
+    min-height: 720px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(45, 150, 255, 0.16), transparent 38%),
+        linear-gradient(180deg, #07111f 0%, #02050a 100%);
+    color: #fff;
+}
+
+/* OPENING */
+.length-intro {
+    min-height: 720px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 25px;
+    position: relative;
+    z-index: 5;
+}
+
+.cinema-kicker {
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-bottom: 25px;
+}
+
+.length-intro h1 {
+    font-size: clamp(48px, 8vw, 92px);
+    line-height: 0.95;
+    margin: 0;
+    letter-spacing: -4px;
+}
+
+.length-intro h1 span {
+    background: linear-gradient(90deg, #62d9ff, #ffffff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.length-intro p {
+    margin: 30px 0;
+    color: rgba(255,255,255,0.65);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.cinema-start {
+    border: 0;
+    border-radius: 999px;
+    padding: 16px 30px;
+    background: #ffffff;
+    color: #07111f;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+}
+
+.cinema-start:hover {
+    transform: translateY(-3px) scale(1.03);
+}
+
+.cinema-hint {
+    margin-top: 22px;
+    font-size: 12px;
+    opacity: 0.4;
+}
+
+/* PLAYER */
+.length-player {
+    display: none;
+    min-height: 720px;
+    position: relative;
+}
+
+.length-player.active {
+    display: block;
+}
+
+.cinema-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.08);
+    z-index: 20;
+}
+
+#lengthProgress {
+    height: 100%;
+    width: 25%;
+    background: #63d9ff;
+    transition: width 0.7s ease;
+}
+
+/* CINEMATIC WORLD */
+.length-cinema-scene {
+    position: relative;
+    min-height: 590px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(65,170,255,0.18), transparent 35%),
+        linear-gradient(180deg, #091728, #02050a);
+}
+
+.scene-sky {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 25%, rgba(255,255,255,0.08) 0 1px, transparent 2px),
+        radial-gradient(circle at 70% 15%, rgba(255,255,255,0.08) 0 1px, transparent 2px),
+        radial-gradient(circle at 85% 45%, rgba(255,255,255,0.06) 0 1px, transparent 2px);
+    background-size: 140px 120px, 190px 150px, 220px 180px;
+}
+
+.scene-ground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 28%;
+    background: linear-gradient(180deg, rgba(12,25,38,0), rgba(3,8,14,0.95));
+}
+
+/* SCENE OBJECTS */
+.scene-object {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 0.8s ease, transform 1s ease;
+    pointer-events: none;
+}
+
+.scene-object.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* MILLIMETER */
+.tiny-object {
+    position: absolute;
+    width: 34px;
+    height: 34px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: #62d9ff;
+    box-shadow: 0 0 20px rgba(98,217,255,0.8), 0 0 70px rgba(98,217,255,0.25);
+}
+
+.tiny-measure-line {
+    position: absolute;
+    left: calc(50% + 35px);
+    top: 50%;
+    width: 90px;
+    border-top: 2px solid #62d9ff;
+}
+
+.tiny-measure-line::before,
+.tiny-measure-line::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    height: 10px;
+    width: 2px;
+    background: #62d9ff;
+}
+
+.tiny-measure-line::before { left: 0; }
+.tiny-measure-line::after { right: 0; }
+
+.tiny-measure-line span {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #62d9ff;
+}
+
+/* CENTIMETER */
+.coin-object {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    left: 38%;
+    top: 48%;
+    border-radius: 50%;
+    border: 5px solid #d9e2ec;
+    background: radial-gradient(circle, #667788 0 42%, #a9b7c5 43% 48%, #455463 49%);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.ruler-object {
+    position: absolute;
+    left: 48%;
+    top: 53%;
+    width: 270px;
+    height: 48px;
+    transform: translateY(-50%);
+    border-radius: 6px;
+    background: linear-gradient(180deg, #d8c89a, #bca66c);
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 0 8px;
+}
+
+.ruler-object div {
+    width: 1px;
+    height: 18px;
+    background: #302a1d;
+}
+
+.ruler-object div:nth-child(5n + 1) {
+    height: 28px;
+}
+
+.cm-measure {
+    position: absolute;
+    left: 50%;
+    top: 64%;
+    transform: translateX(-50%);
+    color: #ffe29a;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* METER */
+.human {
+    position: absolute;
+    left: 38%;
+    bottom: 12%;
+    width: 100px;
+    height: 300px;
+}
+
+.human-head {
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #d7e2ed;
+    left: 26px;
+    top: 0;
+}
+
+.human-body {
+    position: absolute;
+    width: 60px;
+    height: 130px;
+    border-radius: 25px 25px 10px 10px;
+    background: linear-gradient(180deg, #62d9ff, #266c9c);
+    left: 20px;
+    top: 58px;
+}
+
+.human-arm {
+    position: absolute;
+    width: 18px;
+    height: 120px;
+    border-radius: 20px;
+    background: #9fb4c7;
+    top: 70px;
+}
+
+.human-arm-left { left: 2px; transform: rotate(12deg); }
+.human-arm-right { right: 2px; transform: rotate(-12deg); }
+
+.human-leg {
+    position: absolute;
+    width: 20px;
+    height: 125px;
+    border-radius: 20px;
+    background: #8ea5ba;
+    top: 175px;
+}
+
+.human-leg-left { left: 27px; transform: rotate(3deg); }
+.human-leg-right { right: 27px; transform: rotate(-3deg); }
+
+.meter-line {
+    position: absolute;
+    left: 52%;
+    bottom: 13%;
+    width: 6px;
+    height: 300px;
+    background: #62d9ff;
+    box-shadow: 0 0 20px rgba(98,217,255,0.4);
+}
+
+.meter-line div {
+    position: absolute;
+    right: 0;
+    width: 22px;
+    height: 2px;
+    background: #62d9ff;
+}
+
+.meter-line div:nth-child(1) { top: 0; }
+.meter-line div:nth-child(2) { top: 25%; }
+.meter-line div:nth-child(3) { top: 50%; }
+.meter-line div:nth-child(4) { top: 75%; }
+.meter-line div:nth-child(5) { bottom: 0; }
+
+.meter-line span {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    font-size: 22px;
+    font-weight: 800;
+    color: #62d9ff;
+}
+
+/* KILOMETER */
+.sun {
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #ffd76a;
+    right: 12%;
+    top: 14%;
+    box-shadow: 0 0 80px rgba(255,215,106,0.35);
+}
+
+.mountain {
+    position: absolute;
+    bottom: 25%;
+    width: 0;
+    height: 0;
+    border-left: 180px solid transparent;
+    border-right: 180px solid transparent;
+    border-bottom: 230px solid #142c3c;
+}
+
+.mountain-one { left: 5%; }
+.mountain-two { right: 5%; border-bottom-color: #0d202d; }
+
+.road {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 27%;
+    background: #111820;
+    transform: perspective(250px) rotateX(18deg);
+    transform-origin: bottom;
+}
+
+.road-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 7px;
+    background: repeating-linear-gradient(90deg, #f5d76e 0 55px, transparent 55px 110px);
+}
+
+.building {
+    position: absolute;
+    bottom: 23%;
+    background: #20384a;
+    border: 1px solid rgba(255,255,255,0.08);
+}
+
+.building-one { left: 30%; width: 55px; height: 130px; }
+.building-two { left: 40%; width: 75px; height: 190px; }
+.building-three { left: 53%; width: 50px; height: 105px; }
+
+.km-distance {
+    position: absolute;
+    left: 50%;
+    bottom: 18%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 5px 25px rgba(0,0,0,0.7);
+}
+
+/* CAPTION */
+.scene-caption {
+    position: absolute;
+    left: 7%;
+    top: 12%;
+    max-width: 440px;
+    z-index: 10;
+}
+
+.scene-number {
+    font-size: 12px;
+    letter-spacing: 3px;
+    opacity: 0.45;
+    margin-bottom: 10px;
+}
+
+.scene-unit {
+    color: #62d9ff;
+    font-size: 12px;
+    letter-spacing: 4px;
+    font-weight: 800;
+}
+
+.scene-caption h2 {
+    font-size: clamp(32px, 4vw, 58px);
+    line-height: 1;
+    margin: 12px 0 18px;
+}
+
+.scene-caption p {
+    color: rgba(255,255,255,0.62);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* MEASUREMENT */
+.scene-measurement {
+    position: absolute;
+    right: 7%;
+    top: 15%;
+    text-align: right;
+    z-index: 10;
+}
+
+#sceneMeasurement {
+    display: block;
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+.measurement-line {
+    margin-top: 12px;
+    margin-left: auto;
+    width: 160px;
+    height: 2px;
+    background: #62d9ff;
+}
+
+/* CONTROLS */
+.cinema-controls {
+    height: 78px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    background: rgba(0,0,0,0.25);
+}
+
+.cinema-control {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.cinema-control:hover {
+    background: rgba(255,255,255,0.14);
+    transform: scale(1.08);
+}
+
+.cinema-play {
+    width: 54px;
+    height: 54px;
+    background: #ffffff;
+    color: #07111f;
+    font-size: 16px;
+}
+
+/* FACT */
+.cinema-fact {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255,255,255,0.025);
+}
+
+.fact-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    opacity: 0.4;
+    margin-bottom: 6px;
+}
+
+.cinema-fact strong {
+    font-size: 15px;
+    color: #62d9ff;
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+    .length-cinema,
+    .length-intro,
+    .length-player {
+        min-height: 650px;
+    }
+
+    .length-intro h1 {
+        letter-spacing: -2px;
+    }
+
+    .scene-caption {
+        left: 6%;
+        top: 9%;
+        max-width: 55%;
+    }
+
+    .scene-caption h2 {
+        font-size: 30px;
+    }
+
+    .scene-caption p {
+        font-size: 13px;
+    }
+
+    .scene-measurement {
+        right: 6%;
+        top: 10%;
+    }
+
+    #sceneMeasurement {
+        font-size: 38px;
+    }
+
+    .human {
+        left: 24%;
+    }
+
+    .meter-line {
+        left: 62%;
+    }
+
+    .coin-object {
+        left: 18%;
+    }
+
+    .ruler-object {
+        left: 35%;
+        width: 220px;
+    }
+
+    .mountain {
+        border-left-width: 120px;
+        border-right-width: 120px;
+        border-bottom-width: 160px;
+    }
+}
 :root{
 --bg:#111827;
 --bg2:#0b1220;
@@ -1876,124 +2442,266 @@ Explore Angles
 </div>
 </div>
 </section>
-<!-- LENGTH EXPERIENCE -->
+<!-- LENGTH CINEMATIC EXPERIENCE -->
+
 <section id="length-experience" class="page">
 
-<div class="length-film">
+<div class="length-cinema">
 
-<div class="length-film-header">
-<span class="length-kicker">CONVERTLY • EXPLORE</span>
+    <!-- OPENING -->
 
-<h1>The World of Length</h1>
+    <div class="length-intro" id="lengthIntro">
 
-<p>
-Don't just convert length. See what it means.
-</p>
-</div>
+        <div class="cinema-kicker">
+            CONVERTLY • VISUAL EXPLORATION
+        </div>
 
-<div class="length-scene">
+        <h1>
+            How Big Is
+            <br>
+            <span>One Meter?</span>
+        </h1>
 
-<div class="length-scale">
+        <p>
+            A visual journey from the microscopic
+            <br>
+            to distances you can see around you.
+        </p>
 
-<div class="scale-label label-mm">1 mm</div>
-<div class="scale-label label-cm">1 cm</div>
-<div class="scale-label label-m">1 m</div>
-<div class="scale-label label-km">1 km</div>
+        <button
+            class="cinema-start"
+            onclick="startLengthExperience()">
+            ▶ START THE JOURNEY
+        </button>
 
-<div class="scale-line"></div>
+        <div class="cinema-hint">
+            Watch the scale change.
+        </div>
 
-<div class="scale-marker marker-mm"></div>
-<div class="scale-marker marker-cm"></div>
-<div class="scale-marker marker-m"></div>
-<div class="scale-marker marker-km"></div>
+    </div>
 
-</div>
 
-<div class="length-story">
+    <!-- CINEMATIC PLAYER -->
 
-<h2 id="length-story-title">
-Everything starts with a tiny distance.
-</h2>
+    <div
+        class="length-player"
+        id="lengthPlayer">
 
-<p id="length-story-text">
-A millimeter is incredibly small. Watch how the scale grows as we move toward centimeters, meters and kilometers.
-</p>
+        <!-- PROGRESS -->
 
-</div>
+        <div class="cinema-progress">
+            <div id="lengthProgress"></div>
+        </div>
 
-</div>
-<div class="length-controls">
 
-<button
-class="length-control active"
-onclick="lengthScene(0)">
-Millimeter
-</button>
+        <!-- VISUAL SCENE -->
 
-<button
-class="length-control"
-onclick="lengthScene(1)">
-Centimeter
-</button>
+        <div
+            class="length-cinema-scene"
+            id="lengthCinemaScene">
 
-<button
-class="length-control"
-onclick="lengthScene(2)">
-Meter
-</button>
+            <div class="scene-sky"></div>
 
-<button
-class="length-control"
-onclick="lengthScene(3)">
-Kilometer
-</button>
+            <div class="scene-ground"></div>
 
-</div>
 
-<div class="length-visual-stage">
+            <!-- MILLIMETER -->
 
-<div class="length-object" id="length-object">
-<span id="length-object-icon">🔹</span>
-</div>
+            <div
+                class="scene-object scene-mm"
+                id="sceneMillimeter">
 
-<div class="length-measurement">
+                <div class="tiny-object"></div>
 
-<span id="length-number">1</span>
+                <div class="tiny-measure-line">
+                    <span>1 mm</span>
+                </div>
 
-<span id="length-unit">
-millimeter
-</span>
+            </div>
 
-</div>
 
-</div>
-<div class="length-explanation">
+            <!-- CENTIMETER -->
 
-<h2 id="length-explanation-title">
-Millimeter — the tiny unit
-</h2>
+            <div
+                class="scene-object scene-cm"
+                id="sceneCentimeter">
 
-<p id="length-explanation-text">
-A millimeter is one thousandth of a meter.
-It is useful for measuring very small distances,
-such as the thickness of a coin or a small object.
-</p>
+                <div class="coin-object"></div>
 
-<div class="length-fact">
-<strong>1 meter = 1,000 millimeters</strong>
-</div>
+                <div class="ruler-object">
 
-</div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
 
-<div class="length-next">
+                </div>
 
-<button
-class="btn"
-onclick="lengthScene(1)">
-See the scale grow →
-</button>
+                <div class="cm-measure">
+                    1 cm
+                </div>
 
-</div>
+            </div>
+
+
+            <!-- METER -->
+
+            <div
+                class="scene-object scene-m"
+                id="sceneMeter">
+
+                <div class="human">
+
+                    <div class="human-head"></div>
+
+                    <div class="human-body"></div>
+
+                    <div class="human-arm human-arm-left"></div>
+
+                    <div class="human-arm human-arm-right"></div>
+
+                    <div class="human-leg human-leg-left"></div>
+
+                    <div class="human-leg human-leg-right"></div>
+
+                </div>
+
+                <div class="meter-line">
+
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+
+                    <span>1 m</span>
+
+                </div>
+
+            </div>
+
+
+            <!-- KILOMETER -->
+
+            <div
+                class="scene-object scene-km"
+                id="sceneKilometer">
+
+                <div class="sun"></div>
+
+                <div class="mountain mountain-one"></div>
+
+                <div class="mountain mountain-two"></div>
+
+                <div class="building building-one"></div>
+
+                <div class="building building-two"></div>
+
+                <div class="building building-three"></div>
+
+                <div class="road">
+
+                    <div class="road-line"></div>
+
+                </div>
+
+                <div class="km-distance">
+                    1 km
+                </div>
+
+            </div>
+
+
+            <!-- CINEMATIC CAPTION -->
+
+            <div class="scene-caption">
+
+                <div
+                    class="scene-number"
+                    id="sceneNumber">
+                    01
+                </div>
+
+                <div
+                    class="scene-unit"
+                    id="sceneUnit">
+                    MILLIMETER
+                </div>
+
+                <h2 id="sceneTitle">
+                    Start incredibly small.
+                </h2>
+
+                <p id="sceneDescription">
+                    One millimeter is one thousandth
+                    of a meter.
+                </p>
+
+            </div>
+
+
+            <!-- MEASUREMENT -->
+
+            <div class="scene-measurement">
+
+                <span id="sceneMeasurement">
+                    1 mm
+                </span>
+
+                <div class="measurement-line"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTROLS -->
+
+        <div class="cinema-controls">
+
+            <button
+                class="cinema-control"
+                onclick="previousLengthScene()">
+                ←
+            </button>
+
+            <button
+                class="cinema-control cinema-play"
+                id="lengthPlayButton"
+                onclick="nextLengthScene()">
+                ▶
+            </button>
+
+            <button
+                class="cinema-control"
+                onclick="nextLengthScene()">
+                →
+            </button>
+
+        </div>
+
+
+        <!-- CURRENT SCALE -->
+
+        <div class="cinema-fact">
+
+            <div class="fact-label">
+                CURRENT SCALE
+            </div>
+
+            <strong id="lengthFact">
+                1 m = 1,000 mm
+            </strong>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -2611,191 +3319,155 @@ text.includes(query)
    EXPLORE
 ========================= */
 
+let currentLengthScene = 0;
+let lengthTimer = null;
+
+const lengthScenes = [
+    {
+        number: "01",
+        unit: "MILLIMETER",
+        title: "Start incredibly small.",
+        description: "One millimeter is one thousandth of a meter.",
+        measurement: "1 mm",
+        fact: "1 m = 1,000 mm",
+        element: "sceneMillimeter"
+    },
+    {
+        number: "02",
+        unit: "CENTIMETER",
+        title: "Now the distance becomes visible.",
+        description: "One centimeter is ten millimeters.",
+        measurement: "1 cm",
+        fact: "1 cm = 10 mm",
+        element: "sceneCentimeter"
+    },
+    {
+        number: "03",
+        unit: "METER",
+        title: "Now we reach human scale.",
+        description: "One meter is one hundred centimeters.",
+        measurement: "1 m",
+        fact: "1 m = 100 cm",
+        element: "sceneMeter"
+    },
+    {
+        number: "04",
+        unit: "KILOMETER",
+        title: "Now the distance becomes a journey.",
+        description: "One kilometer is one thousand meters.",
+        measurement: "1 km",
+        fact: "1 km = 1,000 m",
+        element: "sceneKilometer"
+    }
+];
+
 function openExplore(type){
 
     if(type === "length"){
+
         showPage("length-experience");
-        lengthScene(0);
+
+        clearTimeout(lengthTimer);
+
+        currentLengthScene = 0;
+
+        document.getElementById("lengthIntro").style.display = "flex";
+        document.getElementById("lengthPlayer").classList.remove("active");
+
+        showLengthScene(0);
+
         return;
     }
 
     alert("This Explore experience is coming soon!");
 }
-      /* =========================
-   LENGTH EXPERIENCE
-========================= */
 
-function lengthScene(scene){
+function startLengthExperience(){
 
-    const object = document.getElementById("length-object");
-    const icon = document.getElementById("length-object-icon");
-    const number = document.getElementById("length-number");
-    const unit = document.getElementById("length-unit");
+    document.getElementById("lengthIntro").style.display = "none";
+    document.getElementById("lengthPlayer").classList.add("active");
 
-    const storyTitle = document.getElementById("length-story-title");
-    const storyText = document.getElementById("length-story-text");
+    currentLengthScene = 0;
 
-    const explanationTitle =
-        document.getElementById("length-explanation-title");
+    showLengthScene(0);
 
-    const explanationText =
-        document.getElementById("length-explanation-text");
+    clearTimeout(lengthTimer);
 
-    const controls =
-        document.querySelectorAll(".length-control");
+    lengthTimer = setTimeout(nextLengthScene, 5000);
+}
 
-    const scenes = [
+function showLengthScene(index){
 
-        {
-            unit: "millimeter",
-            title: "Millimeter — the tiny unit",
-            storyTitle: "Everything starts with a tiny distance.",
-            storyText:
-                "A millimeter is incredibly small. It is where our journey begins.",
-            explanation:
-                "A millimeter is one thousandth of a meter. It is useful for measuring very small distances, such as the thickness of a coin or a small object.",
-            icon: "🔹",
-            size: "25px"
-        },
+    if(index < 0) index = 0;
 
-        {
-            unit: "centimeter",
-            title: "Centimeter — ten times bigger",
-            storyTitle: "Now the scale begins to grow.",
-            storyText:
-                "One centimeter contains ten millimeters. The tiny distance is becoming easier to see.",
-            explanation:
-                "A centimeter is equal to ten millimeters. Centimeters are commonly used for measuring small objects such as pencils, books and phones.",
-            icon: "🔷",
-            size: "70px"
-        },
+    if(index > lengthScenes.length - 1){
+        index = lengthScenes.length - 1;
+    }
 
-        {
-            unit: "meter",
-            title: "Meter — a human-scale distance",
-            storyTitle: "Now we reach the scale of everyday life.",
-            storyText:
-                "A meter is much larger than a centimeter. It is useful for measuring objects and distances around us.",
-            explanation:
-                "A meter is the main unit of length in the metric system. A typical guitar, table or person's height can be measured in meters.",
-            icon: "📏",
-            size: "150px"
-        },
+    currentLengthScene = index;
 
-        {
-            unit: "kilometer",
-            title: "Kilometer — distance across places",
-            storyTitle: "From tiny objects to huge distances.",
-            storyText:
-                "A kilometer contains 1,000 meters. Now we are measuring roads, cities and journeys.",
-            explanation:
-                "A kilometer is a large unit of length used to measure distances between places, roads and travel routes.",
-            icon: "🛣️",
-            size: "260px"
-        }
+    const scene = lengthScenes[index];
 
-    ];
-
-    const data = scenes[scene];
-
-    if(!data) return;
-
-    number.textContent = "1";
-    unit.textContent = data.unit;
-
-    storyTitle.textContent = data.storyTitle;
-    storyText.textContent = data.storyText;
-
-    explanationTitle.textContent = data.title;
-    explanationText.textContent = data.explanation;
-
-    controls.forEach((button, index) => {
-
-        button.classList.toggle(
-            "active",
-            index === scene
-        );
-
+    document.querySelectorAll(".scene-object").forEach(item => {
+        item.classList.remove("active");
     });
 
-    object.style.transform = "scale(0.2)";
-    object.style.opacity = "0";
+    const activeObject = document.getElementById(scene.element);
 
-    icon.textContent = data.icon;
-
-    setTimeout(() => {
-
-        object.style.width = data.size;
-        object.style.height = data.size;
-
-        object.style.transform = "scale(1)";
-        object.style.opacity = "1";
-
-    }, 120);
-
-    const scale = document.querySelector(".length-scale");
-
-    if(scale){
-
-        scale.style.transform =
-            `scaleX(${1 + scene * 0.18})`;
-
+    if(activeObject){
+        activeObject.classList.add("active");
     }
 
-    const stage =
-        document.querySelector(".length-visual-stage");
+    document.getElementById("sceneNumber").textContent =
+        scene.number;
 
-    if(stage){
+    document.getElementById("sceneUnit").textContent =
+        scene.unit;
 
-        stage.classList.remove("length-scene-change");
+    document.getElementById("sceneTitle").textContent =
+        scene.title;
 
-        void stage.offsetWidth;
+    document.getElementById("sceneDescription").textContent =
+        scene.description;
 
-        stage.classList.add("length-scene-change");
+    document.getElementById("sceneMeasurement").textContent =
+        scene.measurement;
 
+    document.getElementById("lengthFact").textContent =
+        scene.fact;
+
+    document.getElementById("lengthProgress").style.width =
+        `${((index + 1) / lengthScenes.length) * 100}%`;
+}
+
+function nextLengthScene(){
+
+    clearTimeout(lengthTimer);
+
+    if(currentLengthScene < lengthScenes.length - 1){
+
+        showLengthScene(currentLengthScene + 1);
+
+        lengthTimer = setTimeout(
+            nextLengthScene,
+            5000
+        );
+    }
+}
+
+function previousLengthScene(){
+
+    clearTimeout(lengthTimer);
+
+    if(currentLengthScene > 0){
+
+        showLengthScene(currentLengthScene - 1);
     }
 
-    const nextButton =
-        document.querySelector(".length-next .btn");
-
-    if(nextButton){
-
-        if(scene === 0){
-
-            nextButton.textContent =
-                "See the scale grow →";
-
-            nextButton.onclick =
-                () => lengthScene(1);
-
-        }else if(scene === 1){
-
-            nextButton.textContent =
-                "Grow to a meter →";
-
-            nextButton.onclick =
-                () => lengthScene(2);
-
-        }else if(scene === 2){
-
-            nextButton.textContent =
-                "Reach a kilometer →";
-
-            nextButton.onclick =
-                () => lengthScene(3);
-
-        }else{
-
-            nextButton.textContent =
-                "↻ Start the journey again";
-
-            nextButton.onclick =
-                () => lengthScene(0);
-
-        }
-
-    }
-
+    lengthTimer = setTimeout(
+        nextLengthScene,
+        5000
+    );
 }
 /* =========================
    OPEN CONVERTER
