@@ -3433,6 +3433,1177 @@ body.light .weight-scale::before{
     }
 
 }
+      /* =========================================================
+   VOLUME CINEMATIC EXPERIENCE
+========================================================= */
+
+.volume-cinema{
+    min-height:100vh;
+    padding:40px 20px 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* ---------------------------------------------------------
+   INTRO
+--------------------------------------------------------- */
+
+.volume-intro{
+    width:100%;
+    max-width:1050px;
+    min-height:560px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:70px;
+}
+
+.volume-intro-visual{
+    position:relative;
+    width:260px;
+    height:360px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+.volume-intro-glass{
+    position:relative;
+    width:170px;
+    height:250px;
+    border:3px solid rgba(255,255,255,.45);
+    border-top:none;
+    border-radius:0 0 28px 28px;
+    background:rgba(255,255,255,.035);
+    overflow:hidden;
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.35),
+        inset 0 0 25px rgba(255,255,255,.05);
+}
+
+.volume-intro-liquid{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:48%;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,220,255,.55),
+            rgba(0,120,255,.78)
+        );
+    animation:volumeIntroLiquid 3s ease-in-out infinite;
+}
+
+.volume-intro-liquid::before{
+    content:"";
+    position:absolute;
+    top:-8px;
+    left:-10%;
+    width:120%;
+    height:16px;
+    border-radius:50%;
+    background:rgba(110,240,255,.7);
+}
+
+.volume-intro-drop{
+    position:absolute;
+    top:35px;
+    right:15px;
+    font-size:45px;
+    animation:volumeIntroDrop 2.2s ease-in-out infinite;
+}
+
+.volume-intro-content{
+    max-width:560px;
+}
+
+.volume-kicker{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.volume-intro h1{
+    margin:0;
+    font-size:clamp(40px,6vw,72px);
+    line-height:1.05;
+}
+
+.volume-intro p{
+    max-width:580px;
+    margin:22px 0;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+}
+
+.volume-start-btn{
+    padding:14px 28px;
+    border:none;
+    border-radius:14px;
+    background:var(--accent);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.volume-start-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+
+/* ---------------------------------------------------------
+   PLAYER
+--------------------------------------------------------- */
+
+.volume-player{
+    width:100%;
+    max-width:1100px;
+    display:none;
+}
+
+.volume-player.active{
+    display:block;
+}
+
+.volume-progress{
+    width:100%;
+    height:4px;
+    background:rgba(255,255,255,.08);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:22px;
+}
+
+.volume-progress-bar{
+    width:0%;
+    height:100%;
+    background:var(--accent);
+    transition:width .35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   CINEMATIC STAGE
+--------------------------------------------------------- */
+
+.volume-stage{
+    position:relative;
+    width:100%;
+    min-height:720px;
+    overflow:hidden;
+    border-radius:28px;
+    border:1px solid rgba(255,255,255,.10);
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0,210,255,.12),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            #101925 0%,
+            #080d15 68%,
+            #05080d 100%
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.35),
+        inset 0 0 100px rgba(0,0,0,.35);
+}
+
+
+/* ---------------------------------------------------------
+   ENVIRONMENT
+--------------------------------------------------------- */
+
+.volume-environment{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+}
+
+.volume-glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(40px);
+    opacity:.35;
+}
+
+.volume-glow-one{
+    width:280px;
+    height:280px;
+    left:12%;
+    top:10%;
+    background:rgba(0,210,255,.12);
+}
+
+.volume-glow-two{
+    width:350px;
+    height:350px;
+    right:8%;
+    top:20%;
+    background:rgba(80,80,255,.08);
+}
+
+.volume-floor{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:150px;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.015),
+            rgba(255,255,255,.045)
+        );
+
+    border-top:1px solid rgba(255,255,255,.06);
+
+    transform:perspective(500px) rotateX(55deg);
+    transform-origin:bottom;
+}
+
+
+/* ---------------------------------------------------------
+   SCENES
+--------------------------------------------------------- */
+
+.volume-scene{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:450px;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    z-index:5;
+}
+
+.volume-scene.active{
+    display:flex;
+}
+
+
+/* ---------------------------------------------------------
+   VISUAL AREA
+--------------------------------------------------------- */
+
+.volume-visual{
+    position:relative;
+    width:600px;
+    height:400px;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 1 — CONTAINER
+--------------------------------------------------------- */
+
+.volume-container-large{
+    position:absolute;
+    left:50%;
+    bottom:15px;
+    transform:translateX(-50%);
+
+    width:220px;
+    height:280px;
+
+    border:4px solid rgba(255,255,255,.4);
+    border-top:none;
+
+    border-radius:0 0 35px 35px;
+
+    background:rgba(255,255,255,.025);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 50px rgba(0,0,0,.35),
+        inset 0 0 30px rgba(255,255,255,.04);
+}
+
+.volume-container-rim{
+    position:absolute;
+    left:50%;
+    top:-8px;
+    transform:translateX(-50%);
+
+    width:235px;
+    height:25px;
+
+    border:4px solid rgba(255,255,255,.4);
+    border-radius:50%;
+}
+
+.volume-liquid{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:58%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,225,255,.65),
+            rgba(0,110,255,.8)
+        );
+
+    animation:volumeLiquidWave 2.5s ease-in-out infinite;
+}
+
+.volume-liquid::before{
+    content:"";
+    position:absolute;
+    left:-5%;
+    top:-9px;
+    width:110%;
+    height:18px;
+
+    border-radius:50%;
+
+    background:rgba(100,240,255,.65);
+}
+
+.volume-liquid-shine{
+    position:absolute;
+    left:30px;
+    top:25px;
+    width:18px;
+    height:190px;
+    border-radius:20px;
+    background:rgba(255,255,255,.12);
+}
+
+.volume-water-drop{
+    position:absolute;
+    font-size:30px;
+    opacity:.7;
+}
+
+.drop-one{
+    left:25%;
+    top:15%;
+    animation:volumeDropOne 2.5s ease-in infinite;
+}
+
+.drop-two{
+    left:65%;
+    top:5%;
+    animation:volumeDropTwo 3s ease-in infinite;
+}
+
+.drop-three{
+    left:48%;
+    top:20%;
+    animation:volumeDropThree 2.8s ease-in infinite;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 2 — MEASURING CYLINDER
+--------------------------------------------------------- */
+
+.volume-measuring-cylinder{
+    position:absolute;
+    left:50%;
+    bottom:10px;
+    transform:translateX(-50%);
+
+    width:145px;
+    height:300px;
+
+    border:4px solid rgba(255,255,255,.38);
+    border-top:none;
+
+    border-radius:0 0 30px 30px;
+
+    background:rgba(255,255,255,.025);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.35);
+}
+
+.volume-cylinder-liquid{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:62%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,230,255,.65),
+            rgba(0,110,255,.82)
+        );
+
+    animation:volumeCylinderFill 2s ease-out forwards;
+}
+
+.volume-cylinder-rim{
+    position:absolute;
+    left:50%;
+    top:-8px;
+    transform:translateX(-50%);
+
+    width:160px;
+    height:25px;
+
+    border:4px solid rgba(255,255,255,.38);
+    border-radius:50%;
+}
+
+.volume-cylinder-scale{
+    position:absolute;
+    right:8px;
+    top:25px;
+    bottom:20px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    z-index:4;
+
+    font-size:11px;
+    color:rgba(255,255,255,.75);
+}
+
+.volume-measure-label{
+    position:absolute;
+    left:50%;
+    bottom:-35px;
+    transform:translateX(-50%);
+
+    padding:9px 18px;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:20px;
+    font-weight:800;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 3 — BOTTLE
+--------------------------------------------------------- */
+
+.volume-bottle{
+    position:absolute;
+    left:50%;
+    bottom:5px;
+    transform:translateX(-50%);
+
+    width:180px;
+    height:350px;
+}
+
+.volume-bottle-neck{
+    position:absolute;
+    left:50%;
+    top:0;
+    transform:translateX(-50%);
+
+    width:70px;
+    height:75px;
+
+    border:4px solid rgba(255,255,255,.4);
+    border-bottom:none;
+
+    border-radius:18px 18px 0 0;
+
+    background:rgba(255,255,255,.025);
+}
+
+.volume-bottle-body{
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:180px;
+    height:295px;
+
+    border:4px solid rgba(255,255,255,.4);
+
+    border-radius:28px 28px 35px 35px;
+
+    background:rgba(255,255,255,.025);
+
+    overflow:hidden;
+
+    box-shadow:
+        0 30px 55px rgba(0,0,0,.35);
+}
+
+.volume-bottle-liquid{
+    position:absolute;
+    left:0;
+    bottom:0;
+
+    width:100%;
+    height:70%;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,220,255,.55),
+            rgba(0,100,255,.82)
+        );
+
+    animation:volumeBottlePulse 2.5s ease-in-out infinite;
+}
+
+.volume-bottle-shine{
+    position:absolute;
+    left:25px;
+    top:25px;
+
+    width:18px;
+    height:210px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.12);
+}
+
+.volume-bottle-label{
+    position:absolute;
+    left:50%;
+    bottom:-40px;
+    transform:translateX(-50%);
+
+    font-size:25px;
+    font-weight:800;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 4 — CUBE
+--------------------------------------------------------- */
+
+.volume-cube-visual{
+    perspective:900px;
+}
+
+.volume-cube{
+    position:absolute;
+    left:50%;
+    top:45px;
+
+    width:210px;
+    height:210px;
+
+    transform:
+        translateX(-50%)
+        rotateX(-18deg)
+        rotateY(-28deg);
+
+    transform-style:preserve-3d;
+
+    animation:volumeCubeRotate 8s ease-in-out infinite;
+}
+
+.cube-face{
+    position:absolute;
+    width:210px;
+    height:210px;
+
+    border:2px solid rgba(255,255,255,.35);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,210,255,.16),
+            rgba(80,100,255,.08)
+        );
+}
+
+.cube-front{
+    transform:translateZ(105px);
+}
+
+.cube-top{
+    transform:
+        rotateX(90deg)
+        translateZ(105px);
+}
+
+.cube-side{
+    transform:
+        rotateY(90deg)
+        translateZ(105px);
+}
+
+.cube-grid{
+    position:absolute;
+    pointer-events:none;
+}
+
+.cube-grid-horizontal{
+    width:210px;
+    height:1px;
+    top:105px;
+    left:0;
+    background:rgba(255,255,255,.2);
+    transform:translateZ(107px);
+}
+
+.cube-grid-vertical{
+    width:1px;
+    height:210px;
+    top:0;
+    left:105px;
+    background:rgba(255,255,255,.2);
+    transform:translateZ(107px);
+}
+
+.cube-measure-line{
+    position:absolute;
+    color:var(--accent);
+    font-weight:800;
+    font-size:18px;
+}
+
+.cube-width{
+    left:50%;
+    bottom:55px;
+    transform:translateX(-50%);
+}
+
+.cube-height{
+    right:60px;
+    top:150px;
+}
+
+.cube-volume-result{
+    position:absolute;
+    left:50%;
+    bottom:5px;
+    transform:translateX(-50%);
+
+    padding:10px 20px;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+
+    font-size:24px;
+    font-weight:800;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 5 — CONVERSION
+--------------------------------------------------------- */
+
+.volume-conversion-visual{
+    text-align:center;
+}
+
+.volume-conversion-top{
+    position:absolute;
+    left:50%;
+    top:30px;
+    transform:translateX(-50%);
+
+    display:flex;
+    align-items:center;
+    gap:22px;
+
+    white-space:nowrap;
+}
+
+.volume-conversion-box{
+    padding:18px 28px;
+
+    border-radius:16px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.09);
+
+    font-size:28px;
+    font-weight:800;
+}
+
+.volume-conversion-arrow{
+    color:var(--accent);
+    font-size:35px;
+
+    animation:volumeArrowPulse 1.3s ease-in-out infinite;
+}
+
+.volume-conversion-example{
+    position:absolute;
+    left:50%;
+    top:145px;
+    transform:translateX(-50%);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.volume-example-number,
+.volume-example-answer{
+    font-size:48px;
+    font-weight:900;
+}
+
+.volume-example-operation{
+    margin-top:8px;
+    color:var(--muted);
+    font-size:18px;
+}
+
+.volume-example-arrow{
+    margin:7px 0;
+    color:var(--accent);
+    font-size:32px;
+
+    animation:volumeConversionMove 1.4s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 6 — CHALLENGE
+--------------------------------------------------------- */
+
+.volume-challenge-visual{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.volume-challenge-card{
+    display:flex;
+    align-items:center;
+    gap:22px;
+
+    padding:28px 34px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.1);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.25);
+}
+
+.volume-challenge-icon{
+    font-size:55px;
+}
+
+.volume-challenge-question{
+    font-size:42px;
+    font-weight:900;
+}
+
+.volume-challenge-arrow{
+    color:var(--accent);
+    font-size:35px;
+}
+
+.volume-challenge-answer{
+    min-width:70px;
+    font-size:42px;
+    font-weight:900;
+    color:var(--accent);
+}
+
+.volume-challenge-reveal{
+    margin-top:28px;
+
+    padding:12px 25px;
+
+    border-radius:15px;
+
+    background:rgba(0,210,255,.08);
+    border:1px solid rgba(0,210,255,.2);
+
+    font-size:30px;
+    font-weight:900;
+
+    opacity:0;
+    transform:translateY(10px);
+
+    transition:.5s;
+}
+
+.volume-challenge-reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   INFORMATION PANEL
+--------------------------------------------------------- */
+
+.volume-info{
+    position:absolute;
+
+    left:6%;
+    right:6%;
+    bottom:28px;
+
+    height:220px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+
+    text-align:center;
+
+    z-index:20;
+}
+
+.volume-scene-number{
+    color:var(--accent);
+
+    font-size:13px;
+    font-weight:800;
+
+    letter-spacing:2px;
+}
+
+.volume-scene-label{
+    margin-top:5px;
+
+    font-size:13px;
+    letter-spacing:2px;
+
+    color:var(--muted);
+}
+
+.volume-scene-title{
+    margin:8px 0 6px;
+
+    font-size:clamp(24px,3.5vw,38px);
+}
+
+.volume-scene-description{
+    max-width:760px;
+
+    margin:0 auto;
+
+    color:var(--muted);
+
+    line-height:1.55;
+    font-size:16px;
+}
+
+.volume-reading{
+    margin-top:11px;
+
+    font-size:28px;
+    font-weight:900;
+}
+
+.volume-fact{
+    margin:8px auto 0;
+
+    max-width:700px;
+
+    padding:8px 18px;
+
+    border-radius:13px;
+
+    background:rgba(255,255,255,.045);
+
+    color:var(--muted);
+}
+
+
+/* ---------------------------------------------------------
+   CONTROLS
+--------------------------------------------------------- */
+
+.volume-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:22px;
+}
+
+.volume-control-btn{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.05);
+
+    color:inherit;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s;
+}
+
+.volume-control-btn:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.1);
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes volumeIntroLiquid{
+    0%,100%{ height:45%; }
+    50%{ height:58%; }
+}
+
+@keyframes volumeIntroDrop{
+    0%,100%{
+        transform:translateY(0) scale(1);
+    }
+    50%{
+        transform:translateY(12px) scale(1.08);
+    }
+}
+
+@keyframes volumeLiquidWave{
+    0%,100%{ transform:scaleX(1); }
+    50%{ transform:scaleX(1.04); }
+}
+
+@keyframes volumeDropOne{
+    0%{
+        transform:translateY(-30px);
+        opacity:0;
+    }
+    35%{ opacity:.7; }
+    100%{
+        transform:translateY(250px);
+        opacity:0;
+    }
+}
+
+@keyframes volumeDropTwo{
+    0%{
+        transform:translateY(-40px);
+        opacity:0;
+    }
+    35%{ opacity:.7; }
+    100%{
+        transform:translateY(240px);
+        opacity:0;
+    }
+}
+
+@keyframes volumeDropThree{
+    0%{
+        transform:translateY(-20px);
+        opacity:0;
+    }
+    35%{ opacity:.7; }
+    100%{
+        transform:translateY(260px);
+        opacity:0;
+    }
+}
+
+@keyframes volumeCylinderFill{
+    from{ height:0; }
+    to{ height:62%; }
+}
+
+@keyframes volumeBottlePulse{
+    0%,100%{ height:68%; }
+    50%{ height:73%; }
+}
+
+@keyframes volumeCubeRotate{
+    0%,100%{
+        transform:
+            translateX(-50%)
+            rotateX(-18deg)
+            rotateY(-28deg);
+    }
+    50%{
+        transform:
+            translateX(-50%)
+            rotateX(-12deg)
+            rotateY(28deg);
+    }
+}
+
+@keyframes volumeArrowPulse{
+    0%,100%{
+        transform:translateX(0);
+        opacity:.5;
+    }
+    50%{
+        transform:translateX(7px);
+        opacity:1;
+    }
+}
+
+@keyframes volumeConversionMove{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(7px); }
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+--------------------------------------------------------- */
+
+body.light .volume-stage{
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(0,140,255,.10),
+            transparent 38%
+        ),
+        linear-gradient(
+            180deg,
+            #edf4fa 0%,
+            #e2e9f0 68%,
+            #d8e0e8 100%
+        );
+}
+
+body.light .volume-floor{
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.015),
+            rgba(0,0,0,.04)
+        );
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:750px){
+
+    .volume-cinema{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .volume-intro{
+        min-height:650px;
+        flex-direction:column;
+        gap:25px;
+        text-align:center;
+    }
+
+    .volume-intro-visual{
+        transform:scale(.8);
+        margin-bottom:-35px;
+    }
+
+    .volume-intro-content{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .volume-stage{
+        min-height:720px;
+    }
+
+    .volume-scene{
+        height:420px;
+    }
+
+    .volume-visual{
+        transform:scale(.75);
+    }
+
+    .volume-info{
+        left:4%;
+        right:4%;
+        bottom:24px;
+        height:245px;
+    }
+
+    .volume-scene-title{
+        font-size:24px;
+    }
+
+    .volume-scene-description{
+        font-size:14px;
+    }
+
+    .volume-reading{
+        font-size:25px;
+    }
+
+    .volume-fact{
+        font-size:13px;
+    }
+
+    .volume-conversion-top{
+        gap:8px;
+    }
+
+    .volume-conversion-box{
+        padding:12px 15px;
+        font-size:19px;
+    }
+
+    .volume-conversion-arrow{
+        font-size:25px;
+    }
+
+    .volume-example-number,
+    .volume-example-answer{
+        font-size:38px;
+    }
+
+    .volume-challenge-card{
+        gap:12px;
+        padding:22px 18px;
+    }
+
+    .volume-challenge-question{
+        font-size:32px;
+    }
+
+    .volume-challenge-answer{
+        font-size:32px;
+    }
+
+}
 </style>
 </head>
 
@@ -4967,7 +6138,384 @@ Explore Angles
     </div>
 
 </section>
-      <!-- FAVORITES -->
+      <!-- =========================================================
+     VOLUME CINEMATIC EXPERIENCE
+========================================================= -->
+
+<section id="volume-experience" class="page">
+
+    <div class="volume-cinema">
+
+        <!-- INTRO -->
+        <div class="volume-intro" id="volumeIntro">
+
+            <div class="volume-intro-visual">
+                <div class="volume-intro-glass">
+                    <div class="volume-intro-liquid"></div>
+                </div>
+                <div class="volume-intro-drop">💧</div>
+            </div>
+
+            <div class="volume-intro-content">
+                <div class="volume-kicker">EXPLORE</div>
+
+                <h1>Understanding Volume</h1>
+
+                <p>
+                    From a tiny medicine dose to a huge water tank,
+                    volume tells us how much space something contains.
+                </p>
+
+                <button
+                    class="volume-start-btn"
+                    onclick="startVolumeExperience()">
+                    Start Experience →
+                </button>
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER -->
+        <div class="volume-player" id="volumePlayer">
+
+            <div class="volume-progress">
+                <div
+                    class="volume-progress-bar"
+                    id="volumeProgressBar">
+                </div>
+            </div>
+
+
+            <!-- MAIN STAGE -->
+            <div class="volume-stage" id="volumeStage">
+
+                <!-- SCENE ENVIRONMENT -->
+                <div class="volume-environment">
+
+                    <div class="volume-glow volume-glow-one"></div>
+                    <div class="volume-glow volume-glow-two"></div>
+
+                    <div class="volume-floor"></div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 1
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene1">
+
+                    <div class="volume-visual volume-scene-one-visual">
+
+                        <div class="volume-container-large">
+
+                            <div class="volume-liquid"
+                                 id="volumeLiquid1">
+                            </div>
+
+                            <div class="volume-liquid-shine"></div>
+
+                            <div class="volume-container-rim"></div>
+
+                        </div>
+
+                        <div class="volume-water-drop drop-one">💧</div>
+                        <div class="volume-water-drop drop-two">💧</div>
+                        <div class="volume-water-drop drop-three">💧</div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 2
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene2">
+
+                    <div class="volume-visual volume-measuring-visual">
+
+                        <div class="volume-measuring-cylinder">
+
+                            <div class="volume-cylinder-scale">
+                                <span>250</span>
+                                <span>200</span>
+                                <span>150</span>
+                                <span>100</span>
+                                <span>50</span>
+                            </div>
+
+                            <div
+                                class="volume-cylinder-liquid"
+                                id="volumeLiquid2">
+                            </div>
+
+                            <div class="volume-cylinder-rim"></div>
+
+                        </div>
+
+                        <div class="volume-measure-label">
+                            250 mL
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 3
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene3">
+
+                    <div class="volume-visual volume-bottle-visual">
+
+                        <div class="volume-bottle">
+
+                            <div class="volume-bottle-neck"></div>
+
+                            <div class="volume-bottle-body">
+
+                                <div
+                                    class="volume-bottle-liquid"
+                                    id="volumeLiquid3">
+                                </div>
+
+                                <div class="volume-bottle-shine"></div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="volume-bottle-label">
+                            1 L
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 4
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene4">
+
+                    <div class="volume-visual volume-cube-visual">
+
+                        <div class="volume-cube">
+
+                            <div class="cube-face cube-front"></div>
+                            <div class="cube-face cube-top"></div>
+                            <div class="cube-face cube-side"></div>
+
+                            <div class="cube-grid cube-grid-horizontal"></div>
+                            <div class="cube-grid cube-grid-vertical"></div>
+
+                        </div>
+
+                        <div class="cube-measure-line cube-width">
+                            1 cm
+                        </div>
+
+                        <div class="cube-measure-line cube-height">
+                            1 cm
+                        </div>
+
+                        <div class="cube-volume-result">
+                            1 cm³
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 5
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene5">
+
+                    <div class="volume-visual volume-conversion-visual">
+
+                        <div class="volume-conversion-top">
+
+                            <div class="volume-conversion-box">
+                                1 L
+                            </div>
+
+                            <div class="volume-conversion-arrow">
+                                →
+                            </div>
+
+                            <div class="volume-conversion-box">
+                                1000 mL
+                            </div>
+
+                        </div>
+
+                        <div class="volume-conversion-example">
+
+                            <div class="volume-example-number">
+                                2.5 L
+                            </div>
+
+                            <div class="volume-example-operation">
+                                × 1000
+                            </div>
+
+                            <div class="volume-example-arrow">
+                                ↓
+                            </div>
+
+                            <div class="volume-example-answer">
+                                2500 mL
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 6
+                ========================== -->
+
+                <div
+                    class="volume-scene"
+                    id="volumeScene6">
+
+                    <div class="volume-visual volume-challenge-visual">
+
+                        <div class="volume-challenge-card">
+
+                            <div class="volume-challenge-icon">
+                                🧃
+                            </div>
+
+                            <div class="volume-challenge-question">
+                                3500 mL
+                            </div>
+
+                            <div class="volume-challenge-arrow">
+                                →
+                            </div>
+
+                            <div
+                                class="volume-challenge-answer"
+                                id="volumeChallengeAnswer">
+                                ?
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="volume-challenge-reveal"
+                            id="volumeChallengeReveal">
+                            3.5 L
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION PANEL -->
+
+                <div class="volume-info">
+
+                    <div
+                        class="volume-scene-number"
+                        id="volumeSceneNumber">
+                        01
+                    </div>
+
+                    <div
+                        class="volume-scene-label"
+                        id="volumeSceneLabel">
+                        VOLUME
+                    </div>
+
+                    <h1
+                        class="volume-scene-title"
+                        id="volumeSceneTitle">
+                        Volume tells us how much space something contains.
+                    </h1>
+
+                    <p
+                        class="volume-scene-description"
+                        id="volumeSceneDescription">
+                        A container with more liquid has greater volume.
+                    </p>
+
+                    <div
+                        class="volume-reading"
+                        id="volumeReading">
+                        Volume
+                    </div>
+
+                    <div
+                        class="volume-fact"
+                        id="volumeFact">
+                        Volume can be measured using litres, millilitres,
+                        and cubic units.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="volume-controls">
+
+                <button
+                    class="volume-control-btn"
+                    onclick="previousVolumeScene()">
+                    ←
+                </button>
+
+                <button
+                    class="volume-control-btn volume-play-btn"
+                    id="volumePlayButton"
+                    onclick="toggleVolumePlayback()">
+                    ▶
+                </button>
+
+                <button
+                    class="volume-control-btn"
+                    onclick="nextVolumeScene()">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FAVORITES -->
 
 <section
 id="favorites"
@@ -7178,6 +8726,610 @@ function openWeightExplore(){
 --------------------------------------------------------- */
 
 resetWeightExperience();
+ /* =========================================================
+    VOLUME CINEMATIC EXPERIENCE
+ ========================================================= */
+
+let currentVolumeScene = 0;
+let volumePlaying = false;
+let volumeSpeech = null;
+let volumeAutoTimer = null;
+
+const volumeScenes = [
+
+    {
+        number: "01",
+        label: "VOLUME",
+        title: "Volume tells us how much space something contains.",
+        description:
+            "A container that can hold more space has a greater volume.",
+        reading: "Volume",
+        fact:
+            "Volume can be measured using litres, millilitres, and cubic units.",
+        narration:
+            "Volume tells us how much space something contains. A glass, a bottle, or a tank can all have different volumes."
+    },
+
+    {
+        number: "02",
+        label: "MILLILITRES",
+        title: "Millilitres are useful for small quantities.",
+        description:
+            "Medicine, small drinks, and other small amounts are often measured in millilitres.",
+        reading: "250 mL",
+        fact:
+            "1000 millilitres make 1 litre.",
+        narration:
+            "Millilitres are used for measuring smaller quantities. This cylinder contains two hundred and fifty millilitres."
+    },
+
+    {
+        number: "03",
+        label: "LITRES",
+        title: "Litres are useful for larger quantities.",
+        description:
+            "Bottles, fuel containers, and large amounts of liquid are commonly measured in litres.",
+        reading: "1 L",
+        fact:
+            "One litre is equal to one thousand millilitres.",
+        narration:
+            "When the quantity becomes larger, litres are convenient. This bottle represents one litre."
+    },
+
+    {
+        number: "04",
+        label: "CUBIC UNITS",
+        title: "Volume can also describe three-dimensional space.",
+        description:
+            "A cube that is one centimetre long, one centimetre wide, and one centimetre high has a volume of one cubic centimetre.",
+        reading: "1 cm³",
+        fact:
+            "Volume of a cuboid = length × width × height.",
+        narration:
+            "Volume is not only about liquids. A three dimensional object can also have volume. A cube measuring one centimetre on every side has a volume of one cubic centimetre."
+    },
+
+    {
+        number: "05",
+        label: "CONVERSION",
+        title: "One litre contains one thousand millilitres.",
+        description:
+            "To convert litres into millilitres, multiply by one thousand.",
+        reading: "2.5 L × 1000 = 2500 mL",
+        fact:
+            "L → mL means multiply by 1000.",
+        narration:
+            "One litre equals one thousand millilitres. So to convert two point five litres into millilitres, multiply two point five by one thousand. The answer is two thousand five hundred millilitres."
+    },
+
+    {
+        number: "06",
+        label: "CHALLENGE",
+        title: "Can you convert 3500 mL into litres?",
+        description:
+            "Since one litre equals one thousand millilitres, divide 3500 by 1000.",
+        reading: "3500 mL ÷ 1000",
+        fact:
+            "3500 millilitres = 3.5 litres.",
+        narration:
+            "Final challenge. Convert three thousand five hundred millilitres into litres. Divide by one thousand. The answer is three point five litres."
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   RESET
+--------------------------------------------------------- */
+
+function resetVolumeExperience(){
+
+    clearVolumeAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentVolumeScene = 0;
+    volumePlaying = false;
+    volumeSpeech = null;
+
+    const player =
+        document.getElementById("volumePlayer");
+
+    const intro =
+        document.getElementById("volumeIntro");
+
+    const playButton =
+        document.getElementById("volumePlayButton");
+
+    const reveal =
+        document.getElementById("volumeChallengeReveal");
+
+    const answer =
+        document.getElementById("volumeChallengeAnswer");
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(playButton){
+        playButton.textContent = "▶";
+    }
+
+    if(reveal){
+        reveal.classList.remove("show");
+    }
+
+    if(answer){
+        answer.textContent = "?";
+    }
+
+    for(let i = 1; i <= 6; i++){
+
+        const scene =
+            document.getElementById("volumeScene" + i);
+
+        if(scene){
+            scene.classList.remove("active");
+        }
+    }
+
+    const progress =
+        document.getElementById("volumeProgressBar");
+
+    if(progress){
+        progress.style.width = "0%";
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   START EXPERIENCE
+--------------------------------------------------------- */
+
+function startVolumeExperience(){
+
+    const intro =
+        document.getElementById("volumeIntro");
+
+    const player =
+        document.getElementById("volumePlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentVolumeScene = 0;
+
+    updateVolumeScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE SCENE
+--------------------------------------------------------- */
+
+function updateVolumeScene(){
+
+    clearVolumeAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    volumeSpeech = null;
+
+    const scene =
+        volumeScenes[currentVolumeScene];
+
+    if(!scene){
+        return;
+    }
+
+
+    /* Hide all scenes */
+
+    for(let i = 1; i <= 6; i++){
+
+        const element =
+            document.getElementById("volumeScene" + i);
+
+        if(element){
+            element.classList.remove("active");
+        }
+
+    }
+
+
+    /* Show current scene */
+
+    const activeScene =
+        document.getElementById(
+            "volumeScene" + (currentVolumeScene + 1)
+        );
+
+    if(activeScene){
+        activeScene.classList.add("active");
+    }
+
+
+    /* Information */
+
+    const number =
+        document.getElementById("volumeSceneNumber");
+
+    const label =
+        document.getElementById("volumeSceneLabel");
+
+    const title =
+        document.getElementById("volumeSceneTitle");
+
+    const description =
+        document.getElementById("volumeSceneDescription");
+
+    const reading =
+        document.getElementById("volumeReading");
+
+    const fact =
+        document.getElementById("volumeFact");
+
+
+    if(number){
+        number.textContent = scene.number;
+    }
+
+    if(label){
+        label.textContent = scene.label;
+    }
+
+    if(title){
+        title.textContent = scene.title;
+    }
+
+    if(description){
+        description.textContent = scene.description;
+    }
+
+    if(reading){
+        reading.textContent = scene.reading;
+    }
+
+    if(fact){
+        fact.textContent = scene.fact;
+    }
+
+
+    /* Reset challenge */
+
+    const challengeAnswer =
+        document.getElementById("volumeChallengeAnswer");
+
+    const challengeReveal =
+        document.getElementById("volumeChallengeReveal");
+
+    if(challengeAnswer){
+        challengeAnswer.textContent = "?";
+    }
+
+    if(challengeReveal){
+        challengeReveal.classList.remove("show");
+    }
+
+
+    /* Progress */
+
+    updateVolumeProgress();
+
+
+    /* Speak automatically when playback is active */
+
+    if(volumePlaying){
+        speakVolumeScene();
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS BAR
+--------------------------------------------------------- */
+
+function updateVolumeProgress(){
+
+    const progress =
+        document.getElementById("volumeProgressBar");
+
+    if(!progress){
+        return;
+    }
+
+    const percentage =
+        ((currentVolumeScene + 1) / volumeScenes.length) * 100;
+
+    progress.style.width = percentage + "%";
+
+}
+
+
+/* ---------------------------------------------------------
+   SPEECH
+--------------------------------------------------------- */
+
+function speakVolumeScene(){
+
+    if(!("speechSynthesis" in window)){
+
+        startVolumeAutoTimer(9000);
+
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const scene =
+        volumeScenes[currentVolumeScene];
+
+    volumeSpeech =
+        new SpeechSynthesisUtterance(scene.narration);
+
+    volumeSpeech.rate = 0.96;
+    volumeSpeech.pitch = 1;
+    volumeSpeech.volume = 1;
+
+    volumeSpeech.onend = function(){
+
+        if(!volumePlaying){
+            return;
+        }
+
+        /* Reveal final answer immediately after narration */
+
+        if(currentVolumeScene === 5){
+
+            const answer =
+                document.getElementById(
+                    "volumeChallengeAnswer"
+                );
+
+            const reveal =
+                document.getElementById(
+                    "volumeChallengeReveal"
+                );
+
+            if(answer){
+                answer.textContent = "3.5 L";
+            }
+
+            if(reveal){
+                reveal.classList.add("show");
+            }
+
+        }
+
+
+        /* Move quickly to next scene */
+
+        startVolumeAutoTimer(350);
+
+    };
+
+    speechSynthesis.speak(volumeSpeech);
+
+}
+
+
+/* ---------------------------------------------------------
+   AUTO TIMER
+--------------------------------------------------------- */
+
+function startVolumeAutoTimer(delay){
+
+    clearVolumeAutoTimer();
+
+    volumeAutoTimer =
+        setTimeout(function(){
+
+            if(!volumePlaying){
+                return;
+            }
+
+            if(currentVolumeScene >= volumeScenes.length - 1){
+
+                volumePlaying = false;
+
+                const playButton =
+                    document.getElementById(
+                        "volumePlayButton"
+                    );
+
+                if(playButton){
+                    playButton.textContent = "▶";
+                }
+
+                return;
+            }
+
+            currentVolumeScene++;
+
+            updateVolumeScene();
+
+        }, delay);
+
+}
+
+
+function clearVolumeAutoTimer(){
+
+    if(volumeAutoTimer){
+
+        clearTimeout(volumeAutoTimer);
+
+        volumeAutoTimer = null;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT SCENE
+--------------------------------------------------------- */
+
+function nextVolumeScene(){
+
+    clearVolumeAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    if(currentVolumeScene < volumeScenes.length - 1){
+
+        currentVolumeScene++;
+
+        updateVolumeScene();
+
+    }
+    else{
+
+        volumePlaying = false;
+
+        const playButton =
+            document.getElementById(
+                "volumePlayButton"
+            );
+
+        if(playButton){
+            playButton.textContent = "▶";
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS SCENE
+--------------------------------------------------------- */
+
+function previousVolumeScene(){
+
+    clearVolumeAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    if(currentVolumeScene > 0){
+
+        currentVolumeScene--;
+
+        updateVolumeScene();
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE
+--------------------------------------------------------- */
+
+function toggleVolumePlayback(){
+
+    if(volumePlaying){
+
+        volumePlaying = false;
+
+        clearVolumeAutoTimer();
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById(
+                "volumePlayButton"
+            );
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        return;
+    }
+
+
+    volumePlaying = true;
+
+    const button =
+        document.getElementById(
+            "volumePlayButton"
+        );
+
+    if(button){
+        button.textContent = "❚❚";
+    }
+
+    speakVolumeScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN VOLUME FROM EXPLORE
+--------------------------------------------------------- */
+
+function openVolumeExplore(){
+
+    showPage("volume-experience");
+
+    resetVolumeExperience();
+
+}
+
+
+/* ---------------------------------------------------------
+   CONNECT TO EXISTING EXPLORE SYSTEM
+--------------------------------------------------------- */
+
+const volumeOriginalOpenExplore =
+    window.openExplore;
+
+window.openExplore = function(type){
+
+    if(type === "volume"){
+
+        openVolumeExplore();
+
+        return;
+    }
+
+    if(typeof volumeOriginalOpenExplore === "function"){
+
+        return volumeOriginalOpenExplore(type);
+
+    }
+
+};
+
+
+/* ---------------------------------------------------------
+   INITIALIZE
+--------------------------------------------------------- */
+
+resetVolumeExperience();
 /* =========================
    OPEN CONVERTER
 ========================= */
