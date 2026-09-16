@@ -2858,16 +2858,30 @@ outline-offset:2px;
     min-height:700px;
     border-radius:28px;
     overflow:hidden;
+
     background:
         radial-gradient(
-            circle at 50% 25%,
-            rgba(0,200,255,.10),
-            transparent 50%
+            circle at 50% 32%,
+            rgba(0,200,255,.14),
+            transparent 42%
         ),
-        rgba(255,255,255,.025);
-    border:1px solid rgba(255,255,255,.08);
-}
+        radial-gradient(
+            circle at 50% 75%,
+            rgba(120,80,255,.08),
+            transparent 55%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(18,24,35,.98),
+            rgba(7,10,16,.98)
+        );
 
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        inset 0 0 80px rgba(0,0,0,.35),
+        0 25px 60px rgba(0,0,0,.25);
+}
 
 /* ---------------------------------------------------------
    SCENES
@@ -3012,28 +3026,24 @@ outline-offset:2px;
    INDIVIDUAL OBJECT POSITIONING
 --------------------------------------------------------- */
 
-/* Apple */
-
+/* Apple — sitting directly on the weighing platform */
 #weightScene1 .weight-object{
-    bottom:54px;
+    bottom:145px;
 }
 
-/* School bag */
-
+/* School bag — sitting directly on the weighing platform */
 #weightScene2 .weight-object{
-    bottom:50px;
+    bottom:140px;
 }
 
-/* Medicine */
-
+/* Medicine — sitting directly on the weighing platform */
 #weightScene3 .weight-object{
-    bottom:57px;
+    bottom:145px;
 }
 
-/* Truck */
-
+/* Truck — sitting directly on the weighing platform */
 #weightScene4 .weight-object{
-    bottom:42px;
+    bottom:135px;
 }
 
 #weightScene4 .weight-scale{
@@ -3043,7 +3053,6 @@ outline-offset:2px;
 #weightScene4 .weight-scale-platform{
     width:370px;
 }
-
 
 /* ---------------------------------------------------------
    TEXT PANEL
