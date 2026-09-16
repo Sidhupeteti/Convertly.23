@@ -4604,6 +4604,1364 @@ body.light .volume-floor{
     }
 
 }
+/* =========================================================
+   TIME CINEMATIC EXPERIENCE
+========================================================= */
+
+.time-cinema{
+    min-height:100vh;
+    padding:40px 20px 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+/* ---------------------------------------------------------
+   INTRO
+--------------------------------------------------------- */
+
+.time-intro{
+    width:100%;
+    max-width:1100px;
+    min-height:560px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:80px;
+}
+
+.time-intro-clock{
+    width:320px;
+    height:320px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.time-intro-face{
+    position:relative;
+
+    width:280px;
+    height:280px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.025) 68%,
+            rgba(255,255,255,.01)
+        );
+
+    border:7px solid rgba(255,255,255,.25);
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.4),
+        inset 0 0 35px rgba(255,255,255,.06);
+
+    animation:timeIntroClockFloat 4s ease-in-out infinite;
+}
+
+.time-intro-number{
+    position:absolute;
+
+    font-size:22px;
+    font-weight:800;
+
+    color:rgba(255,255,255,.85);
+}
+
+.n12{
+    left:50%;
+    top:18px;
+    transform:translateX(-50%);
+}
+
+.n3{
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.n6{
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+}
+
+.n9{
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.time-intro-hand{
+    position:absolute;
+
+    left:50%;
+    bottom:50%;
+
+    transform-origin:bottom center;
+
+    border-radius:20px;
+
+    z-index:5;
+}
+
+.time-intro-hand.hour{
+    width:8px;
+    height:72px;
+
+    background:var(--accent);
+
+    transform:
+        translateX(-50%)
+        rotate(35deg);
+}
+
+.time-intro-hand.minute{
+    width:6px;
+    height:100px;
+
+    background:white;
+
+    transform:
+        translateX(-50%)
+        rotate(125deg);
+}
+
+.time-intro-hand.second{
+    width:2px;
+    height:112px;
+
+    background:#ff5d5d;
+
+    transform:
+        translateX(-50%)
+        rotate(210deg);
+
+    animation:timeSecondHand 4s linear infinite;
+}
+
+.time-intro-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:16px;
+    height:16px;
+
+    border-radius:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:white;
+
+    z-index:10;
+
+    box-shadow:0 0 15px rgba(255,255,255,.5);
+}
+
+.time-intro-content{
+    max-width:560px;
+}
+
+.time-kicker{
+    color:var(--accent);
+
+    font-size:13px;
+    font-weight:800;
+
+    letter-spacing:3px;
+
+    margin-bottom:10px;
+}
+
+.time-intro h1{
+    margin:0;
+
+    font-size:clamp(40px,6vw,72px);
+
+    line-height:1.05;
+}
+
+.time-intro p{
+    max-width:580px;
+
+    margin:22px 0;
+
+    color:var(--muted);
+
+    font-size:18px;
+    line-height:1.7;
+}
+
+.time-start-btn{
+    padding:14px 28px;
+
+    border:none;
+    border-radius:14px;
+
+    background:var(--accent);
+    color:white;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.time-start-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+
+/* ---------------------------------------------------------
+   PLAYER
+--------------------------------------------------------- */
+
+.time-player{
+    width:100%;
+    max-width:1100px;
+
+    display:none;
+}
+
+.time-player.active{
+    display:block;
+}
+
+.time-progress{
+    width:100%;
+    height:4px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:10px;
+
+    overflow:hidden;
+
+    margin-bottom:22px;
+}
+
+.time-progress-bar{
+    width:0%;
+    height:100%;
+
+    background:var(--accent);
+
+    transition:width .35s ease;
+}
+
+
+/* ---------------------------------------------------------
+   STAGE
+--------------------------------------------------------- */
+
+.time-stage{
+    position:relative;
+
+    width:100%;
+    min-height:720px;
+
+    overflow:hidden;
+
+    border-radius:28px;
+
+    border:1px solid rgba(255,255,255,.10);
+
+    background:
+        linear-gradient(
+            180deg,
+            #17120d 0%,
+            #0e0b08 55%,
+            #070605 100%
+        );
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.4),
+        inset 0 0 100px rgba(0,0,0,.4);
+}
+
+
+/* ---------------------------------------------------------
+   CLOCK ROOM ENVIRONMENT
+--------------------------------------------------------- */
+
+.time-environment{
+    position:absolute;
+    inset:0;
+
+    pointer-events:none;
+}
+
+.time-wall-clock{
+    position:absolute;
+
+    border-radius:50%;
+
+    border:5px solid rgba(255,255,255,.07);
+
+    background:rgba(255,255,255,.015);
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.3);
+}
+
+.wall-clock-one{
+    width:150px;
+    height:150px;
+
+    left:7%;
+    top:12%;
+}
+
+.wall-clock-two{
+    width:110px;
+    height:110px;
+
+    right:8%;
+    top:20%;
+}
+
+.wall-clock-hand{
+    position:absolute;
+
+    left:50%;
+    bottom:50%;
+
+    width:4px;
+    height:45%;
+
+    background:rgba(255,255,255,.12);
+
+    transform:
+        translateX(-50%)
+        rotate(35deg);
+
+    transform-origin:bottom center;
+}
+
+.time-clock-shadow{
+    position:absolute;
+
+    left:50%;
+    top:32%;
+
+    width:500px;
+    height:500px;
+
+    transform:translate(-50%,-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,180,70,.055),
+            transparent 65%
+        );
+
+    filter:blur(20px);
+}
+
+.time-floor{
+    position:absolute;
+
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:150px;
+
+    border-top:1px solid rgba(255,255,255,.05);
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.015),
+            rgba(255,255,255,.045)
+        );
+
+    transform:
+        perspective(500px)
+        rotateX(55deg);
+
+    transform-origin:bottom;
+}
+
+
+/* ---------------------------------------------------------
+   SCENES
+--------------------------------------------------------- */
+
+.time-scene{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:450px;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    z-index:5;
+}
+
+.time-scene.active{
+    display:flex;
+}
+
+.time-visual{
+    position:relative;
+
+    width:650px;
+    height:400px;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 1 — CLOCK
+--------------------------------------------------------- */
+
+.main-time-clock{
+    position:absolute;
+
+    left:50%;
+    top:20px;
+
+    width:290px;
+    height:290px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.025) 70%
+        );
+
+    border:7px solid rgba(255,255,255,.28);
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.4),
+        inset 0 0 30px rgba(255,255,255,.04);
+}
+
+.clock-number{
+    position:absolute;
+
+    color:rgba(255,255,255,.9);
+
+    font-size:22px;
+    font-weight:800;
+
+    z-index:4;
+}
+
+.number-12{
+    left:50%;
+    top:18px;
+    transform:translateX(-50%);
+}
+
+.number-3{
+    right:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.number-6{
+    left:50%;
+    bottom:18px;
+    transform:translateX(-50%);
+}
+
+.number-9{
+    left:20px;
+    top:50%;
+    transform:translateY(-50%);
+}
+
+.clock-hand{
+    position:absolute;
+
+    left:50%;
+    bottom:50%;
+
+    transform-origin:bottom center;
+
+    border-radius:20px;
+
+    z-index:6;
+}
+
+.hour-hand{
+    width:9px;
+    height:82px;
+
+    background:var(--accent);
+
+    transform:
+        translateX(-50%)
+        rotate(35deg);
+}
+
+.minute-hand{
+    width:6px;
+    height:112px;
+
+    background:white;
+
+    transform:
+        translateX(-50%)
+        rotate(125deg);
+}
+
+.second-hand{
+    width:2px;
+    height:125px;
+
+    background:#ff5d5d;
+
+    transform:
+        translateX(-50%)
+        rotate(210deg);
+
+    animation:timeSecondHand 4s linear infinite;
+}
+
+.clock-center{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:17px;
+    height:17px;
+
+    border-radius:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:white;
+
+    z-index:10;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 2 — UNITS
+--------------------------------------------------------- */
+
+.units-visual{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:20px;
+}
+
+.time-unit-card{
+    width:155px;
+    min-height:175px;
+
+    padding:22px 16px;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 20px 45px rgba(0,0,0,.25);
+
+    transition:.3s;
+}
+
+.time-unit-card:hover{
+    transform:translateY(-8px);
+}
+
+.unit-icon{
+    font-size:42px;
+
+    margin-bottom:14px;
+}
+
+.time-unit-card strong{
+    font-size:17px;
+
+    letter-spacing:1px;
+}
+
+.time-unit-card span{
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+.unit-arrow{
+    color:var(--accent);
+
+    font-size:34px;
+
+    animation:timeArrowPulse 1.5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 3 — SECONDS
+--------------------------------------------------------- */
+
+.seconds-visual{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.seconds-ring{
+    position:absolute;
+
+    left:50%;
+    top:35px;
+
+    width:270px;
+    height:270px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    border:8px solid rgba(255,255,255,.07);
+}
+
+.seconds-ring-progress{
+    position:absolute;
+
+    inset:-8px;
+
+    border-radius:50%;
+
+    border:8px solid transparent;
+
+    border-top-color:var(--accent);
+
+    border-right-color:var(--accent);
+
+    animation:timeSecondRing 3s linear infinite;
+}
+
+.seconds-display{
+    position:absolute;
+
+    left:50%;
+    top:105px;
+
+    transform:translateX(-50%);
+
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+}
+
+.seconds-display span{
+    font-size:58px;
+
+    font-weight:900;
+
+    font-variant-numeric:tabular-nums;
+}
+
+.seconds-display small{
+    color:var(--muted);
+
+    font-size:14px;
+
+    letter-spacing:2px;
+}
+
+.minute-result{
+    position:absolute;
+
+    left:50%;
+    bottom:25px;
+
+    transform:translateX(-50%);
+
+    padding:12px 22px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    font-size:22px;
+
+    font-weight:800;
+
+    white-space:nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 4 — HOUR
+--------------------------------------------------------- */
+
+.hour-visual{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.large-hour-clock{
+    position:absolute;
+
+    left:50%;
+    top:10px;
+
+    width:290px;
+    height:290px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    border:7px solid rgba(255,255,255,.25);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.08),
+            rgba(255,255,255,.02) 70%
+        );
+
+    box-shadow:
+        0 30px 60px rgba(0,0,0,.4);
+}
+
+.hour-scene-hand{
+    width:9px;
+    height:95px;
+
+    background:var(--accent);
+
+    transform:
+        translateX(-50%)
+        rotate(180deg);
+}
+
+.minute-scene-hand{
+    width:5px;
+    height:120px;
+
+    background:white;
+
+    transform:
+        translateX(-50%)
+        rotate(0deg);
+
+    animation:timeMinuteCycle 6s linear infinite;
+}
+
+.hour-cycle-text{
+    position:absolute;
+
+    left:50%;
+    bottom:15px;
+
+    transform:translateX(-50%);
+
+    padding:12px 24px;
+
+    border-radius:15px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    color:var(--accent);
+
+    font-size:24px;
+    font-weight:900;
+
+    white-space:nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 5 — DAY / NIGHT
+--------------------------------------------------------- */
+
+.day-visual{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.day-cycle{
+    position:absolute;
+
+    left:50%;
+    top:10px;
+
+    width:350px;
+    height:350px;
+
+    transform:translateX(-50%);
+}
+
+.day-orbit{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    width:280px;
+    height:280px;
+
+    transform:translate(-50%,-50%);
+
+    border:2px dashed rgba(255,255,255,.18);
+
+    border-radius:50%;
+
+    animation:timeDayOrbit 8s linear infinite;
+}
+
+.sun,
+.moon{
+    position:absolute;
+
+    font-size:65px;
+
+    z-index:5;
+}
+
+.sun{
+    left:50%;
+    top:15px;
+
+    transform:translateX(-50%);
+}
+
+.moon{
+    left:50%;
+    bottom:10px;
+
+    transform:translateX(-50%);
+}
+
+.day-marker{
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    padding:18px 25px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    font-size:27px;
+
+    font-weight:900;
+
+    color:var(--accent);
+
+    white-space:nowrap;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 6 — CHALLENGE
+--------------------------------------------------------- */
+
+.challenge-visual{
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.time-challenge-card{
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:28px 34px;
+
+    border-radius:22px;
+
+    background:rgba(255,255,255,.055);
+
+    border:1px solid rgba(255,255,255,.10);
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.3);
+}
+
+.challenge-clock{
+    font-size:55px;
+}
+
+.challenge-question{
+    font-size:40px;
+
+    font-weight:900;
+}
+
+.challenge-arrow{
+    color:var(--accent);
+
+    font-size:35px;
+}
+
+.challenge-answer{
+    min-width:75px;
+
+    font-size:40px;
+
+    font-weight:900;
+
+    color:var(--accent);
+}
+
+.time-challenge-reveal{
+    margin-top:28px;
+
+    padding:12px 25px;
+
+    border-radius:15px;
+
+    background:rgba(0,210,255,.08);
+
+    border:1px solid rgba(0,210,255,.2);
+
+    font-size:30px;
+
+    font-weight:900;
+
+    opacity:0;
+
+    transform:translateY(10px);
+
+    transition:.5s;
+}
+
+.time-challenge-reveal.show{
+    opacity:1;
+
+    transform:translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   INFORMATION PANEL
+--------------------------------------------------------- */
+
+.time-info{
+    position:absolute;
+
+    left:6%;
+    right:6%;
+
+    bottom:28px;
+
+    height:220px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:flex-start;
+
+    text-align:center;
+
+    z-index:20;
+}
+
+.time-scene-number{
+    color:var(--accent);
+
+    font-size:13px;
+
+    font-weight:800;
+
+    letter-spacing:2px;
+}
+
+.time-scene-label{
+    margin-top:5px;
+
+    font-size:13px;
+
+    letter-spacing:2px;
+
+    color:var(--muted);
+}
+
+.time-scene-title{
+    margin:8px 0 6px;
+
+    font-size:clamp(24px,3.5vw,38px);
+}
+
+.time-scene-description{
+    max-width:760px;
+
+    margin:0 auto;
+
+    color:var(--muted);
+
+    line-height:1.55;
+
+    font-size:16px;
+}
+
+.time-reading{
+    margin-top:11px;
+
+    font-size:28px;
+
+    font-weight:900;
+}
+
+.time-fact{
+    margin:8px auto 0;
+
+    max-width:700px;
+
+    padding:8px 18px;
+
+    border-radius:13px;
+
+    background:rgba(255,255,255,.045);
+
+    color:var(--muted);
+}
+
+
+/* ---------------------------------------------------------
+   CONTROLS
+--------------------------------------------------------- */
+
+.time-controls{
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:22px;
+}
+
+.time-control-btn{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    border:1px solid rgba(255,255,255,.12);
+
+    background:rgba(255,255,255,.05);
+
+    color:inherit;
+
+    cursor:pointer;
+
+    font-size:17px;
+
+    transition:.2s;
+}
+
+.time-control-btn:hover{
+    transform:translateY(-2px);
+
+    background:rgba(255,255,255,.1);
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes timeIntroClockFloat{
+
+    0%,100%{
+        transform:translateY(0) rotate(-1deg);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(1deg);
+    }
+
+}
+
+@keyframes timeSecondHand{
+
+    from{
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translateX(-50%)
+            rotate(360deg);
+    }
+
+}
+
+@keyframes timeArrowPulse{
+
+    0%,100%{
+        transform:translateX(0);
+
+        opacity:.5;
+    }
+
+    50%{
+        transform:translateX(6px);
+
+        opacity:1;
+    }
+
+}
+
+@keyframes timeSecondRing{
+
+    from{
+        transform:rotate(0deg);
+    }
+
+    to{
+        transform:rotate(360deg);
+    }
+
+}
+
+@keyframes timeMinuteCycle{
+
+    from{
+        transform:
+            translateX(-50%)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translateX(-50%)
+            rotate(360deg);
+    }
+
+}
+
+@keyframes timeDayOrbit{
+
+    from{
+        transform:
+            translate(-50%,-50%)
+            rotate(0deg);
+    }
+
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+--------------------------------------------------------- */
+
+body.light .time-stage{
+
+    background:
+        linear-gradient(
+            180deg,
+            #edf3f7 0%,
+            #e1e8ed 55%,
+            #d5dde3 100%
+        );
+}
+
+body.light .time-floor{
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.015),
+            rgba(0,0,0,.04)
+        );
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:750px){
+
+    .time-cinema{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .time-intro{
+
+        min-height:680px;
+
+        flex-direction:column;
+
+        gap:25px;
+
+        text-align:center;
+    }
+
+    .time-intro-clock{
+        transform:scale(.78);
+
+        margin-bottom:-45px;
+    }
+
+    .time-intro-content{
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:center;
+    }
+
+    .time-stage{
+        min-height:720px;
+    }
+
+    .time-scene{
+        height:420px;
+    }
+
+    .time-visual{
+        transform:scale(.78);
+    }
+
+    .time-info{
+
+        left:4%;
+        right:4%;
+
+        bottom:24px;
+
+        height:245px;
+    }
+
+    .time-scene-title{
+        font-size:24px;
+    }
+
+    .time-scene-description{
+        font-size:14px;
+    }
+
+    .time-reading{
+        font-size:25px;
+    }
+
+    .time-fact{
+        font-size:13px;
+    }
+
+    .units-visual{
+        gap:7px;
+    }
+
+    .time-unit-card{
+        width:120px;
+        min-height:155px;
+
+        padding:16px 8px;
+    }
+
+    .unit-icon{
+        font-size:32px;
+    }
+
+    .time-unit-card strong{
+        font-size:13px;
+    }
+
+    .unit-arrow{
+        font-size:24px;
+    }
+
+    .time-challenge-card{
+        gap:12px;
+
+        padding:22px 18px;
+    }
+
+    .challenge-question,
+    .challenge-answer{
+        font-size:30px;
+    }
+
+    .challenge-clock{
+        font-size:42px;
+    }
+
+}
 </style>
 </head>
 
@@ -6504,6 +7862,397 @@ Explore Angles
                 <button
                     class="volume-control-btn"
                     onclick="nextVolumeScene()">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================================
+     TIME CINEMATIC EXPERIENCE
+========================================================= -->
+
+<section id="time-experience" class="page">
+
+    <div class="time-cinema">
+
+        <!-- INTRO -->
+
+        <div class="time-intro" id="timeIntro">
+
+            <div class="time-intro-clock">
+
+                <div class="time-intro-face">
+
+                    <div class="time-intro-number n12">12</div>
+                    <div class="time-intro-number n3">3</div>
+                    <div class="time-intro-number n6">6</div>
+                    <div class="time-intro-number n9">9</div>
+
+                    <div class="time-intro-hand hour"></div>
+                    <div class="time-intro-hand minute"></div>
+                    <div class="time-intro-hand second"></div>
+
+                    <div class="time-intro-center"></div>
+
+                </div>
+
+            </div>
+
+            <div class="time-intro-content">
+
+                <div class="time-kicker">
+                    EXPLORE
+                </div>
+
+                <h1>Understanding Time</h1>
+
+                <p>
+                    From a single second to an entire day,
+                    time helps us describe when things happen
+                    and how long they last.
+                </p>
+
+                <button
+                    class="time-start-btn"
+                    onclick="startTimeExperience()">
+                    Start Experience →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER -->
+
+        <div class="time-player" id="timePlayer">
+
+            <div class="time-progress">
+
+                <div
+                    class="time-progress-bar"
+                    id="timeProgressBar">
+                </div>
+
+            </div>
+
+
+            <!-- STAGE -->
+
+            <div class="time-stage">
+
+                <!-- PURPOSEFUL CLOCK ENVIRONMENT -->
+
+                <div class="time-environment">
+
+                    <div class="time-wall-clock wall-clock-one">
+                        <div class="wall-clock-hand"></div>
+                    </div>
+
+                    <div class="time-wall-clock wall-clock-two">
+                        <div class="wall-clock-hand"></div>
+                    </div>
+
+                    <div class="time-clock-shadow"></div>
+
+                    <div class="time-floor"></div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 1
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene1">
+
+                    <div class="time-visual scene-one-visual">
+
+                        <div class="main-time-clock">
+
+                            <div class="clock-number number-12">12</div>
+                            <div class="clock-number number-3">3</div>
+                            <div class="clock-number number-6">6</div>
+                            <div class="clock-number number-9">9</div>
+
+                            <div class="clock-hand hour-hand"></div>
+                            <div class="clock-hand minute-hand"></div>
+                            <div class="clock-hand second-hand"></div>
+
+                            <div class="clock-center"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 2
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene2">
+
+                    <div class="time-visual units-visual">
+
+                        <div class="time-unit-card seconds-card">
+
+                            <div class="unit-icon">
+                                ⚡
+                            </div>
+
+                            <strong>SECOND</strong>
+
+                            <span>Small unit</span>
+
+                        </div>
+
+                        <div class="unit-arrow">
+                            →
+                        </div>
+
+                        <div class="time-unit-card minutes-card">
+
+                            <div class="unit-icon">
+                                ⏱️
+                            </div>
+
+                            <strong>MINUTE</strong>
+
+                            <span>60 seconds</span>
+
+                        </div>
+
+                        <div class="unit-arrow">
+                            →
+                        </div>
+
+                        <div class="time-unit-card hours-card">
+
+                            <div class="unit-icon">
+                                🕐
+                            </div>
+
+                            <strong>HOUR</strong>
+
+                            <span>60 minutes</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 3
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene3">
+
+                    <div class="time-visual seconds-visual">
+
+                        <div class="seconds-display">
+                            <span id="secondsCounter">00</span>
+                            <small>seconds</small>
+                        </div>
+
+                        <div class="seconds-ring">
+
+                            <div class="seconds-ring-progress"></div>
+
+                        </div>
+
+                        <div class="minute-result">
+                            60 seconds = 1 minute
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 4
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene4">
+
+                    <div class="time-visual hour-visual">
+
+                        <div class="large-hour-clock">
+
+                            <div class="clock-number number-12">12</div>
+                            <div class="clock-number number-3">3</div>
+                            <div class="clock-number number-6">6</div>
+                            <div class="clock-number number-9">9</div>
+
+                            <div class="clock-hand hour-scene-hand"></div>
+                            <div class="clock-hand minute-scene-hand"></div>
+
+                            <div class="clock-center"></div>
+
+                        </div>
+
+                        <div class="hour-cycle-text">
+                            60 minutes = 1 hour
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 5
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene5">
+
+                    <div class="time-visual day-visual">
+
+                        <div class="day-cycle">
+
+                            <div class="sun">☀️</div>
+                            <div class="moon">🌙</div>
+
+                            <div class="day-orbit"></div>
+
+                            <div class="day-marker">
+                                24 HOURS
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 6
+                ========================== -->
+
+                <div
+                    class="time-scene"
+                    id="timeScene6">
+
+                    <div class="time-visual challenge-visual">
+
+                        <div class="time-challenge-card">
+
+                            <div class="challenge-clock">
+                                🕐
+                            </div>
+
+                            <div class="challenge-question">
+                                2 h 35 min
+                            </div>
+
+                            <div class="challenge-arrow">
+                                →
+                            </div>
+
+                            <div
+                                class="challenge-answer"
+                                id="timeChallengeAnswer">
+                                ?
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="time-challenge-reveal"
+                            id="timeChallengeReveal">
+                            155 minutes
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+
+                <div class="time-info">
+
+                    <div
+                        class="time-scene-number"
+                        id="timeSceneNumber">
+                        01
+                    </div>
+
+                    <div
+                        class="time-scene-label"
+                        id="timeSceneLabel">
+                        TIME
+                    </div>
+
+                    <h1
+                        class="time-scene-title"
+                        id="timeSceneTitle">
+                        Time tells us when things happen and how long they last.
+                    </h1>
+
+                    <p
+                        class="time-scene-description"
+                        id="timeSceneDescription">
+                        We use different units of time to measure duration.
+                    </p>
+
+                    <div
+                        class="time-reading"
+                        id="timeReading">
+                        Time
+                    </div>
+
+                    <div
+                        class="time-fact"
+                        id="timeFact">
+                        Seconds, minutes, hours, and days are common units of time.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="time-controls">
+
+                <button
+                    class="time-control-btn"
+                    onclick="previousTimeScene()">
+                    ←
+                </button>
+
+                <button
+                    class="time-control-btn time-play-btn"
+                    id="timePlayButton"
+                    onclick="toggleTimePlayback()">
+                    ▶
+                </button>
+
+                <button
+                    class="time-control-btn"
+                    onclick="nextTimeScene()">
                     →
                 </button>
 
@@ -9330,6 +11079,590 @@ window.openExplore = function(type){
 --------------------------------------------------------- */
 
 resetVolumeExperience();
+/* =========================================================
+   TIME CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentTimeScene = 0;
+let timePlaying = false;
+let timeSpeech = null;
+let timeAutoTimer = null;
+let timeCounterInterval = null;
+
+
+/* ---------------------------------------------------------
+   SCENE DATA
+--------------------------------------------------------- */
+
+const timeScenes = [
+
+    {
+        number: "01",
+        label: "TIME",
+        title: "Time tells us when things happen and how long they last.",
+        description:
+            "We use time to describe moments, events, and durations.",
+        reading: "Time",
+        fact:
+            "Seconds, minutes, hours, and days are common units of time.",
+        speech:
+            "Time tells us when things happen and how long they last."
+    },
+
+    {
+        number: "02",
+        label: "TIME UNITS",
+        title: "Time is measured using different units.",
+        description:
+            "Seconds are smaller units, followed by minutes and hours.",
+        reading: "60 seconds = 1 minute",
+        fact:
+            "60 minutes make 1 hour.",
+        speech:
+            "Time is measured using different units. Sixty seconds make one minute, and sixty minutes make one hour."
+    },
+
+    {
+        number: "03",
+        label: "SECONDS",
+        title: "60 seconds make 1 minute.",
+        description:
+            "A second is a small unit of time. Sixty seconds together make one minute.",
+        reading: "60 seconds = 1 minute",
+        fact:
+            "The counter shows a minute building second by second.",
+        speech:
+            "A second is a small unit of time. Sixty seconds together make one minute."
+    },
+
+    {
+        number: "04",
+        label: "HOURS",
+        title: "60 minutes make 1 hour.",
+        description:
+            "An hour contains sixty minutes.",
+        reading: "60 minutes = 1 hour",
+        fact:
+            "Hours are useful for measuring longer periods of time.",
+        speech:
+            "Sixty minutes make one hour. Hours help us describe longer periods of time."
+    },
+
+    {
+        number: "05",
+        label: "DAY",
+        title: "24 hours make 1 day.",
+        description:
+            "A complete day contains twenty-four hours.",
+        reading: "24 hours = 1 day",
+        fact:
+            "We experience a repeating cycle of day and night.",
+        speech:
+            "Twenty-four hours make one day. A day contains the repeating cycle of daytime and nighttime."
+    },
+
+    {
+        number: "06",
+        label: "CHALLENGE",
+        title: "Can you convert hours and minutes into minutes?",
+        description:
+            "Convert 2 hours and 35 minutes into total minutes.",
+        reading: "2 h 35 min = ?",
+        fact:
+            "2 hours = 120 minutes. Add 35 minutes.",
+        speech:
+            "Let's solve a quick challenge. Convert two hours and thirty-five minutes into total minutes."
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   RESET
+--------------------------------------------------------- */
+
+function resetTimeExperience(){
+
+    clearTimeAutoTimer();
+    clearTimeCounter();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentTimeScene = 0;
+    timePlaying = false;
+    timeSpeech = null;
+
+    const intro =
+        document.getElementById("timeIntro");
+
+    const player =
+        document.getElementById("timePlayer");
+
+    const button =
+        document.getElementById("timePlayButton");
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    const answer =
+        document.getElementById("timeChallengeAnswer");
+
+    const reveal =
+        document.getElementById("timeChallengeReveal");
+
+    if(answer){
+        answer.textContent = "?";
+    }
+
+    if(reveal){
+        reveal.classList.remove("show");
+    }
+
+    const counter =
+        document.getElementById("secondsCounter");
+
+    if(counter){
+        counter.textContent = "00";
+    }
+
+    updateTimeScene();
+}
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+function startTimeExperience(){
+
+    const intro =
+        document.getElementById("timeIntro");
+
+    const player =
+        document.getElementById("timePlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentTimeScene = 0;
+
+    updateTimeScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE SCENE
+--------------------------------------------------------- */
+
+function updateTimeScene(){
+
+    clearTimeCounter();
+    clearTimeAutoTimer();
+
+    const scenes =
+        document.querySelectorAll(".time-scene");
+
+    scenes.forEach(scene => {
+        scene.classList.remove("active");
+    });
+
+    const current =
+        document.getElementById(
+            "timeScene" + (currentTimeScene + 1)
+        );
+
+    if(current){
+        current.classList.add("active");
+    }
+
+    const data =
+        timeScenes[currentTimeScene];
+
+    if(!data){
+        return;
+    }
+
+    const number =
+        document.getElementById("timeSceneNumber");
+
+    const label =
+        document.getElementById("timeSceneLabel");
+
+    const title =
+        document.getElementById("timeSceneTitle");
+
+    const description =
+        document.getElementById("timeSceneDescription");
+
+    const reading =
+        document.getElementById("timeReading");
+
+    const fact =
+        document.getElementById("timeFact");
+
+    if(number){
+        number.textContent = data.number;
+    }
+
+    if(label){
+        label.textContent = data.label;
+    }
+
+    if(title){
+        title.textContent = data.title;
+    }
+
+    if(description){
+        description.textContent = data.description;
+    }
+
+    if(reading){
+        reading.textContent = data.reading;
+    }
+
+    if(fact){
+        fact.textContent = data.fact;
+    }
+
+    updateTimeProgress();
+
+    if(currentTimeScene === 2){
+        startTimeCounter();
+    }
+
+    if(currentTimeScene === 5){
+
+        setTimeout(() => {
+
+            const answer =
+                document.getElementById(
+                    "timeChallengeAnswer"
+                );
+
+            const reveal =
+                document.getElementById(
+                    "timeChallengeReveal"
+                );
+
+            if(answer){
+                answer.textContent = "155 min";
+            }
+
+            if(reveal){
+                reveal.classList.add("show");
+            }
+
+        }, 1800);
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS
+--------------------------------------------------------- */
+
+function updateTimeProgress(){
+
+    const bar =
+        document.getElementById("timeProgressBar");
+
+    if(!bar){
+        return;
+    }
+
+    const progress =
+        ((currentTimeScene + 1) / timeScenes.length) * 100;
+
+    bar.style.width = progress + "%";
+
+}
+
+
+/* ---------------------------------------------------------
+   SPEECH
+--------------------------------------------------------- */
+
+function speakTimeScene(){
+
+    if(!("speechSynthesis" in window)){
+        startTimeAutoTimer(7000);
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const data =
+        timeScenes[currentTimeScene];
+
+    if(!data){
+        return;
+    }
+
+    timeSpeech =
+        new SpeechSynthesisUtterance(data.speech);
+
+    timeSpeech.rate = 1;
+    timeSpeech.pitch = 1;
+    timeSpeech.volume = 1;
+
+    timeSpeech.onend = function(){
+
+        if(!timePlaying){
+            return;
+        }
+
+        startTimeAutoTimer(500);
+
+    };
+
+    speechSynthesis.speak(timeSpeech);
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextTimeScene(){
+
+    clearTimeAutoTimer();
+    clearTimeCounter();
+
+    if(currentTimeScene < timeScenes.length - 1){
+
+        currentTimeScene++;
+
+        updateTimeScene();
+
+        if(timePlaying){
+            speakTimeScene();
+        }
+
+    }else{
+
+        timePlaying = false;
+
+        const button =
+            document.getElementById("timePlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousTimeScene(){
+
+    clearTimeAutoTimer();
+    clearTimeCounter();
+
+    if(currentTimeScene > 0){
+
+        currentTimeScene--;
+
+        updateTimeScene();
+
+        if(timePlaying){
+            speakTimeScene();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE
+--------------------------------------------------------- */
+
+function toggleTimePlayback(){
+
+    if(timePlaying){
+
+        timePlaying = false;
+
+        clearTimeAutoTimer();
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById("timePlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        return;
+    }
+
+
+    timePlaying = true;
+
+    const button =
+        document.getElementById("timePlayButton");
+
+    if(button){
+        button.textContent = "Ⅱ";
+    }
+
+    speakTimeScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   AUTO TIMER
+--------------------------------------------------------- */
+
+function startTimeAutoTimer(delay){
+
+    clearTimeAutoTimer();
+
+    timeAutoTimer =
+        setTimeout(() => {
+
+            if(timePlaying){
+                nextTimeScene();
+            }
+
+        }, delay);
+
+}
+
+
+function clearTimeAutoTimer(){
+
+    if(timeAutoTimer){
+
+        clearTimeout(timeAutoTimer);
+
+        timeAutoTimer = null;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   SECOND COUNTER
+--------------------------------------------------------- */
+
+function startTimeCounter(){
+
+    clearTimeCounter();
+
+    let seconds = 0;
+
+    const counter =
+        document.getElementById("secondsCounter");
+
+    if(!counter){
+        return;
+    }
+
+    counter.textContent = "00";
+
+    timeCounterInterval =
+        setInterval(() => {
+
+            seconds++;
+
+            if(seconds > 60){
+                seconds = 60;
+            }
+
+            counter.textContent =
+                String(seconds).padStart(2,"0");
+
+            if(seconds >= 60){
+                clearTimeCounter();
+            }
+
+        }, 50);
+
+}
+
+
+function clearTimeCounter(){
+
+    if(timeCounterInterval){
+
+        clearInterval(timeCounterInterval);
+
+        timeCounterInterval = null;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN TIME EXPLORE
+--------------------------------------------------------- */
+
+function openTimeExplore(){
+
+    if(typeof showPage === "function"){
+        showPage("time-experience");
+    }
+
+    resetTimeExperience();
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN EXPLORE INTEGRATION
+--------------------------------------------------------- */
+
+const timeOriginalOpenExplore =
+    window.openExplore;
+
+window.openExplore = function(type){
+
+    if(type === "time"){
+        openTimeExplore();
+        return;
+    }
+
+    if(typeof timeOriginalOpenExplore === "function"){
+        return timeOriginalOpenExplore(type);
+    }
+
+};
 /* =========================
    OPEN CONVERTER
 ========================= */
