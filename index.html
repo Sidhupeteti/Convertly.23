@@ -10377,6 +10377,605 @@ body.light-mode .number-challenge-card{
     }
 
 }
+/* =========================================================
+   ANGLE CINEMATIC EXPERIENCE
+========================================================= */
+
+#angle-experience{
+    min-height:100vh;
+    position:relative;
+    overflow:hidden;
+}
+
+.angle-intro,
+.angle-player{
+    min-height:100vh;
+    position:relative;
+}
+
+.angle-intro{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:40px 20px;
+}
+
+.angle-intro-card{
+    width:min(620px,92%);
+    text-align:center;
+    padding:50px 30px;
+    border-radius:28px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(18px);
+}
+
+.angle-intro-icon{
+    font-size:76px;
+    line-height:1;
+    margin-bottom:18px;
+}
+
+.angle-intro-card h1{
+    font-size:clamp(38px,7vw,72px);
+    margin:0 0 12px;
+}
+
+.angle-intro-card p{
+    opacity:.78;
+    font-size:17px;
+    margin-bottom:28px;
+}
+
+.angle-intro-card button,
+.angle-controls button{
+    border:none;
+    cursor:pointer;
+    border-radius:14px;
+    padding:13px 24px;
+    font-weight:700;
+}
+
+.angle-player{
+    display:none;
+    padding:24px 22px 40px;
+    max-width:1250px;
+    margin:auto;
+}
+
+.angle-player.active{
+    display:block;
+}
+
+.angle-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    min-height:48px;
+}
+
+#angleSceneNumber{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:3px;
+    opacity:.65;
+    margin-right:14px;
+}
+
+#angleSceneLabel{
+    font-size:14px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.angle-play-button{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.18);
+    background:rgba(255,255,255,.08);
+    color:inherit;
+    cursor:pointer;
+}
+
+.angle-progress{
+    height:4px;
+    margin:12px 0 20px;
+    border-radius:10px;
+    background:rgba(255,255,255,.08);
+    overflow:hidden;
+}
+
+#angleProgressBar{
+    height:100%;
+    width:16.66%;
+    border-radius:10px;
+    transition:width .4s ease;
+}
+
+.angle-stage{
+    position:relative;
+    height:clamp(330px,48vh,500px);
+    border-radius:28px;
+    overflow:hidden;
+    background:
+        linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),
+        rgba(8,18,35,.82);
+    background-size:40px 40px;
+    border:1px solid rgba(255,255,255,.10);
+}
+
+.angle-scene{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.angle-scene.active{
+    display:flex;
+    animation:angleSceneIn .45s ease;
+}
+
+@keyframes angleSceneIn{
+    from{
+        opacity:0;
+        transform:scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+.angle-geometry{
+    width:min(650px,85%);
+    height:280px;
+    position:relative;
+}
+
+.angle-origin{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    left:50%;
+    top:58%;
+    transform:translate(-50%,-50%);
+}
+
+.angle-ray{
+    position:absolute;
+    height:6px;
+    border-radius:10px;
+    transform-origin:left center;
+    left:50%;
+    top:58%;
+}
+
+.angle-ray-horizontal{
+    width:230px;
+    transform:rotate(0deg);
+}
+
+.angle-ray-up{
+    width:210px;
+    transform:rotate(-60deg);
+}
+
+.angle-arc{
+    position:absolute;
+    width:105px;
+    height:105px;
+    border:4px solid transparent;
+    border-top-color:currentColor;
+    border-right-color:currentColor;
+    border-radius:50%;
+    left:50%;
+    top:58%;
+    transform:translate(-50%,-50%) rotate(-30deg);
+}
+
+.angle-degree-label{
+    position:absolute;
+    left:calc(50% + 45px);
+    top:39%;
+    font-size:28px;
+    font-weight:900;
+}
+
+.angle-object-label{
+    position:absolute;
+    left:50%;
+    top:76%;
+    transform:translateX(-50%);
+    letter-spacing:4px;
+    font-size:13px;
+    opacity:.6;
+}
+
+.angle-protractor{
+    position:absolute;
+    width:480px;
+    height:240px;
+    left:50%;
+    top:54%;
+    transform:translate(-50%,-50%);
+    border:3px solid rgba(255,255,255,.32);
+    border-bottom:none;
+    border-radius:480px 480px 0 0;
+}
+
+.protractor-scale{
+    position:absolute;
+    inset:18px;
+    border:2px dashed rgba(255,255,255,.18);
+    border-bottom:none;
+    border-radius:440px 440px 0 0;
+}
+
+.angle-measure .angle-ray-horizontal{
+    width:240px;
+    z-index:3;
+}
+
+.angle-measure .angle-ray-up{
+    width:220px;
+    z-index:3;
+}
+
+.angle-measure-value{
+    position:absolute;
+    left:50%;
+    top:20%;
+    transform:translateX(-50%);
+    font-size:34px;
+    font-weight:900;
+}
+
+.angle-protractor span{
+    position:absolute;
+    font-size:12px;
+    font-weight:700;
+    opacity:.65;
+}
+
+.p0{left:4%;bottom:6px}
+.p30{left:17%;top:52%}
+.p60{left:34%;top:17%}
+.p90{left:50%;top:2%;transform:translateX(-50%)}
+.p120{right:34%;top:17%}
+.p150{right:17%;top:52%}
+.p180{right:4%;bottom:6px}
+
+.angle-types{
+    display:flex;
+    align-items:center;
+    justify-content:space-around;
+    gap:25px;
+}
+
+.type-angle{
+    width:150px;
+    height:170px;
+    position:relative;
+}
+
+.type-ray{
+    position:absolute;
+    width:95px;
+    height:5px;
+    border-radius:10px;
+    left:50%;
+    top:65%;
+    transform-origin:left center;
+}
+
+.type-angle .r1{
+    transform:rotate(0deg);
+}
+
+.type-angle .r2{
+    transform:rotate(-45deg);
+}
+
+.type-angle.right .r2{
+    transform:rotate(-90deg);
+}
+
+.type-angle.obtuse .r2{
+    transform:rotate(-120deg);
+}
+
+.type-angle span{
+    position:absolute;
+    left:50%;
+    top:28%;
+    transform:translateX(-50%);
+    font-size:22px;
+    font-weight:900;
+}
+
+.angle-straight{
+    height:220px;
+}
+
+.straight-line{
+    position:absolute;
+    width:500px;
+    height:6px;
+    border-radius:10px;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.straight-origin{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+}
+
+.straight-label{
+    position:absolute;
+    top:38%;
+    font-weight:800;
+}
+
+.straight-label.left{
+    left:calc(50% - 180px);
+}
+
+.straight-label.right{
+    right:calc(50% - 180px);
+}
+
+.straight-total{
+    position:absolute;
+    left:50%;
+    top:64%;
+    transform:translateX(-50%);
+    font-size:30px;
+    font-weight:900;
+}
+
+.angle-turn{
+    height:250px;
+}
+
+.turn-center{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    left:50%;
+    top:55%;
+    transform:translate(-50%,-50%);
+}
+
+.turn-ray{
+    position:absolute;
+    width:220px;
+    height:6px;
+    border-radius:10px;
+    left:50%;
+    top:55%;
+    transform-origin:left center;
+}
+
+.turn-start{
+    transform:rotate(0deg);
+}
+
+.turn-end{
+    transform:rotate(-90deg);
+}
+
+.turn-arrow{
+    position:absolute;
+    left:50%;
+    top:25%;
+    transform:translateX(-50%);
+    font-size:70px;
+}
+
+.turn-label{
+    position:absolute;
+    left:50%;
+    top:74%;
+    transform:translateX(-50%);
+    font-size:20px;
+    font-weight:900;
+    white-space:nowrap;
+}
+
+.angle-challenge-visual{
+    text-align:center;
+    width:100%;
+}
+
+.challenge-angle{
+    position:relative;
+    width:300px;
+    height:190px;
+    margin:0 auto 18px;
+}
+
+.challenge-origin{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    left:50%;
+    top:65%;
+    transform:translate(-50%,-50%);
+}
+
+.challenge-ray{
+    position:absolute;
+    width:145px;
+    height:6px;
+    border-radius:10px;
+    left:50%;
+    top:65%;
+    transform-origin:left center;
+}
+
+.challenge-ray.horizontal{
+    transform:rotate(0deg);
+}
+
+.challenge-ray.diagonal{
+    transform:rotate(-60deg);
+}
+
+.challenge-arc{
+    position:absolute;
+    width:75px;
+    height:75px;
+    border:4px solid transparent;
+    border-top-color:currentColor;
+    border-right-color:currentColor;
+    border-radius:50%;
+    left:50%;
+    top:65%;
+    transform:translate(-50%,-50%) rotate(-30deg);
+}
+
+.challenge-question{
+    font-size:23px;
+    font-weight:800;
+}
+
+.angle-challenge-reveal{
+    margin-top:14px;
+    opacity:0;
+    transform:translateY(10px);
+    transition:.4s ease;
+    font-size:20px;
+    font-weight:900;
+}
+
+.angle-challenge-reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.angle-info-panel{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:16px;
+    margin-top:18px;
+}
+
+.angle-info-panel > div{
+    border-radius:18px;
+    padding:18px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.angle-info-main h2{
+    margin:0 0 8px;
+    font-size:22px;
+}
+
+.angle-info-main p{
+    margin:0;
+    opacity:.72;
+    line-height:1.5;
+}
+
+.angle-reading span,
+.angle-fact span{
+    display:block;
+    font-size:10px;
+    letter-spacing:2px;
+    opacity:.55;
+    margin-bottom:8px;
+}
+
+.angle-reading strong{
+    font-size:19px;
+}
+
+.angle-fact p{
+    margin:0;
+    line-height:1.45;
+    opacity:.75;
+}
+
+.angle-controls{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    margin-top:18px;
+}
+
+.angle-controls button{
+    min-width:52px;
+    background:rgba(255,255,255,.08);
+    color:inherit;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+@media(max-width:800px){
+
+    .angle-info-panel{
+        grid-template-columns:1fr;
+    }
+
+    .angle-stage{
+        height:390px;
+    }
+
+    .angle-protractor{
+        width:330px;
+        height:165px;
+    }
+
+    .angle-types{
+        gap:5px;
+        transform:scale(.78);
+    }
+
+    .straight-line{
+        width:330px;
+    }
+
+    .turn-ray{
+        width:150px;
+    }
+
+    .turn-label{
+        font-size:16px;
+    }
+}
+
+@media(max-width:520px){
+
+    .angle-player{
+        padding:18px 12px 30px;
+    }
+
+    .angle-stage{
+        height:360px;
+    }
+
+    .angle-geometry{
+        transform:scale(.82);
+    }
+
+    .angle-intro-card{
+        padding:38px 20px;
+    }
+}
 </style>
 </head>
 
@@ -14313,7 +14912,217 @@ Explore Angles
     </div>
 
 </section>
+<!-- =========================================================
+     ANGLE CINEMATIC EXPERIENCE
+========================================================= -->
 
+<div id="angle-experience" class="experience-page">
+
+    <div id="angleIntro" class="angle-intro">
+        <div class="angle-intro-card">
+            <div class="angle-intro-icon">∠</div>
+            <h1>ANGLES</h1>
+            <p>Explore how angles are formed, measured, and classified.</p>
+            <button onclick="startAngleExperience()">START EXPERIENCE</button>
+        </div>
+    </div>
+
+    <div id="anglePlayer" class="angle-player">
+
+        <div class="angle-header">
+            <div>
+                <span id="angleSceneNumber">01</span>
+                <span id="angleSceneLabel">ANGLES</span>
+            </div>
+
+            <button
+                id="anglePlayButton"
+                class="angle-play-button"
+                onclick="toggleAnglePlayback()"
+            >▶</button>
+        </div>
+
+        <div class="angle-progress">
+            <div id="angleProgressBar"></div>
+        </div>
+
+        <div class="angle-stage">
+
+            <!-- SCENE 1 -->
+            <div class="angle-scene active" id="angleScene1">
+
+                <div class="angle-geometry">
+                    <div class="angle-origin"></div>
+
+                    <div class="angle-ray angle-ray-horizontal"></div>
+
+                    <div class="angle-ray angle-ray-up"></div>
+
+                    <div class="angle-arc"></div>
+
+                    <div class="angle-degree-label">60°</div>
+
+                    <div class="angle-object-label">
+                        ANGLE
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SCENE 2 -->
+            <div class="angle-scene" id="angleScene2">
+
+                <div class="angle-geometry angle-measure">
+
+                    <div class="angle-protractor">
+                        <div class="protractor-scale"></div>
+                        <span class="p0">0°</span>
+                        <span class="p30">30°</span>
+                        <span class="p60">60°</span>
+                        <span class="p90">90°</span>
+                        <span class="p120">120°</span>
+                        <span class="p150">150°</span>
+                        <span class="p180">180°</span>
+                    </div>
+
+                    <div class="angle-origin"></div>
+                    <div class="angle-ray angle-ray-horizontal"></div>
+                    <div class="angle-ray angle-ray-up"></div>
+
+                    <div class="angle-measure-value">60°</div>
+                </div>
+
+            </div>
+
+            <!-- SCENE 3 -->
+            <div class="angle-scene" id="angleScene3">
+
+                <div class="angle-geometry angle-types">
+
+                    <div class="type-angle acute">
+                        <div class="type-ray r1"></div>
+                        <div class="type-ray r2"></div>
+                        <span>45°</span>
+                    </div>
+
+                    <div class="type-angle right">
+                        <div class="type-ray r1"></div>
+                        <div class="type-ray r2"></div>
+                        <span>90°</span>
+                    </div>
+
+                    <div class="type-angle obtuse">
+                        <div class="type-ray r1"></div>
+                        <div class="type-ray r2"></div>
+                        <span>120°</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SCENE 4 -->
+            <div class="angle-scene" id="angleScene4">
+
+                <div class="angle-geometry angle-straight">
+
+                    <div class="straight-line"></div>
+                    <div class="straight-origin"></div>
+
+                    <div class="straight-label left">90°</div>
+                    <div class="straight-label right">90°</div>
+
+                    <div class="straight-total">
+                        180°
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SCENE 5 -->
+            <div class="angle-scene" id="angleScene5">
+
+                <div class="angle-geometry angle-turn">
+
+                    <div class="turn-center"></div>
+
+                    <div class="turn-ray turn-start"></div>
+                    <div class="turn-ray turn-end"></div>
+
+                    <div class="turn-arrow">↻</div>
+
+                    <div class="turn-label">
+                        FULL TURN = 360°
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- SCENE 6 -->
+            <div class="angle-scene" id="angleScene6">
+
+                <div class="angle-challenge-visual">
+
+                    <div class="challenge-angle">
+                        <div class="challenge-origin"></div>
+                        <div class="challenge-ray horizontal"></div>
+                        <div class="challenge-ray diagonal"></div>
+                        <div class="challenge-arc"></div>
+                    </div>
+
+                    <div class="challenge-question">
+                        What type of angle is this?
+                    </div>
+
+                    <div
+                        id="angleChallengeReveal"
+                        class="angle-challenge-reveal"
+                    >
+                        60° → ACUTE ANGLE
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="angle-info-panel">
+
+            <div class="angle-info-main">
+                <h2 id="angleSceneTitle"></h2>
+                <p id="angleSceneDescription"></p>
+            </div>
+
+            <div class="angle-reading">
+                <span>KEY IDEA</span>
+                <strong id="angleReading"></strong>
+            </div>
+
+            <div class="angle-fact">
+                <span>FACT</span>
+                <p id="angleFact"></p>
+            </div>
+
+        </div>
+
+        <div class="angle-controls">
+
+            <button onclick="previousAngleScene()">←</button>
+
+            <button onclick="toggleAnglePlayback()">
+                <span id="angleControlText">PLAY</span>
+            </button>
+
+            <button onclick="nextAngleScene()">→</button>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- FAVORITES -->
 
 <section
@@ -19803,6 +20612,436 @@ window.openExplore = function(type){
         return numberOriginalOpenExplore(type);
     }
 
+};
+/* =========================================================
+   ANGLE CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentAngleScene = 0;
+let anglePlaying = false;
+let angleSpeech = null;
+let angleAutoTimer = null;
+
+const angleScenes = [
+
+    {
+        number:"01",
+        label:"ANGLES",
+        title:"An angle is formed when two rays meet.",
+        description:
+            "The common endpoint is called the vertex. The two rays form the sides of the angle.",
+        reading:"Angle = two rays + common vertex",
+        fact:"Angles are measured in degrees.",
+        speech:
+            "An angle is formed when two rays meet at a common endpoint. That endpoint is called the vertex."
+    },
+
+    {
+        number:"02",
+        label:"MEASURING",
+        title:"A protractor measures an angle in degrees.",
+        description:
+            "Place the centre of the protractor at the vertex and read the scale where the second ray points.",
+        reading:"This angle = 60°",
+        fact:"The symbol for degrees is °.",
+        speech:
+            "A protractor is used to measure angles. Place its centre at the vertex and read the scale where the second ray points. This angle is sixty degrees."
+    },
+
+    {
+        number:"03",
+        label:"TYPES",
+        title:"Angles can be classified by their size.",
+        description:
+            "Angles smaller than 90 degrees are acute, exactly 90 degrees are right, and angles between 90 and 180 degrees are obtuse.",
+        reading:"Acute < 90° • Right = 90° • Obtuse > 90°",
+        fact:"The size of an angle determines its basic classification.",
+        speech:
+            "Angles can be classified by their size. An angle smaller than ninety degrees is acute. An angle of exactly ninety degrees is right. An angle between ninety and one hundred eighty degrees is obtuse."
+    },
+
+    {
+        number:"04",
+        label:"STRAIGHT ANGLE",
+        title:"A straight angle measures 180 degrees.",
+        description:
+            "When the two rays point in exactly opposite directions, they form a straight line.",
+        reading:"Straight angle = 180°",
+        fact:"Two right angles together make a straight angle.",
+        speech:
+            "A straight angle measures one hundred eighty degrees. Its two rays point in opposite directions and form a straight line."
+    },
+
+    {
+        number:"05",
+        label:"FULL TURN",
+        title:"One complete turn is 360 degrees.",
+        description:
+            "A full rotation around a point makes one complete angle.",
+        reading:"1 full turn = 360°",
+        fact:"Four right angles make one full turn.",
+        speech:
+            "One complete turn is three hundred sixty degrees. Four right angles together make one full turn."
+    },
+
+    {
+        number:"06",
+        label:"CHALLENGE",
+        title:"What type of angle is this?",
+        description:
+            "Look at the angle shown. Its measure is 60 degrees.",
+        reading:"60° → ?",
+        fact:
+            "Because 60 degrees is less than 90 degrees, it is an acute angle.",
+        speech:
+            "Let's finish with a challenge. The angle shown measures sixty degrees. What type of angle is it?"
+    }
+
+];
+
+function resetAngleExperience(){
+
+    clearAngleAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentAngleScene = 0;
+    anglePlaying = false;
+    angleSpeech = null;
+
+    const intro = document.getElementById("angleIntro");
+    const player = document.getElementById("anglePlayer");
+    const button = document.getElementById("anglePlayButton");
+    const controlText = document.getElementById("angleControlText");
+    const reveal = document.getElementById("angleChallengeReveal");
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    if(controlText){
+        controlText.textContent = "PLAY";
+    }
+
+    if(reveal){
+        reveal.classList.remove("show");
+    }
+
+    updateAngleScene();
+}
+
+function startAngleExperience(){
+
+    const intro = document.getElementById("angleIntro");
+    const player = document.getElementById("anglePlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentAngleScene = 0;
+
+    updateAngleScene();
+}
+
+function updateAngleScene(){
+
+    clearAngleAutoTimer();
+
+    document.querySelectorAll(".angle-scene").forEach(scene => {
+        scene.classList.remove("active");
+    });
+
+    const current = document.getElementById(
+        "angleScene" + (currentAngleScene + 1)
+    );
+
+    if(current){
+        current.classList.add("active");
+    }
+
+    const data = angleScenes[currentAngleScene];
+
+    if(!data){
+        return;
+    }
+
+    const number =
+        document.getElementById("angleSceneNumber");
+
+    const label =
+        document.getElementById("angleSceneLabel");
+
+    const title =
+        document.getElementById("angleSceneTitle");
+
+    const description =
+        document.getElementById("angleSceneDescription");
+
+    const reading =
+        document.getElementById("angleReading");
+
+    const fact =
+        document.getElementById("angleFact");
+
+    if(number){
+        number.textContent = data.number;
+    }
+
+    if(label){
+        label.textContent = data.label;
+    }
+
+    if(title){
+        title.textContent = data.title;
+    }
+
+    if(description){
+        description.textContent = data.description;
+    }
+
+    if(reading){
+        reading.textContent = data.reading;
+    }
+
+    if(fact){
+        fact.textContent = data.fact;
+    }
+
+    updateAngleProgress();
+
+    if(currentAngleScene === 5){
+
+        const reveal =
+            document.getElementById("angleChallengeReveal");
+
+        if(reveal){
+            reveal.classList.remove("show");
+        }
+
+        setTimeout(() => {
+
+            if(currentAngleScene !== 5){
+                return;
+            }
+
+            if(reveal){
+                reveal.classList.add("show");
+            }
+
+        },1800);
+    }
+}
+
+function updateAngleProgress(){
+
+    const bar =
+        document.getElementById("angleProgressBar");
+
+    if(!bar){
+        return;
+    }
+
+    const progress =
+        ((currentAngleScene + 1) /
+        angleScenes.length) * 100;
+
+    bar.style.width = progress + "%";
+}
+
+function speakAngleScene(){
+
+    if(!("speechSynthesis" in window)){
+        startAngleAutoTimer(6500);
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const data = angleScenes[currentAngleScene];
+
+    if(!data){
+        return;
+    }
+
+    angleSpeech =
+        new SpeechSynthesisUtterance(data.speech);
+
+    angleSpeech.rate = 1;
+    angleSpeech.pitch = 1;
+    angleSpeech.volume = 1;
+
+    angleSpeech.onend = function(){
+
+        if(!anglePlaying){
+            return;
+        }
+
+        startAngleAutoTimer(450);
+    };
+
+    speechSynthesis.speak(angleSpeech);
+}
+
+function nextAngleScene(){
+
+    clearAngleAutoTimer();
+
+    if(currentAngleScene < angleScenes.length - 1){
+
+        currentAngleScene++;
+
+        updateAngleScene();
+
+        if(anglePlaying){
+            speakAngleScene();
+        }
+
+    }else{
+
+        anglePlaying = false;
+
+        const button =
+            document.getElementById("anglePlayButton");
+
+        const controlText =
+            document.getElementById("angleControlText");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        if(controlText){
+            controlText.textContent = "PLAY";
+        }
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+    }
+}
+
+function previousAngleScene(){
+
+    clearAngleAutoTimer();
+
+    if(currentAngleScene > 0){
+
+        currentAngleScene--;
+
+        updateAngleScene();
+
+        if(anglePlaying){
+            speakAngleScene();
+        }
+    }
+}
+
+function toggleAnglePlayback(){
+
+    if(anglePlaying){
+
+        anglePlaying = false;
+
+        clearAngleAutoTimer();
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById("anglePlayButton");
+
+        const controlText =
+            document.getElementById("angleControlText");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        if(controlText){
+            controlText.textContent = "PLAY";
+        }
+
+        return;
+    }
+
+    anglePlaying = true;
+
+    const button =
+        document.getElementById("anglePlayButton");
+
+    const controlText =
+        document.getElementById("angleControlText");
+
+    if(button){
+        button.textContent = "Ⅱ";
+    }
+
+    if(controlText){
+        controlText.textContent = "PAUSE";
+    }
+
+    speakAngleScene();
+}
+
+function startAngleAutoTimer(delay){
+
+    clearAngleAutoTimer();
+
+    angleAutoTimer = setTimeout(() => {
+
+        if(anglePlaying){
+            nextAngleScene();
+        }
+
+    },delay);
+}
+
+function clearAngleAutoTimer(){
+
+    if(angleAutoTimer){
+        clearTimeout(angleAutoTimer);
+        angleAutoTimer = null;
+    }
+}
+
+function openAngleExplore(){
+
+    if(typeof showPage === "function"){
+        showPage("angle-experience");
+    }
+
+    resetAngleExperience();
+}
+
+const angleOriginalOpenExplore =
+    window.openExplore;
+
+window.openExplore = function(type){
+
+    if(type === "angle"){
+        openAngleExplore();
+        return;
+    }
+
+    if(typeof angleOriginalOpenExplore === "function"){
+        return angleOriginalOpenExplore(type);
+    }
 };
 /* =========================
    OPEN CONVERTER
