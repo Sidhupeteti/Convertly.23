@@ -8439,6 +8439,930 @@ body.light .area-floor-grid{
     }
 
 }
+/* =========================================================
+   DATA STORAGE CINEMATIC EXPERIENCE
+========================================================= */
+
+.data-cinema{
+    min-height:100vh;
+    padding:40px 20px 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+/* ---------------------------------------------------------
+   INTRO
+--------------------------------------------------------- */
+
+.data-intro{
+    width:100%;
+    max-width:1200px;
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:70px;
+    padding:50px;
+}
+
+.data-intro-visual{
+    width:52%;
+    min-height:440px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.data-server-room{
+    width:430px;
+    height:330px;
+    position:relative;
+    perspective:900px;
+}
+
+.data-floor{
+    position:absolute;
+    left:35px;
+    right:35px;
+    bottom:15px;
+    height:80px;
+    border-radius:50%;
+    border:1px solid rgba(80,210,255,.25);
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(80,210,255,.12) 0 1px,
+            transparent 1px 38px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(80,210,255,.10) 0 1px,
+            transparent 1px 30px
+        );
+    transform:rotateX(65deg);
+}
+
+.data-server{
+    position:absolute;
+    width:125px;
+    height:230px;
+    border-radius:12px;
+    border:1px solid rgba(100,220,255,.35);
+    background:linear-gradient(
+        145deg,
+        rgba(35,50,75,.95),
+        rgba(10,18,30,.98)
+    );
+    box-shadow:
+        0 20px 50px rgba(0,0,0,.35),
+        inset 0 0 25px rgba(60,200,255,.06);
+    padding:18px;
+    z-index:2;
+}
+
+.server-one{
+    left:65px;
+    bottom:55px;
+    transform:rotateY(8deg);
+}
+
+.server-two{
+    right:65px;
+    bottom:55px;
+    transform:rotateY(-8deg);
+}
+
+.server-light{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#65eaff;
+    box-shadow:0 0 14px rgba(100,230,255,.9);
+    margin-bottom:22px;
+    animation:dataServerBlink 1.5s infinite;
+}
+
+.server-slot{
+    height:38px;
+    margin-bottom:12px;
+    border-radius:6px;
+    border:1px solid rgba(120,220,255,.18);
+    background:
+        linear-gradient(
+            90deg,
+            rgba(80,200,255,.08),
+            rgba(255,255,255,.02)
+        );
+}
+
+.data-intro-content{
+    width:48%;
+    max-width:500px;
+}
+
+.data-kicker{
+    font-size:12px;
+    letter-spacing:4px;
+    font-weight:700;
+    opacity:.65;
+    margin-bottom:15px;
+}
+
+.data-intro-content h1{
+    font-size:clamp(38px,5vw,66px);
+    line-height:1.05;
+    margin:0 0 22px;
+}
+
+.data-intro-content p{
+    font-size:18px;
+    line-height:1.7;
+    opacity:.75;
+    max-width:470px;
+    margin-bottom:32px;
+}
+
+.data-start-btn{
+    border:none;
+    padding:15px 25px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:15px;
+    color:white;
+    background:linear-gradient(135deg,#238cff,#5cdbff);
+    box-shadow:0 12px 35px rgba(40,160,255,.25);
+    transition:.25s ease;
+}
+
+.data-start-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 40px rgba(40,160,255,.35);
+}
+
+
+/* ---------------------------------------------------------
+   PLAYER
+--------------------------------------------------------- */
+
+.data-player{
+    width:100%;
+    max-width:1250px;
+    display:none;
+}
+
+.data-player.active{
+    display:block;
+}
+
+.data-progress{
+    width:100%;
+    height:5px;
+    border-radius:10px;
+    overflow:hidden;
+    background:rgba(255,255,255,.08);
+    margin-bottom:18px;
+}
+
+.data-progress-bar{
+    height:100%;
+    width:16.66%;
+    border-radius:10px;
+    background:linear-gradient(
+        90deg,
+        #238cff,
+        #63e7ff
+    );
+    transition:width .5s ease;
+}
+
+
+/* ---------------------------------------------------------
+   STAGE
+--------------------------------------------------------- */
+
+.data-stage{
+    position:relative;
+    min-height:720px;
+    overflow:hidden;
+    border-radius:28px;
+    border:1px solid rgba(120,220,255,.12);
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(35,150,255,.08),
+            transparent 45%
+        ),
+        rgba(8,14,25,.55);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.25);
+}
+
+.data-environment{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+.data-circuit-line{
+    position:absolute;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(75,215,255,.35),
+        transparent
+    );
+    animation:dataCircuitMove 5s linear infinite;
+}
+
+.circuit-one{
+    width:55%;
+    top:24%;
+    left:-5%;
+}
+
+.circuit-two{
+    width:45%;
+    top:68%;
+    right:-5%;
+    animation-delay:1.5s;
+}
+
+.circuit-three{
+    width:35%;
+    top:45%;
+    left:35%;
+    animation-delay:3s;
+}
+
+.data-chip{
+    position:absolute;
+    width:45px;
+    height:45px;
+    border-radius:8px;
+    border:1px solid rgba(90,220,255,.25);
+    background:rgba(30,120,170,.08);
+    box-shadow:0 0 25px rgba(40,180,255,.08);
+}
+
+.chip-one{
+    left:7%;
+    top:20%;
+}
+
+.chip-two{
+    right:8%;
+    top:30%;
+}
+
+.chip-three{
+    right:13%;
+    bottom:15%;
+}
+
+
+/* ---------------------------------------------------------
+   SCENES
+--------------------------------------------------------- */
+
+.data-scene{
+    position:absolute;
+    left:5%;
+    top:5%;
+    width:58%;
+    height:62%;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.data-scene.active{
+    display:flex;
+    animation:dataSceneIn .6s ease;
+}
+
+.data-visual{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 1 — BIT
+--------------------------------------------------------- */
+
+.bit-visual{
+    flex-direction:column;
+    gap:20px;
+}
+
+.bit-orb{
+    width:190px;
+    height:190px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid rgba(90,220,255,.6);
+    background:
+        radial-gradient(
+            circle,
+            rgba(70,210,255,.25),
+            rgba(20,60,100,.15) 55%,
+            transparent 70%
+        );
+    box-shadow:
+        0 0 70px rgba(60,210,255,.18),
+        inset 0 0 40px rgba(80,220,255,.12);
+    animation:dataBitPulse 2s infinite;
+}
+
+.bit-orb span{
+    font-size:76px;
+    font-weight:800;
+}
+
+.bit-label{
+    font-size:22px;
+    letter-spacing:5px;
+    font-weight:800;
+}
+
+.bit-values{
+    opacity:.65;
+    font-size:18px;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 2 — BYTE
+--------------------------------------------------------- */
+
+.byte-visual{
+    flex-direction:column;
+    gap:35px;
+}
+
+.byte-container{
+    display:flex;
+    gap:9px;
+    padding:18px;
+    border-radius:16px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,70,100,.12);
+}
+
+.byte-bit{
+    width:48px;
+    height:65px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:9px;
+    font-size:25px;
+    font-weight:800;
+    background:rgba(50,170,230,.12);
+    border:1px solid rgba(80,220,255,.25);
+    animation:dataByteLight 2.4s infinite;
+}
+
+.byte-bit:nth-child(2){animation-delay:.15s}
+.byte-bit:nth-child(3){animation-delay:.3s}
+.byte-bit:nth-child(4){animation-delay:.45s}
+.byte-bit:nth-child(5){animation-delay:.6s}
+.byte-bit:nth-child(6){animation-delay:.75s}
+.byte-bit:nth-child(7){animation-delay:.9s}
+.byte-bit:nth-child(8){animation-delay:1.05s}
+
+.byte-equals{
+    font-size:24px;
+    font-weight:700;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 3 — STORAGE SCALE
+--------------------------------------------------------- */
+
+.storage-scale-visual{
+    gap:20px;
+}
+
+.storage-card{
+    width:145px;
+    min-height:180px;
+    padding:22px 15px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    border-radius:18px;
+    border:1px solid rgba(90,210,255,.2);
+    background:rgba(30,70,100,.12);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    animation:dataStorageFloat 3s ease-in-out infinite;
+}
+
+.storage-card:nth-of-type(3){
+    animation-delay:.5s;
+}
+
+.storage-card:nth-of-type(5){
+    animation-delay:1s;
+}
+
+.storage-icon{
+    font-size:42px;
+}
+
+.storage-name{
+    font-size:14px;
+    opacity:.65;
+}
+
+.storage-size{
+    font-size:27px;
+    font-weight:800;
+}
+
+.storage-arrow{
+    font-size:32px;
+    opacity:.5;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 4 — HIERARCHY
+--------------------------------------------------------- */
+
+.hierarchy-visual{
+    flex-direction:column;
+    gap:9px;
+}
+
+.data-storage-box{
+    width:260px;
+    padding:13px 22px;
+    border-radius:14px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,80,120,.12);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.data-storage-box strong{
+    font-size:24px;
+}
+
+.data-storage-box span{
+    opacity:.65;
+    font-size:14px;
+}
+
+.box-kb{transform:translateX(-50px)}
+.box-mb{transform:translateX(-15px)}
+.box-gb{transform:translateX(20px)}
+.box-tb{transform:translateX(55px)}
+
+.hierarchy-arrow{
+    opacity:.45;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 5 — CONVERSION
+--------------------------------------------------------- */
+
+.conversion-visual{
+    gap:18px;
+}
+
+.conversion-card{
+    width:165px;
+    min-height:145px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    border-radius:18px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,80,120,.12);
+}
+
+.conversion-card strong{
+    font-size:28px;
+}
+
+.conversion-card span{
+    opacity:.65;
+    font-size:14px;
+}
+
+.conversion-arrow{
+    font-size:30px;
+    opacity:.5;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 6 — CHALLENGE
+--------------------------------------------------------- */
+
+.challenge-visual{
+    flex-direction:column;
+    gap:28px;
+}
+
+.data-challenge-card{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    padding:28px 35px;
+    border-radius:22px;
+    border:1px solid rgba(90,215,255,.25);
+    background:rgba(30,80,120,.13);
+}
+
+.challenge-question{
+    font-size:42px;
+    font-weight:800;
+}
+
+.challenge-operation{
+    font-size:35px;
+    opacity:.55;
+}
+
+.challenge-answer{
+    min-width:80px;
+    text-align:center;
+    font-size:42px;
+    font-weight:800;
+}
+
+.data-challenge-reveal{
+    font-size:28px;
+    font-weight:800;
+    opacity:0;
+    transform:translateY(15px);
+    transition:.5s ease;
+}
+
+.data-challenge-reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   INFORMATION PANEL
+--------------------------------------------------------- */
+
+.data-info{
+    position:absolute;
+    right:5%;
+    top:10%;
+    width:31%;
+    min-height:55%;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    border-left:1px solid rgba(120,220,255,.12);
+}
+
+.data-scene-number{
+    font-size:12px;
+    letter-spacing:4px;
+    opacity:.45;
+    margin-bottom:12px;
+}
+
+.data-scene-label{
+    font-size:11px;
+    letter-spacing:3px;
+    font-weight:800;
+    opacity:.6;
+    margin-bottom:15px;
+}
+
+.data-scene-title{
+    font-size:30px;
+    line-height:1.15;
+    margin:0 0 18px;
+}
+
+.data-scene-description{
+    line-height:1.65;
+    opacity:.7;
+    margin:0 0 22px;
+}
+
+.data-reading{
+    display:inline-flex;
+    width:max-content;
+    max-width:100%;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:700;
+    background:rgba(70,190,240,.08);
+    border:1px solid rgba(80,210,255,.16);
+    margin-bottom:15px;
+}
+
+.data-fact{
+    font-size:13px;
+    line-height:1.5;
+    opacity:.5;
+}
+
+
+/* ---------------------------------------------------------
+   CONTROLS
+--------------------------------------------------------- */
+
+.data-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    padding:24px 0 0;
+}
+
+.data-control-btn{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:1px solid rgba(100,220,255,.18);
+    background:rgba(30,70,100,.12);
+    color:inherit;
+    cursor:pointer;
+    font-size:20px;
+    transition:.25s ease;
+}
+
+.data-control-btn:hover{
+    transform:translateY(-3px);
+    border-color:rgba(100,220,255,.4);
+}
+
+.data-play-btn{
+    width:62px;
+    height:62px;
+    background:linear-gradient(
+        135deg,
+        #238cff,
+        #5cdbff
+    );
+    color:white;
+    border:none;
+    box-shadow:0 12px 30px rgba(40,160,255,.25);
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes dataSceneIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes dataBitPulse{
+
+    0%,100%{
+        transform:scale(1);
+        box-shadow:
+            0 0 70px rgba(60,210,255,.18),
+            inset 0 0 40px rgba(80,220,255,.12);
+    }
+
+    50%{
+        transform:scale(1.06);
+        box-shadow:
+            0 0 100px rgba(60,210,255,.3),
+            inset 0 0 55px rgba(80,220,255,.18);
+    }
+
+}
+
+@keyframes dataByteLight{
+
+    0%,100%{
+        transform:translateY(0);
+        opacity:.55;
+    }
+
+    50%{
+        transform:translateY(-7px);
+        opacity:1;
+    }
+
+}
+
+@keyframes dataStorageFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+@keyframes dataServerBlink{
+
+    0%,100%{
+        opacity:.5;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+@keyframes dataCircuitMove{
+
+    from{
+        transform:translateX(-20%);
+        opacity:.1;
+    }
+
+    50%{
+        opacity:.6;
+    }
+
+    to{
+        transform:translateX(20%);
+        opacity:.1;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+--------------------------------------------------------- */
+
+body.light-mode .data-stage{
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(40,160,220,.08),
+            transparent 45%
+        ),
+        rgba(245,250,255,.8);
+}
+
+body.light-mode .data-server{
+    background:linear-gradient(
+        145deg,
+        rgba(235,245,250,.98),
+        rgba(210,225,235,.98)
+    );
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+body.light-mode .data-storage-box,
+body.light-mode .conversion-card,
+body.light-mode .storage-card,
+body.light-mode .data-challenge-card,
+body.light-mode .byte-container{
+    background:rgba(255,255,255,.7);
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:900px){
+
+    .data-intro{
+        flex-direction:column;
+        gap:25px;
+        padding:30px 20px;
+        text-align:center;
+    }
+
+    .data-intro-visual,
+    .data-intro-content{
+        width:100%;
+    }
+
+    .data-intro-content{
+        max-width:650px;
+    }
+
+    .data-intro-content p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .data-stage{
+        min-height:900px;
+    }
+
+    .data-scene{
+        left:5%;
+        top:4%;
+        width:90%;
+        height:48%;
+    }
+
+    .data-info{
+        left:7%;
+        right:7%;
+        top:55%;
+        width:auto;
+        min-height:auto;
+        border-left:none;
+        border-top:1px solid rgba(120,220,255,.12);
+        padding:25px 5px;
+    }
+
+    .storage-scale-visual,
+    .conversion-visual{
+        transform:scale(.82);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .data-cinema{
+        padding:20px 10px 60px;
+    }
+
+    .data-intro{
+        min-height:600px;
+    }
+
+    .data-server-room{
+        transform:scale(.75);
+    }
+
+    .data-stage{
+        min-height:900px;
+        border-radius:20px;
+    }
+
+    .data-scene-title{
+        font-size:24px;
+    }
+
+    .data-scene-description{
+        font-size:14px;
+    }
+
+    .byte-container{
+        transform:scale(.7);
+    }
+
+    .storage-scale-visual,
+    .conversion-visual{
+        transform:scale(.62);
+    }
+
+    .data-storage-box{
+        width:220px;
+    }
+
+    .data-challenge-card{
+        gap:15px;
+        padding:20px;
+    }
+
+    .challenge-question,
+    .challenge-answer{
+        font-size:30px;
+    }
+
+}
 </style>
 </head>
 
@@ -11528,6 +12452,443 @@ Explore Angles
                 <button
                     class="area-control-btn"
                     onclick="nextAreaScene()">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================================
+     DATA STORAGE CINEMATIC EXPERIENCE
+========================================================= -->
+
+<section id="data-experience" class="page">
+
+    <div class="data-cinema">
+
+        <!-- INTRO -->
+
+        <div class="data-intro" id="dataIntro">
+
+            <div class="data-intro-visual">
+
+                <div class="data-server-room">
+
+                    <div class="data-server server-one">
+                        <div class="server-light"></div>
+                        <div class="server-slot"></div>
+                        <div class="server-slot"></div>
+                        <div class="server-slot"></div>
+                    </div>
+
+                    <div class="data-server server-two">
+                        <div class="server-light"></div>
+                        <div class="server-slot"></div>
+                        <div class="server-slot"></div>
+                        <div class="server-slot"></div>
+                    </div>
+
+                    <div class="data-floor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="data-intro-content">
+
+                <div class="data-kicker">
+                    EXPLORE
+                </div>
+
+                <h1>Understanding Data Storage</h1>
+
+                <p>
+                    Learn how digital information is measured,
+                    from tiny bits to huge amounts of data.
+                </p>
+
+                <button
+                    class="data-start-btn"
+                    onclick="startDataExperience()">
+                    Start Experience →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER -->
+
+        <div class="data-player" id="dataPlayer">
+
+            <div class="data-progress">
+
+                <div
+                    class="data-progress-bar"
+                    id="dataProgressBar">
+                </div>
+
+            </div>
+
+
+            <!-- STAGE -->
+
+            <div class="data-stage">
+
+                <!-- PURPOSEFUL DIGITAL ENVIRONMENT -->
+
+                <div class="data-environment">
+
+                    <div class="data-circuit-line circuit-one"></div>
+                    <div class="data-circuit-line circuit-two"></div>
+                    <div class="data-circuit-line circuit-three"></div>
+
+                    <div class="data-chip chip-one"></div>
+                    <div class="data-chip chip-two"></div>
+                    <div class="data-chip chip-three"></div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 1
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene1">
+
+                    <div class="data-visual bit-visual">
+
+                        <div class="bit-orb">
+                            <span>1</span>
+                        </div>
+
+                        <div class="bit-label">
+                            BIT
+                        </div>
+
+                        <div class="bit-values">
+                            0&nbsp;&nbsp;or&nbsp;&nbsp;1
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 2
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene2">
+
+                    <div class="data-visual byte-visual">
+
+                        <div class="byte-container">
+
+                            <div class="byte-bit">1</div>
+                            <div class="byte-bit">0</div>
+                            <div class="byte-bit">1</div>
+                            <div class="byte-bit">0</div>
+                            <div class="byte-bit">1</div>
+                            <div class="byte-bit">1</div>
+                            <div class="byte-bit">0</div>
+                            <div class="byte-bit">0</div>
+
+                        </div>
+
+                        <div class="byte-equals">
+                            8 bits = 1 byte
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 3
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene3">
+
+                    <div class="data-visual storage-scale-visual">
+
+                        <div class="storage-card">
+
+                            <div class="storage-icon">
+                                📄
+                            </div>
+
+                            <div class="storage-name">
+                                Small file
+                            </div>
+
+                            <div class="storage-size">
+                                KB
+                            </div>
+
+                        </div>
+
+                        <div class="storage-arrow">
+                            →
+                        </div>
+
+                        <div class="storage-card">
+
+                            <div class="storage-icon">
+                                🖼️
+                            </div>
+
+                            <div class="storage-name">
+                                Photo
+                            </div>
+
+                            <div class="storage-size">
+                                MB
+                            </div>
+
+                        </div>
+
+                        <div class="storage-arrow">
+                            →
+                        </div>
+
+                        <div class="storage-card">
+
+                            <div class="storage-icon">
+                                🎬
+                            </div>
+
+                            <div class="storage-name">
+                                Video
+                            </div>
+
+                            <div class="storage-size">
+                                GB
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 4
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene4">
+
+                    <div class="data-visual hierarchy-visual">
+
+                        <div class="data-storage-box box-kb">
+                            <strong>KB</strong>
+                            <span>Kilobyte</span>
+                        </div>
+
+                        <div class="hierarchy-arrow">
+                            ↓
+                        </div>
+
+                        <div class="data-storage-box box-mb">
+                            <strong>MB</strong>
+                            <span>Megabyte</span>
+                        </div>
+
+                        <div class="hierarchy-arrow">
+                            ↓
+                        </div>
+
+                        <div class="data-storage-box box-gb">
+                            <strong>GB</strong>
+                            <span>Gigabyte</span>
+                        </div>
+
+                        <div class="hierarchy-arrow">
+                            ↓
+                        </div>
+
+                        <div class="data-storage-box box-tb">
+                            <strong>TB</strong>
+                            <span>Terabyte</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 5
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene5">
+
+                    <div class="data-visual conversion-visual">
+
+                        <div class="conversion-card">
+
+                            <strong>1 KB</strong>
+
+                            <span>
+                                1024 bytes
+                            </span>
+
+                        </div>
+
+                        <div class="conversion-arrow">
+                            →
+                        </div>
+
+                        <div class="conversion-card">
+
+                            <strong>1 MB</strong>
+
+                            <span>
+                                1024 KB
+                            </span>
+
+                        </div>
+
+                        <div class="conversion-arrow">
+                            →
+                        </div>
+
+                        <div class="conversion-card">
+
+                            <strong>1 GB</strong>
+
+                            <span>
+                                1024 MB
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 6
+                ========================== -->
+
+                <div
+                    class="data-scene"
+                    id="dataScene6">
+
+                    <div class="data-visual challenge-visual">
+
+                        <div class="data-challenge-card">
+
+                            <div class="challenge-question">
+                                2048 MB
+                            </div>
+
+                            <div class="challenge-operation">
+                                =
+                            </div>
+
+                            <div
+                                class="challenge-answer"
+                                id="dataChallengeAnswer">
+                                ?
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="data-challenge-reveal"
+                            id="dataChallengeReveal">
+                            2 GB
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+
+                <div class="data-info">
+
+                    <div
+                        class="data-scene-number"
+                        id="dataSceneNumber">
+                        01
+                    </div>
+
+                    <div
+                        class="data-scene-label"
+                        id="dataSceneLabel">
+                        DATA
+                    </div>
+
+                    <h1
+                        class="data-scene-title"
+                        id="dataSceneTitle">
+                        Digital information is stored as data.
+                    </h1>
+
+                    <p
+                        class="data-scene-description"
+                        id="dataSceneDescription">
+                        Data is measured using units such as bits and bytes.
+                    </p>
+
+                    <div
+                        class="data-reading"
+                        id="dataReading">
+                        Data
+                    </div>
+
+                    <div
+                        class="data-fact"
+                        id="dataFact">
+                        Digital storage units increase from bytes to larger units.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="data-controls">
+
+                <button
+                    class="data-control-btn"
+                    onclick="previousDataScene()">
+                    ←
+                </button>
+
+                <button
+                    class="data-control-btn data-play-btn"
+                    id="dataPlayButton"
+                    onclick="toggleDataPlayback()">
+                    ▶
+                </button>
+
+                <button
+                    class="data-control-btn"
+                    onclick="nextDataScene()">
                     →
                 </button>
 
@@ -15990,6 +17351,534 @@ window.openExplore = function(type){
 
     if(typeof areaOriginalOpenExplore === "function"){
         return areaOriginalOpenExplore(type);
+    }
+
+};
+/* =========================================================
+   DATA STORAGE CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentDataScene = 0;
+let dataPlaying = false;
+let dataSpeech = null;
+let dataAutoTimer = null;
+
+
+/* ---------------------------------------------------------
+   SCENE DATA
+--------------------------------------------------------- */
+
+const dataScenes = [
+
+    {
+        number: "01",
+        label: "BIT",
+        title: "A bit is the smallest unit of digital data.",
+        description:
+            "A bit can represent one of two possible values: 0 or 1.",
+        reading: "0 or 1",
+        fact:
+            "Bit comes from the idea of a binary digit.",
+        speech:
+            "A bit is the smallest unit of digital data. A bit can represent one of two possible values, zero or one."
+    },
+
+    {
+        number: "02",
+        label: "BYTE",
+        title: "8 bits make 1 byte.",
+        description:
+            "A byte is a group of eight bits used to represent digital information.",
+        reading: "8 bits = 1 byte",
+        fact:
+            "Bytes are commonly used when describing file sizes.",
+        speech:
+            "Eight bits make one byte. A byte is a group of eight binary digits used to represent digital information."
+    },
+
+    {
+        number: "03",
+        label: "STORAGE",
+        title: "Different files need different amounts of storage.",
+        description:
+            "A small document may use kilobytes, while photos and videos can require much more.",
+        reading: "KB → MB → GB",
+        fact:
+            "File size depends on the amount of digital information stored.",
+        speech:
+            "Different files need different amounts of storage. A small document may use kilobytes, while photos and videos can require megabytes or gigabytes."
+    },
+
+    {
+        number: "04",
+        label: "UNITS",
+        title: "Storage units grow from KB to MB, GB, and TB.",
+        description:
+            "Larger units let us describe increasingly large amounts of digital information.",
+        reading: "KB → MB → GB → TB",
+        fact:
+            "Kilobyte, megabyte, gigabyte, and terabyte are common storage units.",
+        speech:
+            "Storage units grow from kilobytes to megabytes, gigabytes, and terabytes. Each step represents a much larger amount of information."
+    },
+
+    {
+        number: "05",
+        label: "CONVERSION",
+        title: "Digital storage can be converted between units.",
+        description:
+            "In the common binary-based convention, each step uses a factor of 1024.",
+        reading: "1 KB = 1024 B",
+        fact:
+            "For this lesson, we use 1024-based conversions.",
+        speech:
+            "Digital storage can be converted between units. In the common binary based convention used here, each step uses a factor of one thousand twenty four."
+    },
+
+    {
+        number: "06",
+        label: "CHALLENGE",
+        title: "Can you convert 2048 MB into GB?",
+        description:
+            "Using the 1024-based conversion, divide 2048 by 1024.",
+        reading: "2048 ÷ 1024 = ?",
+        fact:
+            "2048 megabytes equals 2 gigabytes using the convention in this lesson.",
+        speech:
+            "Let's solve a quick challenge. Convert two thousand forty eight megabytes into gigabytes. Divide two thousand forty eight by one thousand twenty four."
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   RESET
+--------------------------------------------------------- */
+
+function resetDataExperience(){
+
+    clearDataAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentDataScene = 0;
+    dataPlaying = false;
+    dataSpeech = null;
+
+    const intro =
+        document.getElementById("dataIntro");
+
+    const player =
+        document.getElementById("dataPlayer");
+
+    const button =
+        document.getElementById("dataPlayButton");
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    const answer =
+        document.getElementById("dataChallengeAnswer");
+
+    const reveal =
+        document.getElementById("dataChallengeReveal");
+
+    if(answer){
+        answer.textContent = "?";
+    }
+
+    if(reveal){
+        reveal.classList.remove("show");
+    }
+
+    updateDataScene();
+}
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+function startDataExperience(){
+
+    const intro =
+        document.getElementById("dataIntro");
+
+    const player =
+        document.getElementById("dataPlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentDataScene = 0;
+
+    updateDataScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE SCENE
+--------------------------------------------------------- */
+
+function updateDataScene(){
+
+    clearDataAutoTimer();
+
+    document
+        .querySelectorAll(".data-scene")
+        .forEach(scene => {
+            scene.classList.remove("active");
+        });
+
+    const current =
+        document.getElementById(
+            "dataScene" + (currentDataScene + 1)
+        );
+
+    if(current){
+        current.classList.add("active");
+    }
+
+    const data =
+        dataScenes[currentDataScene];
+
+    if(!data){
+        return;
+    }
+
+    const number =
+        document.getElementById("dataSceneNumber");
+
+    const label =
+        document.getElementById("dataSceneLabel");
+
+    const title =
+        document.getElementById("dataSceneTitle");
+
+    const description =
+        document.getElementById("dataSceneDescription");
+
+    const reading =
+        document.getElementById("dataReading");
+
+    const fact =
+        document.getElementById("dataFact");
+
+    if(number){
+        number.textContent = data.number;
+    }
+
+    if(label){
+        label.textContent = data.label;
+    }
+
+    if(title){
+        title.textContent = data.title;
+    }
+
+    if(description){
+        description.textContent = data.description;
+    }
+
+    if(reading){
+        reading.textContent = data.reading;
+    }
+
+    if(fact){
+        fact.textContent = data.fact;
+    }
+
+    updateDataProgress();
+
+
+    /* Challenge reveal */
+
+    if(currentDataScene === 5){
+
+        const answer =
+            document.getElementById(
+                "dataChallengeAnswer"
+            );
+
+        const reveal =
+            document.getElementById(
+                "dataChallengeReveal"
+            );
+
+        if(answer){
+            answer.textContent = "?";
+        }
+
+        if(reveal){
+            reveal.classList.remove("show");
+        }
+
+        setTimeout(() => {
+
+            if(currentDataScene !== 5){
+                return;
+            }
+
+            if(answer){
+                answer.textContent = "2 GB";
+            }
+
+            if(reveal){
+                reveal.classList.add("show");
+            }
+
+        },1800);
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS
+--------------------------------------------------------- */
+
+function updateDataProgress(){
+
+    const bar =
+        document.getElementById("dataProgressBar");
+
+    if(!bar){
+        return;
+    }
+
+    const progress =
+        ((currentDataScene + 1) / dataScenes.length) * 100;
+
+    bar.style.width = progress + "%";
+
+}
+
+
+/* ---------------------------------------------------------
+   SPEECH
+--------------------------------------------------------- */
+
+function speakDataScene(){
+
+    if(!("speechSynthesis" in window)){
+        startDataAutoTimer(6500);
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const data =
+        dataScenes[currentDataScene];
+
+    if(!data){
+        return;
+    }
+
+    dataSpeech =
+        new SpeechSynthesisUtterance(data.speech);
+
+    dataSpeech.rate = 1;
+    dataSpeech.pitch = 1;
+    dataSpeech.volume = 1;
+
+    dataSpeech.onend = function(){
+
+        if(!dataPlaying){
+            return;
+        }
+
+        startDataAutoTimer(500);
+
+    };
+
+    speechSynthesis.speak(dataSpeech);
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextDataScene(){
+
+    clearDataAutoTimer();
+
+    if(currentDataScene < dataScenes.length - 1){
+
+        currentDataScene++;
+
+        updateDataScene();
+
+        if(dataPlaying){
+            speakDataScene();
+        }
+
+    }else{
+
+        dataPlaying = false;
+
+        const button =
+            document.getElementById("dataPlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousDataScene(){
+
+    clearDataAutoTimer();
+
+    if(currentDataScene > 0){
+
+        currentDataScene--;
+
+        updateDataScene();
+
+        if(dataPlaying){
+            speakDataScene();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE
+--------------------------------------------------------- */
+
+function toggleDataPlayback(){
+
+    if(dataPlaying){
+
+        dataPlaying = false;
+
+        clearDataAutoTimer();
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById("dataPlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        return;
+    }
+
+    dataPlaying = true;
+
+    const button =
+        document.getElementById("dataPlayButton");
+
+    if(button){
+        button.textContent = "Ⅱ";
+    }
+
+    speakDataScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   AUTO TIMER
+--------------------------------------------------------- */
+
+function startDataAutoTimer(delay){
+
+    clearDataAutoTimer();
+
+    dataAutoTimer =
+        setTimeout(() => {
+
+            if(dataPlaying){
+                nextDataScene();
+            }
+
+        },delay);
+
+}
+
+
+function clearDataAutoTimer(){
+
+    if(dataAutoTimer){
+
+        clearTimeout(dataAutoTimer);
+
+        dataAutoTimer = null;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN DATA EXPLORE
+--------------------------------------------------------- */
+
+function openDataExplore(){
+
+    if(typeof showPage === "function"){
+        showPage("data-experience");
+    }
+
+    resetDataExperience();
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN EXPLORE INTEGRATION
+--------------------------------------------------------- */
+
+const dataOriginalOpenExplore =
+    window.openExplore;
+
+window.openExplore = function(type){
+
+    if(type === "data"){
+        openDataExplore();
+        return;
+    }
+
+    if(typeof dataOriginalOpenExplore === "function"){
+        return dataOriginalOpenExplore(type);
     }
 
 };
