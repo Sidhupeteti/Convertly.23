@@ -2757,7 +2757,7 @@ outline-offset:2px;
     }
 
 }
-      /* =========================================================
+/* =========================================================
    WEIGHT CINEMATIC EXPERIENCE
 ========================================================= */
 
@@ -2831,51 +2831,54 @@ outline-offset:2px;
     display:block;
 }
 
-
 .weight-progress{
     width:100%;
     height:4px;
     background:rgba(255,255,255,.08);
     border-radius:10px;
     overflow:hidden;
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
 
 .weight-progress-bar{
     width:0%;
     height:100%;
     background:var(--accent);
-    transition:width .5s ease;
+    transition:width .35s ease;
 }
 
 
 /* ---------------------------------------------------------
-   SCENE
+   STAGE
 --------------------------------------------------------- */
 
 .weight-stage{
     position:relative;
     width:100%;
-    min-height:460px;
+    min-height:700px;
     border-radius:28px;
     overflow:hidden;
     background:
         radial-gradient(
-            circle at 50% 35%,
+            circle at 50% 25%,
             rgba(0,200,255,.10),
-            transparent 55%
+            transparent 50%
         ),
         rgba(255,255,255,.025);
     border:1px solid rgba(255,255,255,.08);
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
 
 
+/* ---------------------------------------------------------
+   SCENES
+--------------------------------------------------------- */
+
 .weight-scene{
     position:absolute;
-    inset:0;
+    top:0;
+    left:0;
+    width:100%;
+    height:420px;
     display:none;
     align-items:center;
     justify-content:center;
@@ -2887,13 +2890,13 @@ outline-offset:2px;
 
 
 /* ---------------------------------------------------------
-   COMMON VISUAL
+   VISUAL AREA
 --------------------------------------------------------- */
 
 .weight-visual{
     position:relative;
-    width:420px;
-    height:330px;
+    width:520px;
+    height:380px;
 }
 
 
@@ -2904,10 +2907,10 @@ outline-offset:2px;
 .weight-scale{
     position:absolute;
     left:50%;
-    bottom:35px;
+    bottom:20px;
     transform:translateX(-50%);
     width:250px;
-    height:115px;
+    height:125px;
     border-radius:22px 22px 30px 30px;
     background:linear-gradient(
         145deg,
@@ -2918,6 +2921,8 @@ outline-offset:2px;
         0 25px 50px rgba(0,0,0,.45);
 }
 
+
+/* display housing */
 
 .weight-scale::before{
     content:"";
@@ -2935,12 +2940,14 @@ outline-offset:2px;
 }
 
 
+/* digital number */
+
 .weight-scale-display{
     position:absolute;
     left:50%;
     top:29px;
     transform:translateX(-50%);
-    z-index:2;
+    z-index:5;
     color:#75f3ff;
     font-size:22px;
     font-weight:700;
@@ -2948,12 +2955,14 @@ outline-offset:2px;
 }
 
 
+/* weighing platform */
+
 .weight-scale-platform{
     position:absolute;
     left:50%;
-    top:-35px;
+    top:-32px;
     transform:translateX(-50%);
-    width:300px;
+    width:290px;
     height:38px;
     border-radius:50%;
     background:linear-gradient(
@@ -2963,6 +2972,7 @@ outline-offset:2px;
     );
     box-shadow:
         0 12px 20px rgba(0,0,0,.35);
+    z-index:3;
 }
 
 
@@ -2973,107 +2983,186 @@ outline-offset:2px;
 .weight-object{
     position:absolute;
     left:50%;
-    bottom:105px;
+    bottom:72px;
     transform:translateX(-50%);
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:52px;
+    line-height:1;
     filter:drop-shadow(
         0 12px 15px rgba(0,0,0,.35)
     );
+    z-index:6;
 }
 
-
 .weight-object.small{
-    font-size:42px;
+    font-size:55px;
 }
 
 .weight-object.medium{
-    font-size:62px;
+    font-size:70px;
 }
 
 .weight-object.large{
-    font-size:88px;
+    font-size:95px;
 }
 
 
 /* ---------------------------------------------------------
-   GRAM VISUAL
+   INDIVIDUAL OBJECT POSITIONING
 --------------------------------------------------------- */
 
-.weight-grams .weight-object{
-    animation:
-        weightObjectSmall 2.5s ease-in-out infinite;
+/* Apple */
+
+#weightScene1 .weight-object{
+    bottom:54px;
+}
+
+/* School bag */
+
+#weightScene2 .weight-object{
+    bottom:50px;
+}
+
+/* Medicine */
+
+#weightScene3 .weight-object{
+    bottom:57px;
+}
+
+/* Truck */
+
+#weightScene4 .weight-object{
+    bottom:42px;
+}
+
+#weightScene4 .weight-scale{
+    width:330px;
+}
+
+#weightScene4 .weight-scale-platform{
+    width:370px;
 }
 
 
 /* ---------------------------------------------------------
-   KILOGRAM VISUAL
+   TEXT PANEL
 --------------------------------------------------------- */
 
-.weight-kilograms .weight-object{
-    animation:
-        weightObjectLarge 3s ease-in-out infinite;
+.weight-info{
+    position:absolute;
+    left:6%;
+    right:6%;
+    bottom:28px;
+    height:235px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    z-index:20;
+}
+
+.weight-scene-number{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+.weight-scene-label{
+    margin-top:5px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--muted);
+}
+
+.weight-scene-title{
+    margin:8px 0 6px;
+    font-size:clamp(24px,3.5vw,38px);
+}
+
+.weight-scene-description{
+    max-width:720px;
+    margin:0 auto;
+    color:var(--muted);
+    line-height:1.55;
+    font-size:16px;
+}
+
+.weight-reading{
+    margin-top:12px;
+    font-size:30px;
+    font-weight:800;
+}
+
+.weight-fact{
+    margin:9px auto 0;
+    max-width:650px;
+    padding:9px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.04);
+    color:var(--muted);
 }
 
 
 /* ---------------------------------------------------------
-   UNIT FLOW
+   CONVERSION SCENES
 --------------------------------------------------------- */
+
+#weightScene5,
+#weightScene6{
+    height:400px;
+}
+
+#weightScene5 .weight-visual,
+#weightScene6 .weight-visual{
+    height:330px;
+}
 
 .weight-unit-flow{
     position:absolute;
-    top:30px;
+    top:35px;
     left:50%;
     transform:translateX(-50%);
     display:flex;
     align-items:center;
-    gap:15px;
-    font-size:20px;
+    justify-content:center;
+    gap:18px;
+    font-size:24px;
     font-weight:700;
     white-space:nowrap;
 }
 
-
 .weight-unit{
-    padding:9px 14px;
-    border-radius:12px;
+    padding:12px 18px;
+    border-radius:14px;
     background:rgba(255,255,255,.07);
     border:1px solid rgba(255,255,255,.08);
 }
-
 
 .weight-arrow{
     color:var(--accent);
     animation:weightArrowPulse 1.2s ease-in-out infinite;
 }
 
-
-/* ---------------------------------------------------------
-   CONVERSION VISUAL
---------------------------------------------------------- */
-
 .weight-conversion{
     position:absolute;
-    top:30px;
+    top:125px;
     left:50%;
     transform:translateX(-50%);
     text-align:center;
 }
-
 
 .weight-conversion-number{
     font-size:42px;
     font-weight:800;
 }
 
-
 .weight-conversion-label{
     color:var(--muted);
     margin-top:5px;
 }
-
 
 .weight-conversion-arrow{
     font-size:35px;
@@ -3094,7 +3183,6 @@ outline-offset:2px;
     overflow:hidden;
 }
 
-
 .weight-particles span{
     position:absolute;
     width:5px;
@@ -3106,7 +3194,6 @@ outline-offset:2px;
         weightParticleFloat
         5s linear infinite;
 }
-
 
 .weight-particles span:nth-child(1){
     left:15%;
@@ -3140,64 +3227,6 @@ outline-offset:2px;
 
 
 /* ---------------------------------------------------------
-   TEXT PANEL
---------------------------------------------------------- */
-
-.weight-info{
-    margin-top:28px;
-    text-align:center;
-}
-
-
-.weight-scene-number{
-    color:var(--accent);
-    font-size:13px;
-    font-weight:800;
-    letter-spacing:2px;
-}
-
-
-.weight-scene-label{
-    margin-top:5px;
-    font-size:13px;
-    letter-spacing:2px;
-    color:var(--muted);
-}
-
-
-.weight-scene-title{
-    margin:10px 0 8px;
-    font-size:clamp(26px,4vw,42px);
-}
-
-
-.weight-scene-description{
-    max-width:720px;
-    margin:auto;
-    color:var(--muted);
-    line-height:1.7;
-    font-size:16px;
-}
-
-
-.weight-reading{
-    margin-top:18px;
-    font-size:34px;
-    font-weight:800;
-}
-
-
-.weight-fact{
-    margin:15px auto 0;
-    max-width:650px;
-    padding:12px 18px;
-    border-radius:14px;
-    background:rgba(255,255,255,.04);
-    color:var(--muted);
-}
-
-
-/* ---------------------------------------------------------
    CONTROLS
 --------------------------------------------------------- */
 
@@ -3206,9 +3235,8 @@ outline-offset:2px;
     justify-content:center;
     align-items:center;
     gap:12px;
-    margin-top:25px;
+    margin-top:22px;
 }
-
 
 .weight-control-btn{
     width:45px;
@@ -3221,7 +3249,6 @@ outline-offset:2px;
     font-size:17px;
     transition:.2s;
 }
-
 
 .weight-control-btn:hover{
     transform:translateY(-2px);
@@ -3245,40 +3272,29 @@ outline-offset:2px;
 
 }
 
-
 @keyframes weightObjectSmall{
 
     0%,100%{
-        transform:
-            translateX(-50%)
-            translateY(0);
+        transform:translateX(-50%) translateY(0);
     }
 
     50%{
-        transform:
-            translateX(-50%)
-            translateY(-8px);
+        transform:translateX(-50%) translateY(-6px);
     }
 
 }
-
 
 @keyframes weightObjectLarge{
 
     0%,100%{
-        transform:
-            translateX(-50%)
-            scale(1);
+        transform:translateX(-50%) scale(1);
     }
 
     50%{
-        transform:
-            translateX(-50%)
-            scale(1.04);
+        transform:translateX(-50%) scale(1.04);
     }
 
 }
-
 
 @keyframes weightArrowPulse{
 
@@ -3294,7 +3310,6 @@ outline-offset:2px;
 
 }
 
-
 @keyframes weightConversionArrow{
 
     0%,100%{
@@ -3306,7 +3321,6 @@ outline-offset:2px;
     }
 
 }
-
 
 @keyframes weightParticleFloat{
 
@@ -3338,13 +3352,12 @@ outline-offset:2px;
 body.light .weight-stage{
     background:
         radial-gradient(
-            circle at 50% 35%,
+            circle at 50% 25%,
             rgba(0,140,255,.08),
-            transparent 55%
+            transparent 50%
         ),
         rgba(0,0,0,.025);
 }
-
 
 body.light .weight-scale{
     background:linear-gradient(
@@ -3353,7 +3366,6 @@ body.light .weight-scale{
         #b8bcc2
     );
 }
-
 
 body.light .weight-scale::before{
     background:#172126;
@@ -3372,11 +3384,34 @@ body.light .weight-scale::before{
     }
 
     .weight-stage{
-        min-height:390px;
+        min-height:700px;
+    }
+
+    .weight-scene{
+        height:400px;
     }
 
     .weight-visual{
         transform:scale(.78);
+    }
+
+    .weight-info{
+        left:4%;
+        right:4%;
+        bottom:25px;
+        height:245px;
+    }
+
+    .weight-scene-title{
+        font-size:25px;
+    }
+
+    .weight-scene-description{
+        font-size:14px;
+    }
+
+    .weight-reading{
+        font-size:27px;
     }
 
     .weight-unit-flow{
