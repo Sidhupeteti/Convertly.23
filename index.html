@@ -2757,6 +2757,638 @@ outline-offset:2px;
     }
 
 }
+      /* =========================================================
+   WEIGHT CINEMATIC EXPERIENCE
+========================================================= */
+
+.weight-cinema{
+    min-height:100vh;
+    padding:40px 20px 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.weight-intro{
+    width:100%;
+    max-width:900px;
+    min-height:520px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:20px;
+}
+
+.weight-intro-icon{
+    font-size:80px;
+    animation:weightIntroFloat 3s ease-in-out infinite;
+}
+
+.weight-intro h1{
+    font-size:clamp(38px,6vw,72px);
+    margin:0;
+}
+
+.weight-intro p{
+    max-width:620px;
+    color:var(--muted);
+    font-size:18px;
+    line-height:1.7;
+}
+
+.weight-start-btn{
+    margin-top:15px;
+    padding:14px 28px;
+    border:none;
+    border-radius:14px;
+    background:var(--accent);
+    color:white;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.weight-start-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.08);
+}
+
+
+/* ---------------------------------------------------------
+   PLAYER
+--------------------------------------------------------- */
+
+.weight-player{
+    width:100%;
+    max-width:1100px;
+    display:none;
+}
+
+.weight-player.active{
+    display:block;
+}
+
+
+.weight-progress{
+    width:100%;
+    height:4px;
+    background:rgba(255,255,255,.08);
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.weight-progress-bar{
+    width:0%;
+    height:100%;
+    background:var(--accent);
+    transition:width .5s ease;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE
+--------------------------------------------------------- */
+
+.weight-stage{
+    position:relative;
+    width:100%;
+    min-height:460px;
+    border-radius:28px;
+    overflow:hidden;
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0,200,255,.10),
+            transparent 55%
+        ),
+        rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+
+.weight-scene{
+    position:absolute;
+    inset:0;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.weight-scene.active{
+    display:flex;
+}
+
+
+/* ---------------------------------------------------------
+   COMMON VISUAL
+--------------------------------------------------------- */
+
+.weight-visual{
+    position:relative;
+    width:420px;
+    height:330px;
+}
+
+
+/* ---------------------------------------------------------
+   DIGITAL SCALE
+--------------------------------------------------------- */
+
+.weight-scale{
+    position:absolute;
+    left:50%;
+    bottom:35px;
+    transform:translateX(-50%);
+    width:250px;
+    height:115px;
+    border-radius:22px 22px 30px 30px;
+    background:linear-gradient(
+        145deg,
+        #20242b,
+        #080a0d
+    );
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.45);
+}
+
+
+.weight-scale::before{
+    content:"";
+    position:absolute;
+    left:50%;
+    top:18px;
+    transform:translateX(-50%);
+    width:145px;
+    height:48px;
+    border-radius:10px;
+    background:#071014;
+    border:1px solid rgba(255,255,255,.12);
+    box-shadow:
+        inset 0 0 20px rgba(0,220,255,.08);
+}
+
+
+.weight-scale-display{
+    position:absolute;
+    left:50%;
+    top:29px;
+    transform:translateX(-50%);
+    z-index:2;
+    color:#75f3ff;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+
+.weight-scale-platform{
+    position:absolute;
+    left:50%;
+    top:-35px;
+    transform:translateX(-50%);
+    width:300px;
+    height:38px;
+    border-radius:50%;
+    background:linear-gradient(
+        180deg,
+        #858b93,
+        #383d43
+    );
+    box-shadow:
+        0 12px 20px rgba(0,0,0,.35);
+}
+
+
+/* ---------------------------------------------------------
+   OBJECTS
+--------------------------------------------------------- */
+
+.weight-object{
+    position:absolute;
+    left:50%;
+    bottom:105px;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:52px;
+    filter:drop-shadow(
+        0 12px 15px rgba(0,0,0,.35)
+    );
+}
+
+
+.weight-object.small{
+    font-size:42px;
+}
+
+.weight-object.medium{
+    font-size:62px;
+}
+
+.weight-object.large{
+    font-size:88px;
+}
+
+
+/* ---------------------------------------------------------
+   GRAM VISUAL
+--------------------------------------------------------- */
+
+.weight-grams .weight-object{
+    animation:
+        weightObjectSmall 2.5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   KILOGRAM VISUAL
+--------------------------------------------------------- */
+
+.weight-kilograms .weight-object{
+    animation:
+        weightObjectLarge 3s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   UNIT FLOW
+--------------------------------------------------------- */
+
+.weight-unit-flow{
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-size:20px;
+    font-weight:700;
+    white-space:nowrap;
+}
+
+
+.weight-unit{
+    padding:9px 14px;
+    border-radius:12px;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.08);
+}
+
+
+.weight-arrow{
+    color:var(--accent);
+    animation:weightArrowPulse 1.2s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   CONVERSION VISUAL
+--------------------------------------------------------- */
+
+.weight-conversion{
+    position:absolute;
+    top:30px;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+}
+
+
+.weight-conversion-number{
+    font-size:42px;
+    font-weight:800;
+}
+
+
+.weight-conversion-label{
+    color:var(--muted);
+    margin-top:5px;
+}
+
+
+.weight-conversion-arrow{
+    font-size:35px;
+    color:var(--accent);
+    margin:8px 0;
+    animation:weightConversionArrow 1.5s ease-in-out infinite;
+}
+
+
+/* ---------------------------------------------------------
+   PARTICLES
+--------------------------------------------------------- */
+
+.weight-particles{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+}
+
+
+.weight-particles span{
+    position:absolute;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:var(--accent);
+    opacity:.5;
+    animation:
+        weightParticleFloat
+        5s linear infinite;
+}
+
+
+.weight-particles span:nth-child(1){
+    left:15%;
+    top:30%;
+    animation-delay:0s;
+}
+
+.weight-particles span:nth-child(2){
+    left:30%;
+    top:65%;
+    animation-delay:1s;
+}
+
+.weight-particles span:nth-child(3){
+    left:50%;
+    top:20%;
+    animation-delay:2s;
+}
+
+.weight-particles span:nth-child(4){
+    left:70%;
+    top:55%;
+    animation-delay:3s;
+}
+
+.weight-particles span:nth-child(5){
+    left:85%;
+    top:35%;
+    animation-delay:4s;
+}
+
+
+/* ---------------------------------------------------------
+   TEXT PANEL
+--------------------------------------------------------- */
+
+.weight-info{
+    margin-top:28px;
+    text-align:center;
+}
+
+
+.weight-scene-number{
+    color:var(--accent);
+    font-size:13px;
+    font-weight:800;
+    letter-spacing:2px;
+}
+
+
+.weight-scene-label{
+    margin-top:5px;
+    font-size:13px;
+    letter-spacing:2px;
+    color:var(--muted);
+}
+
+
+.weight-scene-title{
+    margin:10px 0 8px;
+    font-size:clamp(26px,4vw,42px);
+}
+
+
+.weight-scene-description{
+    max-width:720px;
+    margin:auto;
+    color:var(--muted);
+    line-height:1.7;
+    font-size:16px;
+}
+
+
+.weight-reading{
+    margin-top:18px;
+    font-size:34px;
+    font-weight:800;
+}
+
+
+.weight-fact{
+    margin:15px auto 0;
+    max-width:650px;
+    padding:12px 18px;
+    border-radius:14px;
+    background:rgba(255,255,255,.04);
+    color:var(--muted);
+}
+
+
+/* ---------------------------------------------------------
+   CONTROLS
+--------------------------------------------------------- */
+
+.weight-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    margin-top:25px;
+}
+
+
+.weight-control-btn{
+    width:45px;
+    height:45px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.12);
+    background:rgba(255,255,255,.05);
+    color:inherit;
+    cursor:pointer;
+    font-size:17px;
+    transition:.2s;
+}
+
+
+.weight-control-btn:hover{
+    transform:translateY(-2px);
+    background:rgba(255,255,255,.1);
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes weightIntroFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+
+@keyframes weightObjectSmall{
+
+    0%,100%{
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+
+    50%{
+        transform:
+            translateX(-50%)
+            translateY(-8px);
+    }
+
+}
+
+
+@keyframes weightObjectLarge{
+
+    0%,100%{
+        transform:
+            translateX(-50%)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translateX(-50%)
+            scale(1.04);
+    }
+
+}
+
+
+@keyframes weightArrowPulse{
+
+    0%,100%{
+        transform:translateX(0);
+        opacity:.5;
+    }
+
+    50%{
+        transform:translateX(5px);
+        opacity:1;
+    }
+
+}
+
+
+@keyframes weightConversionArrow{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(6px);
+    }
+
+}
+
+
+@keyframes weightParticleFloat{
+
+    0%{
+        transform:translateY(30px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:.5;
+    }
+
+    80%{
+        opacity:.5;
+    }
+
+    100%{
+        transform:translateY(-80px);
+        opacity:0;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+--------------------------------------------------------- */
+
+body.light .weight-stage{
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(0,140,255,.08),
+            transparent 55%
+        ),
+        rgba(0,0,0,.025);
+}
+
+
+body.light .weight-scale{
+    background:linear-gradient(
+        145deg,
+        #e7e9ec,
+        #b8bcc2
+    );
+}
+
+
+body.light .weight-scale::before{
+    background:#172126;
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:700px){
+
+    .weight-cinema{
+        padding-left:12px;
+        padding-right:12px;
+    }
+
+    .weight-stage{
+        min-height:390px;
+    }
+
+    .weight-visual{
+        transform:scale(.78);
+    }
+
+    .weight-unit-flow{
+        font-size:16px;
+        gap:8px;
+    }
+
+    .weight-conversion-number{
+        font-size:34px;
+    }
+
+}
 </style>
 </head>
 
@@ -3959,6 +4591,338 @@ Explore Angles
     </div>
 
 </section>
+      <!-- WEIGHT CINEMATIC EXPERIENCE -->
+<section id="weight-experience" class="page">
+
+    <div class="weight-cinema">
+
+        <!-- INTRO -->
+        <div class="weight-intro" id="weightIntro">
+
+            <div class="weight-intro-icon">⚖️</div>
+
+            <h1>Understanding Weight</h1>
+
+            <p>
+                From tiny amounts to massive loads,
+                weight is measured using different units.
+            </p>
+
+            <button
+                class="weight-start-btn"
+                onclick="startWeightExperience()">
+                Start Experience →
+            </button>
+
+        </div>
+
+
+        <!-- PLAYER -->
+        <div class="weight-player" id="weightPlayer">
+
+            <!-- PROGRESS -->
+            <div class="weight-progress">
+                <div
+                    class="weight-progress-bar"
+                    id="weightProgressBar">
+                </div>
+            </div>
+
+
+            <!-- STAGE -->
+            <div class="weight-stage" id="weightStage">
+
+                <!-- PARTICLES -->
+                <div class="weight-particles">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+
+                <!-- SCENE 1 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene1">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-scale">
+
+                            <div class="weight-scale-platform"></div>
+
+                            <div
+                                class="weight-scale-display"
+                                id="weightDisplay1">
+                                500 g
+                            </div>
+
+                        </div>
+
+                        <div class="weight-object small">
+                            🍎
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCENE 2 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene2">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-scale">
+
+                            <div class="weight-scale-platform"></div>
+
+                            <div
+                                class="weight-scale-display"
+                                id="weightDisplay2">
+                                2 kg
+                            </div>
+
+                        </div>
+
+                        <div class="weight-object medium">
+                            🎒
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCENE 3 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene3">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-scale">
+
+                            <div class="weight-scale-platform"></div>
+
+                            <div
+                                class="weight-scale-display"
+                                id="weightDisplay3">
+                                5 mg
+                            </div>
+
+                        </div>
+
+                        <div class="weight-object small">
+                            💊
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCENE 4 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene4">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-scale">
+
+                            <div class="weight-scale-platform"></div>
+
+                            <div
+                                class="weight-scale-display"
+                                id="weightDisplay4">
+                                1 t
+                            </div>
+
+                        </div>
+
+                        <div class="weight-object large">
+                            🚛
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCENE 5 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene5">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-unit-flow">
+
+                            <div class="weight-unit">
+                                1 kg
+                            </div>
+
+                            <div class="weight-arrow">
+                                →
+                            </div>
+
+                            <div class="weight-unit">
+                                1000 g
+                            </div>
+
+                        </div>
+
+                        <div class="weight-conversion">
+
+                            <div class="weight-conversion-number">
+                                2 kg
+                            </div>
+
+                            <div class="weight-conversion-label">
+                                multiply by 1000
+                            </div>
+
+                            <div class="weight-conversion-arrow">
+                                ↓
+                            </div>
+
+                            <div class="weight-conversion-number">
+                                2000 g
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SCENE 6 -->
+                <div
+                    class="weight-scene"
+                    id="weightScene6">
+
+                    <div class="weight-visual">
+
+                        <div class="weight-unit-flow">
+
+                            <div class="weight-unit">
+                                3500 g
+                            </div>
+
+                            <div class="weight-arrow">
+                                →
+                            </div>
+
+                            <div class="weight-unit">
+                                3.5 kg
+                            </div>
+
+                        </div>
+
+                        <div class="weight-conversion">
+
+                            <div class="weight-conversion-number">
+                                3500 g
+                            </div>
+
+                            <div class="weight-conversion-label">
+                                divide by 1000
+                            </div>
+
+                            <div class="weight-conversion-arrow">
+                                ↓
+                            </div>
+
+                            <div class="weight-conversion-number">
+                                3.5 kg
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+                <div class="weight-info">
+
+                    <div
+                        class="weight-scene-number"
+                        id="weightSceneNumber">
+                        01
+                    </div>
+
+                    <div
+                        class="weight-scene-label"
+                        id="weightSceneLabel">
+                        GRAM
+                    </div>
+
+                    <h1
+                        class="weight-scene-title"
+                        id="weightSceneTitle">
+                        Small amounts use grams.
+                    </h1>
+
+                    <p
+                        class="weight-scene-description"
+                        id="weightSceneDescription">
+                        Grams are useful for measuring lighter everyday objects.
+                    </p>
+
+                    <div
+                        class="weight-reading"
+                        id="weightReading">
+                        500 g
+                    </div>
+
+                    <div
+                        class="weight-fact"
+                        id="weightFact">
+                        1 kilogram = 1000 grams.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+            <div class="weight-controls">
+
+                <button
+                    class="weight-control-btn"
+                    onclick="previousWeightScene()">
+                    ←
+                </button>
+
+                <button
+                    class="weight-control-btn"
+                    id="weightPlayButton"
+                    onclick="toggleWeightPlayback()">
+                    ▶
+                </button>
+
+                <button
+                    class="weight-control-btn"
+                    onclick="nextWeightScene()">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
       <!-- FAVORITES -->
 
 <section
@@ -4711,7 +5675,16 @@ function openExplore(type){
         return;
     }
 
+/* WEIGHT */
 
+if(type === "weight"){
+
+    showPage("weight-experience");
+
+    resetWeightExperience();
+
+    return;
+}
     alert("This Explore experience is coming soon!");
 }
 
@@ -5734,6 +6707,433 @@ function previousTemperatureScene(){
 
     }
 }
+      /* =========================================================
+   WEIGHT CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentWeightScene = 0;
+let weightPlaying = false;
+let weightSpeech = null;
+let weightAutoTimer = null;
+
+const weightScenes = [
+    {
+        number: "01",
+        label: "GRAM",
+        title: "Small amounts use grams.",
+        description: "Grams are useful for measuring lighter everyday objects.",
+        reading: "500 g",
+        fact: "1 kilogram = 1000 grams.",
+        narration:
+            "When we measure lighter objects, we often use grams. For example, an apple can weigh a few hundred grams."
+    },
+
+    {
+        number: "02",
+        label: "KILOGRAM",
+        title: "Everyday heavier objects use kilograms.",
+        description: "Kilograms are useful for things like bags, people, and groceries.",
+        reading: "2 kg",
+        fact: "1 kilogram = 1000 grams.",
+        narration:
+            "For heavier everyday objects, we use kilograms. A school bag, for example, can weigh a few kilograms."
+    },
+
+    {
+        number: "03",
+        label: "MILLIGRAM",
+        title: "Very tiny amounts use milligrams.",
+        description: "A milligram is one thousandth of a gram.",
+        reading: "5 mg",
+        fact: "1 gram = 1000 milligrams.",
+        narration:
+            "For very tiny amounts, we use milligrams. One milligram is one thousandth of a gram."
+    },
+
+    {
+        number: "04",
+        label: "TONNE",
+        title: "Huge masses need much larger units.",
+        description: "A tonne is equal to 1000 kilograms.",
+        reading: "1 t",
+        fact: "1 tonne = 1000 kilograms.",
+        narration:
+            "For extremely heavy loads, we use tonnes. One tonne is equal to one thousand kilograms."
+    },
+
+    {
+        number: "05",
+        label: "CONVERT",
+        title: "Kilograms to grams.",
+        description: "To convert kilograms to grams, multiply by 1000.",
+        reading: "2 kg = 2000 g",
+        fact: "Multiply kilograms by 1000.",
+        narration:
+            "Now let's convert. One kilogram is one thousand grams. So two kilograms multiplied by one thousand gives us two thousand grams."
+    },
+
+    {
+        number: "06",
+        label: "CONVERT",
+        title: "Grams to kilograms.",
+        description: "To convert grams to kilograms, divide by 1000.",
+        reading: "3500 g = 3.5 kg",
+        fact: "Divide grams by 1000.",
+        narration:
+            "Going the other way, we divide by one thousand. Three thousand five hundred grams becomes three point five kilograms."
+    }
+];
+
+
+/* ---------------------------------------------------------
+   OPEN / RESET
+--------------------------------------------------------- */
+
+function resetWeightExperience(){
+
+    clearTimeout(weightAutoTimer);
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentWeightScene = 0;
+    weightPlaying = false;
+    weightSpeech = null;
+
+    const intro = document.getElementById("weightIntro");
+    const player = document.getElementById("weightPlayer");
+    const button = document.getElementById("weightPlayButton");
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    updateWeightScene(0);
+}
+
+
+/* ---------------------------------------------------------
+   START EXPERIENCE
+--------------------------------------------------------- */
+
+function startWeightExperience(){
+
+    const intro = document.getElementById("weightIntro");
+    const player = document.getElementById("weightPlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentWeightScene = 0;
+    weightPlaying = true;
+
+    updateWeightScene(0);
+    speakWeightScene(0, true);
+}
+
+
+/* ---------------------------------------------------------
+   SHOW SCENE
+--------------------------------------------------------- */
+
+function updateWeightScene(index){
+
+    currentWeightScene = index;
+
+    const scenes = document.querySelectorAll(".weight-scene");
+
+    scenes.forEach((scene, i) => {
+        scene.classList.toggle("active", i === index);
+    });
+
+    const scene = weightScenes[index];
+
+    const number =
+        document.getElementById("weightSceneNumber");
+
+    const label =
+        document.getElementById("weightSceneLabel");
+
+    const title =
+        document.getElementById("weightSceneTitle");
+
+    const description =
+        document.getElementById("weightSceneDescription");
+
+    const reading =
+        document.getElementById("weightReading");
+
+    const fact =
+        document.getElementById("weightFact");
+
+    if(number){
+        number.textContent = scene.number;
+    }
+
+    if(label){
+        label.textContent = scene.label;
+    }
+
+    if(title){
+        title.textContent = scene.title;
+    }
+
+    if(description){
+        description.textContent = scene.description;
+    }
+
+    if(reading){
+        reading.textContent = scene.reading;
+    }
+
+    if(fact){
+        fact.textContent = scene.fact;
+    }
+
+    updateWeightProgress();
+
+    const playButton =
+        document.getElementById("weightPlayButton");
+
+    if(playButton){
+        playButton.textContent =
+            weightPlaying ? "❚❚" : "▶";
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS
+--------------------------------------------------------- */
+
+function updateWeightProgress(){
+
+    const bar =
+        document.getElementById("weightProgressBar");
+
+    if(!bar) return;
+
+    const progress =
+        ((currentWeightScene + 1) /
+        weightScenes.length) * 100;
+
+    bar.style.width = progress + "%";
+}
+
+
+/* ---------------------------------------------------------
+   NARRATION
+--------------------------------------------------------- */
+
+function speakWeightScene(index, autoAdvance = true){
+
+    clearTimeout(weightAutoTimer);
+
+    if(!("speechSynthesis" in window)){
+
+        if(autoAdvance){
+            weightAutoTimer =
+                setTimeout(nextWeightScene, 1200);
+        }
+
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const scene = weightScenes[index];
+
+    weightSpeech =
+        new SpeechSynthesisUtterance(scene.narration);
+
+    weightSpeech.lang = "en-IN";
+    weightSpeech.rate = 0.9;
+    weightSpeech.pitch = 1;
+    weightSpeech.volume = 1;
+
+    weightSpeech.onend = function(){
+
+        if(
+            autoAdvance &&
+            weightPlaying &&
+            currentWeightScene === index
+        ){
+
+            /*
+             * Move almost immediately after narration.
+             * No long dead gap.
+             */
+            weightAutoTimer =
+                setTimeout(nextWeightScene, 300);
+        }
+
+    };
+
+    speechSynthesis.speak(weightSpeech);
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextWeightScene(){
+
+    clearTimeout(weightAutoTimer);
+
+    if(currentWeightScene <
+       weightScenes.length - 1){
+
+        currentWeightScene++;
+
+        updateWeightScene(currentWeightScene);
+
+        if(weightPlaying){
+            speakWeightScene(
+                currentWeightScene,
+                true
+            );
+        }
+
+    }else{
+
+        weightPlaying = false;
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById("weightPlayButton");
+
+        if(button){
+            button.textContent = "↻";
+        }
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousWeightScene(){
+
+    clearTimeout(weightAutoTimer);
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    if(currentWeightScene > 0){
+
+        currentWeightScene--;
+
+        updateWeightScene(currentWeightScene);
+
+        if(weightPlaying){
+            speakWeightScene(
+                currentWeightScene,
+                true
+            );
+        }
+
+    }
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE
+--------------------------------------------------------- */
+
+function toggleWeightPlayback(){
+
+    if(currentWeightScene >=
+       weightScenes.length - 1 &&
+       !weightPlaying){
+
+        currentWeightScene = 0;
+        updateWeightScene(0);
+    }
+
+    if(weightPlaying){
+
+        weightPlaying = false;
+
+        clearTimeout(weightAutoTimer);
+
+        if("speechSynthesis" in window){
+            speechSynthesis.pause();
+        }
+
+        const button =
+            document.getElementById("weightPlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        return;
+    }
+
+    weightPlaying = true;
+
+    if(
+        "speechSynthesis" in window &&
+        speechSynthesis.paused
+    ){
+
+        speechSynthesis.resume();
+
+    }else{
+
+        speakWeightScene(
+            currentWeightScene,
+            true
+        );
+
+    }
+
+    const button =
+        document.getElementById("weightPlayButton");
+
+    if(button){
+        button.textContent = "❚❚";
+    }
+}
+
+
+/* ---------------------------------------------------------
+   OPEN EXPLORE WEIGHT
+--------------------------------------------------------- */
+
+function openWeightExplore(){
+
+    showPage("weight-experience");
+
+    resetWeightExperience();
+}
+
+
+/* ---------------------------------------------------------
+   INITIALIZE
+--------------------------------------------------------- */
+
+resetWeightExperience();
 /* =========================
    OPEN CONVERTER
 ========================= */
