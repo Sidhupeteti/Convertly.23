@@ -9363,6 +9363,1020 @@ body.light-mode .byte-container{
     }
 
 }
+/* =========================================================
+   NUMBER SYSTEM CINEMATIC EXPERIENCE
+========================================================= */
+
+.number-cinema{
+    min-height:100vh;
+    padding:40px 20px 80px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+
+/* ---------------------------------------------------------
+   INTRO
+--------------------------------------------------------- */
+
+.number-intro{
+    width:100%;
+    max-width:1200px;
+    min-height:650px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:70px;
+    padding:50px;
+}
+
+.number-intro-visual{
+    width:52%;
+    min-height:440px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.number-console{
+    width:430px;
+    height:330px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective:900px;
+}
+
+.console-display{
+    width:300px;
+    min-height:220px;
+    border-radius:22px;
+    border:1px solid rgba(80,220,255,.3);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(25,65,95,.95),
+            rgba(7,18,30,.98)
+        );
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.4),
+        inset 0 0 35px rgba(60,210,255,.07);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    z-index:2;
+    transform:rotateX(4deg);
+}
+
+.console-display::before{
+    content:"";
+    position:absolute;
+    inset:12px;
+    border-radius:14px;
+    border:1px solid rgba(90,220,255,.08);
+}
+
+.console-label{
+    font-size:10px;
+    letter-spacing:3px;
+    opacity:.55;
+    margin-bottom:22px;
+}
+
+.console-display strong{
+    font-size:68px;
+    letter-spacing:8px;
+    color:#70e6ff;
+    text-shadow:
+        0 0 25px rgba(70,220,255,.45);
+    animation:numberDisplayPulse 2.5s infinite;
+}
+
+.console-sub{
+    margin-top:18px;
+    font-size:9px;
+    letter-spacing:3px;
+    opacity:.4;
+}
+
+.console-floor{
+    position:absolute;
+    left:20px;
+    right:20px;
+    bottom:5px;
+    height:75px;
+    border-radius:50%;
+    background:
+        repeating-linear-gradient(
+            90deg,
+            rgba(80,210,255,.12) 0 1px,
+            transparent 1px 38px
+        ),
+        repeating-linear-gradient(
+            0deg,
+            rgba(80,210,255,.10) 0 1px,
+            transparent 1px 30px
+        );
+    transform:rotateX(65deg);
+}
+
+.number-intro-content{
+    width:48%;
+    max-width:500px;
+}
+
+.number-kicker{
+    font-size:12px;
+    letter-spacing:4px;
+    font-weight:700;
+    opacity:.65;
+    margin-bottom:15px;
+}
+
+.number-intro-content h1{
+    font-size:clamp(38px,5vw,64px);
+    line-height:1.05;
+    margin:0 0 22px;
+}
+
+.number-intro-content p{
+    font-size:18px;
+    line-height:1.7;
+    opacity:.75;
+    max-width:470px;
+    margin-bottom:32px;
+}
+
+.number-start-btn{
+    border:none;
+    padding:15px 25px;
+    border-radius:14px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:15px;
+    color:white;
+    background:linear-gradient(
+        135deg,
+        #238cff,
+        #5cdbff
+    );
+    box-shadow:0 12px 35px rgba(40,160,255,.25);
+    transition:.25s ease;
+}
+
+.number-start-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 40px rgba(40,160,255,.35);
+}
+
+
+/* ---------------------------------------------------------
+   PLAYER
+--------------------------------------------------------- */
+
+.number-player{
+    width:100%;
+    max-width:1250px;
+    display:none;
+}
+
+.number-player.active{
+    display:block;
+}
+
+.number-progress{
+    width:100%;
+    height:5px;
+    border-radius:10px;
+    overflow:hidden;
+    background:rgba(255,255,255,.08);
+    margin-bottom:18px;
+}
+
+.number-progress-bar{
+    height:100%;
+    width:16.66%;
+    border-radius:10px;
+    background:linear-gradient(
+        90deg,
+        #238cff,
+        #63e7ff
+    );
+    transition:width .5s ease;
+}
+
+
+/* ---------------------------------------------------------
+   STAGE
+--------------------------------------------------------- */
+
+.number-stage{
+    position:relative;
+    min-height:720px;
+    overflow:hidden;
+    border-radius:28px;
+    border:1px solid rgba(120,220,255,.12);
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(35,150,255,.08),
+            transparent 45%
+        ),
+        rgba(8,14,25,.55);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.25);
+}
+
+.number-environment{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+}
+
+.number-grid{
+    position:absolute;
+    inset:0;
+    opacity:.14;
+    background-image:
+        linear-gradient(
+            rgba(80,210,255,.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(80,210,255,.12) 1px,
+            transparent 1px
+        );
+    background-size:55px 55px;
+    transform:perspective(600px) rotateX(55deg)
+        scale(1.4);
+    transform-origin:center bottom;
+}
+
+.number-circuit{
+    position:absolute;
+    height:1px;
+    background:linear-gradient(
+        90deg,
+        transparent,
+        rgba(80,220,255,.35),
+        transparent
+    );
+    animation:numberCircuitMove 5s linear infinite;
+}
+
+.circuit-a{
+    width:50%;
+    top:25%;
+    left:-5%;
+}
+
+.circuit-b{
+    width:45%;
+    top:68%;
+    right:-5%;
+    animation-delay:1.5s;
+}
+
+.circuit-c{
+    width:35%;
+    top:45%;
+    left:35%;
+    animation-delay:3s;
+}
+
+.number-node{
+    position:absolute;
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background:#61dcff;
+    box-shadow:0 0 18px rgba(80,220,255,.6);
+    animation:numberNodePulse 2s infinite;
+}
+
+.node-a{
+    left:9%;
+    top:25%;
+}
+
+.node-b{
+    right:10%;
+    top:35%;
+    animation-delay:.6s;
+}
+
+.node-c{
+    right:18%;
+    bottom:16%;
+    animation-delay:1.2s;
+}
+
+
+/* ---------------------------------------------------------
+   SCENES
+--------------------------------------------------------- */
+
+.number-scene{
+    position:absolute;
+    left:5%;
+    top:5%;
+    width:58%;
+    height:62%;
+    display:none;
+    align-items:center;
+    justify-content:center;
+}
+
+.number-scene.active{
+    display:flex;
+    animation:numberSceneIn .6s ease;
+}
+
+.number-visual{
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 1
+--------------------------------------------------------- */
+
+.number-visual{
+    flex-direction:column;
+}
+
+.number-main-orb{
+    width:205px;
+    height:205px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:2px solid rgba(90,220,255,.6);
+    background:
+        radial-gradient(
+            circle,
+            rgba(70,210,255,.25),
+            rgba(20,60,100,.15) 55%,
+            transparent 70%
+        );
+    box-shadow:
+        0 0 75px rgba(60,210,255,.18),
+        inset 0 0 45px rgba(80,220,255,.12);
+    animation:numberOrbPulse 2.5s infinite;
+}
+
+.number-main-orb span{
+    font-size:70px;
+    font-weight:800;
+}
+
+.number-orb-caption{
+    margin-top:22px;
+    font-size:13px;
+    letter-spacing:4px;
+    opacity:.55;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 2
+--------------------------------------------------------- */
+
+.number-system-card{
+    width:180px;
+    min-height:210px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    border-radius:20px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,80,120,.12);
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.system-base{
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.5;
+}
+
+.number-system-card strong{
+    font-size:58px;
+}
+
+.number-system-card span{
+    opacity:.6;
+}
+
+.system-arrow{
+    font-size:35px;
+    opacity:.5;
+    margin:0 30px;
+}
+
+.number-place-values{
+    display:flex;
+    gap:18px;
+}
+
+.number-place-values div{
+    width:100px;
+    height:120px;
+    border-radius:16px;
+    border:1px solid rgba(80,210,255,.18);
+    background:rgba(30,80,120,.1);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+}
+
+.number-place-values strong{
+    font-size:38px;
+}
+
+.number-place-values span{
+    margin-top:8px;
+    font-size:12px;
+    opacity:.55;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 3
+--------------------------------------------------------- */
+
+.binary-visual{
+    flex-direction:column;
+    gap:30px;
+}
+
+.binary-screen{
+    width:390px;
+    min-height:190px;
+    border-radius:20px;
+    border:1px solid rgba(80,220,255,.3);
+    background:
+        linear-gradient(
+            145deg,
+            rgba(15,60,85,.9),
+            rgba(5,18,28,.98)
+        );
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    box-shadow:
+        0 20px 55px rgba(0,0,0,.3),
+        inset 0 0 35px rgba(50,220,255,.07);
+}
+
+.binary-label{
+    font-size:11px;
+    letter-spacing:4px;
+    opacity:.5;
+    margin-bottom:20px;
+}
+
+.binary-screen strong{
+    font-size:55px;
+    letter-spacing:8px;
+    color:#70e6ff;
+    text-shadow:0 0 25px rgba(70,220,255,.35);
+}
+
+.binary-base{
+    margin-top:15px;
+    font-size:12px;
+    opacity:.5;
+}
+
+.binary-digits{
+    display:flex;
+    gap:12px;
+}
+
+.binary-digits span{
+    width:45px;
+    height:52px;
+    border-radius:9px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid rgba(80,220,255,.2);
+    background:rgba(40,130,170,.1);
+    font-weight:800;
+    animation:numberDigitPulse 2.2s infinite;
+}
+
+.binary-digits span:nth-child(2){animation-delay:.2s}
+.binary-digits span:nth-child(3){animation-delay:.4s}
+.binary-digits span:nth-child(4){animation-delay:.6s}
+.binary-digits span:nth-child(5){animation-delay:.8s}
+
+
+/* ---------------------------------------------------------
+   SCENE 4
+--------------------------------------------------------- */
+
+.comparison-visual{
+    gap:30px;
+}
+
+.representation-card{
+    width:220px;
+    min-height:220px;
+    border-radius:22px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,80,120,.12);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    box-shadow:0 20px 45px rgba(0,0,0,.15);
+}
+
+.representation-card span{
+    font-size:11px;
+    letter-spacing:3px;
+    opacity:.5;
+}
+
+.representation-card strong{
+    font-size:48px;
+}
+
+.representation-card small{
+    opacity:.5;
+}
+
+.representation-equals{
+    font-size:42px;
+    opacity:.5;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 5
+--------------------------------------------------------- */
+
+.systems-visual{
+    gap:16px;
+}
+
+.system-pill{
+    width:145px;
+    min-height:145px;
+    border-radius:20px;
+    border:1px solid rgba(80,210,255,.22);
+    background:rgba(30,80,120,.12);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    animation:numberPillFloat 3s ease-in-out infinite;
+}
+
+.system-pill:nth-child(2){
+    animation-delay:.4s;
+}
+
+.system-pill:nth-child(3){
+    animation-delay:.8s;
+}
+
+.system-pill:nth-child(4){
+    animation-delay:1.2s;
+}
+
+.system-pill strong{
+    font-size:28px;
+}
+
+.system-pill span{
+    font-size:12px;
+    opacity:.55;
+}
+
+
+/* ---------------------------------------------------------
+   SCENE 6
+--------------------------------------------------------- */
+
+.challenge-visual{
+    flex-direction:column;
+    gap:30px;
+}
+
+.number-challenge-card{
+    min-width:370px;
+    padding:32px;
+    border-radius:22px;
+    border:1px solid rgba(90,215,255,.25);
+    background:rgba(30,80,120,.13);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:18px;
+}
+
+.challenge-label{
+    font-size:10px;
+    letter-spacing:4px;
+    opacity:.5;
+}
+
+.challenge-expression{
+    font-size:42px;
+    font-weight:800;
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+.challenge-expression span{
+    opacity:.45;
+}
+
+.challenge-hint{
+    font-size:11px;
+    letter-spacing:2px;
+    opacity:.45;
+}
+
+.number-challenge-reveal{
+    font-size:30px;
+    font-weight:800;
+    opacity:0;
+    transform:translateY(15px);
+    transition:.5s ease;
+}
+
+.number-challenge-reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   INFORMATION PANEL
+--------------------------------------------------------- */
+
+.number-info{
+    position:absolute;
+    right:5%;
+    top:10%;
+    width:31%;
+    min-height:55%;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    border-left:1px solid rgba(120,220,255,.12);
+}
+
+.number-scene-number{
+    font-size:12px;
+    letter-spacing:4px;
+    opacity:.45;
+    margin-bottom:12px;
+}
+
+.number-scene-label{
+    font-size:11px;
+    letter-spacing:3px;
+    font-weight:800;
+    opacity:.6;
+    margin-bottom:15px;
+}
+
+.number-scene-title{
+    font-size:30px;
+    line-height:1.15;
+    margin:0 0 18px;
+}
+
+.number-scene-description{
+    line-height:1.65;
+    opacity:.7;
+    margin:0 0 22px;
+}
+
+.number-reading{
+    display:inline-flex;
+    width:max-content;
+    max-width:100%;
+    padding:10px 15px;
+    border-radius:10px;
+    font-weight:700;
+    background:rgba(70,190,240,.08);
+    border:1px solid rgba(80,210,255,.16);
+    margin-bottom:15px;
+}
+
+.number-fact{
+    font-size:13px;
+    line-height:1.5;
+    opacity:.5;
+}
+
+
+/* ---------------------------------------------------------
+   CONTROLS
+--------------------------------------------------------- */
+
+.number-controls{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    padding:24px 0 0;
+}
+
+.number-control-btn{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    border:1px solid rgba(100,220,255,.18);
+    background:rgba(30,70,100,.12);
+    color:inherit;
+    cursor:pointer;
+    font-size:20px;
+    transition:.25s ease;
+}
+
+.number-control-btn:hover{
+    transform:translateY(-3px);
+    border-color:rgba(100,220,255,.4);
+}
+
+.number-play-btn{
+    width:62px;
+    height:62px;
+    background:linear-gradient(
+        135deg,
+        #238cff,
+        #5cdbff
+    );
+    color:white;
+    border:none;
+    box-shadow:0 12px 30px rgba(40,160,255,.25);
+}
+
+
+/* ---------------------------------------------------------
+   ANIMATIONS
+--------------------------------------------------------- */
+
+@keyframes numberSceneIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+
+}
+
+@keyframes numberOrbPulse{
+
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.06);
+    }
+
+}
+
+@keyframes numberDisplayPulse{
+
+    0%,100%{
+        opacity:.75;
+    }
+
+    50%{
+        opacity:1;
+    }
+
+}
+
+@keyframes numberDigitPulse{
+
+    0%,100%{
+        transform:translateY(0);
+        opacity:.55;
+    }
+
+    50%{
+        transform:translateY(-7px);
+        opacity:1;
+    }
+
+}
+
+@keyframes numberPillFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-8px);
+    }
+
+}
+
+@keyframes numberNodePulse{
+
+    0%,100%{
+        transform:scale(.8);
+        opacity:.35;
+    }
+
+    50%{
+        transform:scale(1.2);
+        opacity:1;
+    }
+
+}
+
+@keyframes numberCircuitMove{
+
+    from{
+        transform:translateX(-20%);
+        opacity:.1;
+    }
+
+    50%{
+        opacity:.6;
+    }
+
+    to{
+        transform:translateX(20%);
+        opacity:.1;
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   LIGHT MODE
+--------------------------------------------------------- */
+
+body.light-mode .number-stage{
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            rgba(40,160,220,.08),
+            transparent 45%
+        ),
+        rgba(245,250,255,.8);
+}
+
+body.light-mode .console-display{
+    background:linear-gradient(
+        145deg,
+        rgba(235,245,250,.98),
+        rgba(210,225,235,.98)
+    );
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+body.light-mode .number-system-card,
+body.light-mode .number-place-values div,
+body.light-mode .binary-screen,
+body.light-mode .representation-card,
+body.light-mode .system-pill,
+body.light-mode .number-challenge-card{
+    background:rgba(255,255,255,.7);
+}
+
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+--------------------------------------------------------- */
+
+@media(max-width:900px){
+
+    .number-intro{
+        flex-direction:column;
+        gap:25px;
+        padding:30px 20px;
+        text-align:center;
+    }
+
+    .number-intro-visual,
+    .number-intro-content{
+        width:100%;
+    }
+
+    .number-intro-content{
+        max-width:650px;
+    }
+
+    .number-intro-content p{
+        margin-left:auto;
+        margin-right:auto;
+    }
+
+    .number-stage{
+        min-height:900px;
+    }
+
+    .number-scene{
+        left:5%;
+        top:4%;
+        width:90%;
+        height:48%;
+    }
+
+    .number-info{
+        left:7%;
+        right:7%;
+        top:55%;
+        width:auto;
+        min-height:auto;
+        border-left:none;
+        border-top:1px solid rgba(120,220,255,.12);
+        padding:25px 5px;
+    }
+
+    .systems-visual,
+    .comparison-visual{
+        transform:scale(.78);
+    }
+
+}
+
+@media(max-width:600px){
+
+    .number-cinema{
+        padding:20px 10px 60px;
+    }
+
+    .number-intro{
+        min-height:600px;
+    }
+
+    .number-console{
+        transform:scale(.75);
+    }
+
+    .number-stage{
+        min-height:900px;
+        border-radius:20px;
+    }
+
+    .number-scene-title{
+        font-size:24px;
+    }
+
+    .number-scene-description{
+        font-size:14px;
+    }
+
+    .binary-screen{
+        width:310px;
+        transform:scale(.82);
+    }
+
+    .comparison-visual,
+    .systems-visual{
+        transform:scale(.58);
+    }
+
+    .number-place-values{
+        transform:scale(.75);
+    }
+
+    .number-challenge-card{
+        min-width:300px;
+        transform:scale(.82);
+    }
+
+}
 </style>
 </head>
 
@@ -12889,6 +13903,406 @@ Explore Angles
                 <button
                     class="data-control-btn"
                     onclick="nextDataScene()">
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================================================
+     NUMBER SYSTEM CINEMATIC EXPERIENCE
+========================================================= -->
+
+<section id="number-experience" class="page">
+
+    <div class="number-cinema">
+
+        <!-- INTRO -->
+
+        <div class="number-intro" id="numberIntro">
+
+            <div class="number-intro-visual">
+
+                <div class="number-console">
+
+                    <div class="console-display">
+                        <span class="console-label">NUMBER SYSTEM</span>
+                        <strong>1010</strong>
+                        <span class="console-sub">
+                            DIGITAL REPRESENTATION
+                        </span>
+                    </div>
+
+                    <div class="console-floor"></div>
+
+                </div>
+
+            </div>
+
+            <div class="number-intro-content">
+
+                <div class="number-kicker">
+                    EXPLORE
+                </div>
+
+                <h1>Understanding Number Systems</h1>
+
+                <p>
+                    Discover how the same number can be represented
+                    using different number systems.
+                </p>
+
+                <button
+                    class="number-start-btn"
+                    onclick="startNumberExperience()">
+                    Start Experience →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PLAYER -->
+
+        <div class="number-player" id="numberPlayer">
+
+            <div class="number-progress">
+
+                <div
+                    class="number-progress-bar"
+                    id="numberProgressBar">
+                </div>
+
+            </div>
+
+
+            <!-- STAGE -->
+
+            <div class="number-stage">
+
+                <!-- PURPOSEFUL DIGITAL ENVIRONMENT -->
+
+                <div class="number-environment">
+
+                    <div class="number-grid"></div>
+
+                    <div class="number-circuit circuit-a"></div>
+                    <div class="number-circuit circuit-b"></div>
+                    <div class="number-circuit circuit-c"></div>
+
+                    <div class="number-node node-a"></div>
+                    <div class="number-node node-b"></div>
+                    <div class="number-node node-c"></div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 1
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene1">
+
+                    <div class="number-visual">
+
+                        <div class="number-main-orb">
+
+                            <span>25</span>
+
+                        </div>
+
+                        <div class="number-orb-caption">
+                            ONE VALUE
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 2
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene2">
+
+                    <div class="number-visual">
+
+                        <div class="number-system-card decimal-card">
+
+                            <div class="system-base">
+                                BASE 10
+                            </div>
+
+                            <strong>25</strong>
+
+                            <span>
+                                Decimal
+                            </span>
+
+                        </div>
+
+                        <div class="system-arrow">
+                            →
+                        </div>
+
+                        <div class="number-place-values">
+
+                            <div>
+                                <strong>2</strong>
+                                <span>Tens</span>
+                            </div>
+
+                            <div>
+                                <strong>5</strong>
+                                <span>Ones</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 3
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene3">
+
+                    <div class="number-visual binary-visual">
+
+                        <div class="binary-screen">
+
+                            <div class="binary-label">
+                                BINARY
+                            </div>
+
+                            <strong>11001</strong>
+
+                            <div class="binary-base">
+                                BASE 2
+                            </div>
+
+                        </div>
+
+                        <div class="binary-digits">
+
+                            <span>1</span>
+                            <span>1</span>
+                            <span>0</span>
+                            <span>0</span>
+                            <span>1</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 4
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene4">
+
+                    <div class="number-visual comparison-visual">
+
+                        <div class="representation-card">
+
+                            <span>DECIMAL</span>
+
+                            <strong>25</strong>
+
+                            <small>BASE 10</small>
+
+                        </div>
+
+                        <div class="representation-equals">
+                            =
+                        </div>
+
+                        <div class="representation-card">
+
+                            <span>BINARY</span>
+
+                            <strong>11001</strong>
+
+                            <small>BASE 2</small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 5
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene5">
+
+                    <div class="number-visual systems-visual">
+
+                        <div class="system-pill">
+
+                            <strong>BIN</strong>
+
+                            <span>Base 2</span>
+
+                        </div>
+
+                        <div class="system-pill">
+
+                            <strong>OCT</strong>
+
+                            <span>Base 8</span>
+
+                        </div>
+
+                        <div class="system-pill">
+
+                            <strong>DEC</strong>
+
+                            <span>Base 10</span>
+
+                        </div>
+
+                        <div class="system-pill">
+
+                            <strong>HEX</strong>
+
+                            <span>Base 16</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- =========================
+                     SCENE 6
+                ========================== -->
+
+                <div
+                    class="number-scene"
+                    id="numberScene6">
+
+                    <div class="number-visual challenge-visual">
+
+                        <div class="number-challenge-card">
+
+                            <div class="challenge-label">
+                                CONVERT
+                            </div>
+
+                            <div class="challenge-expression">
+                                10₁₀
+                                <span>→</span>
+                                ?
+                            </div>
+
+                            <div class="challenge-hint">
+                                DECIMAL → BINARY
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="number-challenge-reveal"
+                            id="numberChallengeReveal">
+                            1010₂
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+
+                <div class="number-info">
+
+                    <div
+                        class="number-scene-number"
+                        id="numberSceneNumber">
+                        01
+                    </div>
+
+                    <div
+                        class="number-scene-label"
+                        id="numberSceneLabel">
+                        NUMBER SYSTEM
+                    </div>
+
+                    <h1
+                        class="number-scene-title"
+                        id="numberSceneTitle">
+                        A number system is a way of representing numbers.
+                    </h1>
+
+                    <p
+                        class="number-scene-description"
+                        id="numberSceneDescription">
+                        Different systems use different bases to represent values.
+                    </p>
+
+                    <div
+                        class="number-reading"
+                        id="numberReading">
+                        Number representation
+                    </div>
+
+                    <div
+                        class="number-fact"
+                        id="numberFact">
+                        Decimal, binary, octal, and hexadecimal are common systems.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTROLS -->
+
+            <div class="number-controls">
+
+                <button
+                    class="number-control-btn"
+                    onclick="previousNumberScene()">
+                    ←
+                </button>
+
+                <button
+                    class="number-control-btn number-play-btn"
+                    id="numberPlayButton"
+                    onclick="toggleNumberPlayback()">
+                    ▶
+                </button>
+
+                <button
+                    class="number-control-btn"
+                    onclick="nextNumberScene()">
                     →
                 </button>
 
@@ -17879,6 +19293,514 @@ window.openExplore = function(type){
 
     if(typeof dataOriginalOpenExplore === "function"){
         return dataOriginalOpenExplore(type);
+    }
+
+};
+/* =========================================================
+   NUMBER SYSTEM CINEMATIC EXPERIENCE
+========================================================= */
+
+let currentNumberScene = 0;
+let numberPlaying = false;
+let numberSpeech = null;
+let numberAutoTimer = null;
+
+
+/* ---------------------------------------------------------
+   SCENE DATA
+--------------------------------------------------------- */
+
+const numberScenes = [
+
+    {
+        number: "01",
+        label: "NUMBER SYSTEM",
+        title: "A number system is a way of representing numbers.",
+        description:
+            "Different number systems use different bases to represent values.",
+        reading: "One value → different representations",
+        fact:
+            "The same value can be written in different number systems.",
+        speech:
+            "A number system is a way of representing numbers. The same value can be written in different ways using different bases."
+    },
+
+    {
+        number: "02",
+        label: "DECIMAL",
+        title: "The decimal system uses base 10.",
+        description:
+            "Our everyday number system uses ten digits, from 0 to 9.",
+        reading: "25 = 2 tens + 5 ones",
+        fact:
+            "Each position represents a power of 10.",
+        speech:
+            "The decimal system uses base ten. It has ten digits, from zero to nine. In twenty five, the two represents two tens and the five represents five ones."
+    },
+
+    {
+        number: "03",
+        label: "BINARY",
+        title: "Binary uses only 0 and 1.",
+        description:
+            "Computers use binary because digital circuits can represent two states.",
+        reading: "11001₂ = 25₁₀",
+        fact:
+            "Binary is a base 2 number system.",
+        speech:
+            "Binary uses only zero and one. It is a base two number system and is widely used to represent information inside computers."
+    },
+
+    {
+        number: "04",
+        label: "SAME VALUE",
+        title: "One value can have different representations.",
+        description:
+            "Twenty five in decimal and one one zero zero one in binary represent the same value.",
+        reading: "25₁₀ = 11001₂",
+        fact:
+            "The notation tells us which number system is being used.",
+        speech:
+            "One value can have different representations. Twenty five in decimal is the same value as one one zero zero one in binary."
+    },
+
+    {
+        number: "05",
+        label: "COMMON SYSTEMS",
+        title: "Several number systems are used in computing.",
+        description:
+            "Binary, octal, decimal, and hexadecimal are common number systems.",
+        reading: "BIN  •  OCT  •  DEC  •  HEX",
+        fact:
+            "Their bases are 2, 8, 10, and 16.",
+        speech:
+            "Several number systems are common in computing. Binary uses base two, octal uses base eight, decimal uses base ten, and hexadecimal uses base sixteen."
+    },
+
+    {
+        number: "06",
+        label: "CHALLENGE",
+        title: "Can you convert decimal 10 into binary?",
+        description:
+            "Using powers of two, decimal 10 can be represented using 8 and 2.",
+        reading: "10₁₀ = 1010₂",
+        fact:
+            "8 + 2 = 10, so the binary representation is 1010.",
+        speech:
+            "Let's solve a quick challenge. Convert decimal ten into binary. Ten is eight plus two, so its binary representation is one zero one zero."
+    }
+
+];
+
+
+/* ---------------------------------------------------------
+   RESET
+--------------------------------------------------------- */
+
+function resetNumberExperience(){
+
+    clearNumberAutoTimer();
+
+    if("speechSynthesis" in window){
+        speechSynthesis.cancel();
+    }
+
+    currentNumberScene = 0;
+    numberPlaying = false;
+    numberSpeech = null;
+
+    const intro =
+        document.getElementById("numberIntro");
+
+    const player =
+        document.getElementById("numberPlayer");
+
+    const button =
+        document.getElementById("numberPlayButton");
+
+    if(intro){
+        intro.style.display = "flex";
+    }
+
+    if(player){
+        player.classList.remove("active");
+    }
+
+    if(button){
+        button.textContent = "▶";
+    }
+
+    const reveal =
+        document.getElementById("numberChallengeReveal");
+
+    if(reveal){
+        reveal.classList.remove("show");
+    }
+
+    updateNumberScene();
+}
+
+
+/* ---------------------------------------------------------
+   START
+--------------------------------------------------------- */
+
+function startNumberExperience(){
+
+    const intro =
+        document.getElementById("numberIntro");
+
+    const player =
+        document.getElementById("numberPlayer");
+
+    if(intro){
+        intro.style.display = "none";
+    }
+
+    if(player){
+        player.classList.add("active");
+    }
+
+    currentNumberScene = 0;
+
+    updateNumberScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   UPDATE SCENE
+--------------------------------------------------------- */
+
+function updateNumberScene(){
+
+    clearNumberAutoTimer();
+
+    document
+        .querySelectorAll(".number-scene")
+        .forEach(scene => {
+            scene.classList.remove("active");
+        });
+
+    const current =
+        document.getElementById(
+            "numberScene" + (currentNumberScene + 1)
+        );
+
+    if(current){
+        current.classList.add("active");
+    }
+
+    const data =
+        numberScenes[currentNumberScene];
+
+    if(!data){
+        return;
+    }
+
+    const number =
+        document.getElementById("numberSceneNumber");
+
+    const label =
+        document.getElementById("numberSceneLabel");
+
+    const title =
+        document.getElementById("numberSceneTitle");
+
+    const description =
+        document.getElementById("numberSceneDescription");
+
+    const reading =
+        document.getElementById("numberReading");
+
+    const fact =
+        document.getElementById("numberFact");
+
+    if(number){
+        number.textContent = data.number;
+    }
+
+    if(label){
+        label.textContent = data.label;
+    }
+
+    if(title){
+        title.textContent = data.title;
+    }
+
+    if(description){
+        description.textContent = data.description;
+    }
+
+    if(reading){
+        reading.textContent = data.reading;
+    }
+
+    if(fact){
+        fact.textContent = data.fact;
+    }
+
+    updateNumberProgress();
+
+
+    /* Challenge reveal */
+
+    if(currentNumberScene === 5){
+
+        const reveal =
+            document.getElementById(
+                "numberChallengeReveal"
+            );
+
+        if(reveal){
+            reveal.classList.remove("show");
+        }
+
+        setTimeout(() => {
+
+            if(currentNumberScene !== 5){
+                return;
+            }
+
+            if(reveal){
+                reveal.classList.add("show");
+            }
+
+        },1800);
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PROGRESS
+--------------------------------------------------------- */
+
+function updateNumberProgress(){
+
+    const bar =
+        document.getElementById("numberProgressBar");
+
+    if(!bar){
+        return;
+    }
+
+    const progress =
+        ((currentNumberScene + 1) / numberScenes.length) * 100;
+
+    bar.style.width = progress + "%";
+
+}
+
+
+/* ---------------------------------------------------------
+   SPEECH
+--------------------------------------------------------- */
+
+function speakNumberScene(){
+
+    if(!("speechSynthesis" in window)){
+        startNumberAutoTimer(6500);
+        return;
+    }
+
+    speechSynthesis.cancel();
+
+    const data =
+        numberScenes[currentNumberScene];
+
+    if(!data){
+        return;
+    }
+
+    numberSpeech =
+        new SpeechSynthesisUtterance(data.speech);
+
+    numberSpeech.rate = 1;
+    numberSpeech.pitch = 1;
+    numberSpeech.volume = 1;
+
+    numberSpeech.onend = function(){
+
+        if(!numberPlaying){
+            return;
+        }
+
+        startNumberAutoTimer(500);
+
+    };
+
+    speechSynthesis.speak(numberSpeech);
+
+}
+
+
+/* ---------------------------------------------------------
+   NEXT
+--------------------------------------------------------- */
+
+function nextNumberScene(){
+
+    clearNumberAutoTimer();
+
+    if(currentNumberScene < numberScenes.length - 1){
+
+        currentNumberScene++;
+
+        updateNumberScene();
+
+        if(numberPlaying){
+            speakNumberScene();
+        }
+
+    }else{
+
+        numberPlaying = false;
+
+        const button =
+            document.getElementById("numberPlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PREVIOUS
+--------------------------------------------------------- */
+
+function previousNumberScene(){
+
+    clearNumberAutoTimer();
+
+    if(currentNumberScene > 0){
+
+        currentNumberScene--;
+
+        updateNumberScene();
+
+        if(numberPlaying){
+            speakNumberScene();
+        }
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   PLAY / PAUSE
+--------------------------------------------------------- */
+
+function toggleNumberPlayback(){
+
+    if(numberPlaying){
+
+        numberPlaying = false;
+
+        clearNumberAutoTimer();
+
+        if("speechSynthesis" in window){
+            speechSynthesis.cancel();
+        }
+
+        const button =
+            document.getElementById("numberPlayButton");
+
+        if(button){
+            button.textContent = "▶";
+        }
+
+        return;
+    }
+
+    numberPlaying = true;
+
+    const button =
+        document.getElementById("numberPlayButton");
+
+    if(button){
+        button.textContent = "Ⅱ";
+    }
+
+    speakNumberScene();
+
+}
+
+
+/* ---------------------------------------------------------
+   AUTO TIMER
+--------------------------------------------------------- */
+
+function startNumberAutoTimer(delay){
+
+    clearNumberAutoTimer();
+
+    numberAutoTimer =
+        setTimeout(() => {
+
+            if(numberPlaying){
+                nextNumberScene();
+            }
+
+        }, delay);
+
+}
+
+
+function clearNumberAutoTimer(){
+
+    if(numberAutoTimer){
+
+        clearTimeout(numberAutoTimer);
+
+        numberAutoTimer = null;
+
+    }
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN NUMBER SYSTEM EXPLORE
+--------------------------------------------------------- */
+
+function openNumberExplore(){
+
+    if(typeof showPage === "function"){
+        showPage("number-experience");
+    }
+
+    resetNumberExperience();
+
+}
+
+
+/* ---------------------------------------------------------
+   OPEN EXPLORE INTEGRATION
+--------------------------------------------------------- */
+
+const numberOriginalOpenExplore =
+    window.openExplore;
+
+window.openExplore = function(type){
+
+    if(type === "number"){
+        openNumberExplore();
+        return;
+    }
+
+    if(typeof numberOriginalOpenExplore === "function"){
+        return numberOriginalOpenExplore(type);
     }
 
 };
